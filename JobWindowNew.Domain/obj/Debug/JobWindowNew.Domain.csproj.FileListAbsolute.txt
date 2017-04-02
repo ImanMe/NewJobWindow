@@ -1,0 +1,14 @@
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.dll.config
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.dll
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.pdb
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\EntityFramework.dll
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\EntityFramework.xml
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.dll
+c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.pdb
+C:\Users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.csprojResolveAssemblyReference.cache
