@@ -49,6 +49,7 @@ namespace JobWindowNew.Web.Controllers
                 viewModel = InitializeJobViewModel(viewModel);
                 return View("JobForm", viewModel);
             }
+
             viewModel.Action = "Create";
             viewModel.CreatedBy = User.Identity.GetUserName();
             viewModel.CreatedDate = DateTime.Now;
@@ -58,32 +59,12 @@ namespace JobWindowNew.Web.Controllers
             _unitOfWork.JobRepository.Add(job);
             _unitOfWork.Complete();
 
-            foreach (var occupationId in viewModel.OccupationsSelected)
-            {
-                var jobOccupationMap = new JobOccupationMap()
-                {
-                    JobId = job.Id,
-                    OccupationId = occupationId
-                };
-
-                _unitOfWork.JobOccupationMapRepository.Add(jobOccupationMap);
-            }
-
-            foreach (var categoryId in viewModel.CategoriesSelected)
-            {
-                var jobCategoryMap = new JobCategoryMap()
-                {
-                    JobId = job.Id,
-                    CategoryId = categoryId
-                };
-
-                _unitOfWork.JobCategoryMapRepository.Add(jobCategoryMap);
-            }
-
-            _unitOfWork.Complete();
+            PopulateMappingEntities(viewModel, job);
 
             return RedirectToAction("Index", "Home");
         }
+
+
 
         [Authorize]
         [HttpGet]
@@ -103,53 +84,7 @@ namespace JobWindowNew.Web.Controllers
             viewModel.Action = "Edit";
             viewModel.Heading = "Edit";
 
-            viewModel.Title = job.Title;
-            viewModel.JobDescription = job.JobDescription;
-            viewModel.JobRequirements = job.JobRequirements;
-            viewModel.Salary = job.Salary;
-            viewModel.City = job.City;
-            viewModel.Address = job.Address;
-            viewModel.ZipCode = job.ZipCode;
-            viewModel.MinimumExperience = job.MinimumExperience;
-            viewModel.MaximumExperience = job.MaximumExperience;
-            viewModel.SchedulingPod = job.SchedulingPod;
-            viewModel.OfficeId = job.OfficeId;
-            viewModel.Author = job.Author;
-            viewModel.EmailTo = job.EmailTo;
-            viewModel.IsBestPerforming = job.IsBestPerforming;
-            viewModel.IsEverGreen = job.IsEverGreen;
-            viewModel.IsOnlineApply = job.IsOnlineApply;
-            viewModel.EditedDate = DateTime.Now;
-            viewModel.CompanyName = job.CompanyName;
-            viewModel.Division = job.Division;
-            viewModel.EditedBy = currentUser;
-            viewModel.SalaryTypes = _unitOfWork.SalaryTypeRepository.GetSalaryTypes();
-            viewModel.EmploymentTypes = _unitOfWork.EmploymentTypeRepository.GetEmploymentTypes();
-            viewModel.JobBoards = _unitOfWork.JobBoardRepository.GetJobBoards();
-            viewModel.Countries = _unitOfWork.CountryRepository.GetCountries();
-            viewModel.States = _unitOfWork.StateRepository.GetStates();
-            viewModel.Categories = _unitOfWork.CategoryRepository.GetCategories();
-            viewModel.Occupations = _unitOfWork.OccupationRepository.GetOccupations();
-            viewModel.Currencies = new[] { "USD", "CAD" };
-
-            if (job.ActivationDate != null)
-            {
-                var convertedActivationDate = (DateTime)job.ActivationDate;
-                viewModel.ActivationDate = convertedActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            }
-
-            if (job.ExpirationDate != null)
-            {
-                var convertedExpirationDate = (DateTime)job.ExpirationDate;
-                viewModel.ExpirationDate = convertedExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            }
-
-            viewModel.EmploymentTypeId = job.EmploymentTypeId;
-            viewModel.SalaryTypeId = job.SalaryTypeId;
-            viewModel.JobBoardId = job.JobBoardId;
-            viewModel.StateId = job.StateId;
-            viewModel.CountryId = job.CountryId;
-            viewModel.Currency = job.Currency;
+            PopulateViewModelForEditAndClone(viewModel, job, currentUser);
 
             var categories = _unitOfWork.JobCategoryMapRepository.GetCategoriesForJob(id).ToList();
             viewModel.CategoriesSelected = categories.ToArray();
@@ -158,7 +93,6 @@ namespace JobWindowNew.Web.Controllers
             viewModel.OccupationsSelected = occupations.ToArray();
 
             return View("JobForm", viewModel);
-
         }
 
         [Authorize]
@@ -183,35 +117,7 @@ namespace JobWindowNew.Web.Controllers
             var currentUser = User.Identity.GetUserName();
             var currentDate = DateTime.Now;
 
-            job.Id = viewModel.Id;
-            job.Title = viewModel.Title;
-            job.JobDescription = viewModel.JobDescription;
-            job.JobRequirements = viewModel.JobRequirements;
-            job.EmploymentTypeId = viewModel.EmploymentTypeId;
-            job.Salary = viewModel.Salary;
-            job.Currency = viewModel.Currency;
-            job.SalaryTypeId = viewModel.SalaryTypeId;
-            job.CountryId = viewModel.CountryId;
-            job.StateId = viewModel.StateId;
-            job.City = viewModel.City;
-            job.ZipCode = viewModel.ZipCode;
-            job.Address = viewModel.Address;
-            job.MinimumExperience = viewModel.MinimumExperience;
-            job.MaximumExperience = viewModel.MaximumExperience;
-            job.CompanyName = viewModel.CompanyName;
-            job.ActivationDate = viewModel.GetActivationDate();
-            job.ExpirationDate = viewModel.GetExpirationDate();
-            job.SchedulingPod = viewModel.SchedulingPod;
-            job.OfficeId = viewModel.OfficeId;
-            job.Division = viewModel.Division;
-            job.JobBoardId = viewModel.JobBoardId;
-            job.Author = viewModel.Author;
-            job.EmailTo = viewModel.EmailTo;
-            job.IsBestPerforming = viewModel.IsBestPerforming;
-            job.IsEverGreen = viewModel.IsEverGreen;
-            job.IsOnlineApply = viewModel.IsOnlineApply;
-            job.EditedBy = currentUser;
-            job.EditedDate = currentDate;
+            PopulateJobFromViewModel(viewModel, job, currentUser, currentDate);
 
 
             _unitOfWork.JobRepository.Update(job);
@@ -223,28 +129,8 @@ namespace JobWindowNew.Web.Controllers
             _unitOfWork.Complete();
 
 
-            foreach (var occupationId in viewModel.OccupationsSelected)
-            {
-                var jobOccupationMap = new JobOccupationMap()
-                {
-                    JobId = job.Id,
-                    OccupationId = occupationId
-                };
+            PopulateMappingEntities(viewModel, job);
 
-                _unitOfWork.JobOccupationMapRepository.Add(jobOccupationMap);
-            }
-
-            foreach (var categoryId in viewModel.CategoriesSelected)
-            {
-                var jobCategoryMap = new JobCategoryMap()
-                {
-                    JobId = job.Id,
-                    CategoryId = categoryId
-                };
-
-                _unitOfWork.JobCategoryMapRepository.Add(jobCategoryMap);
-            }
-            _unitOfWork.Complete();
             return RedirectToAction("Index", "Home");
         }
 
@@ -267,53 +153,7 @@ namespace JobWindowNew.Web.Controllers
             viewModel.Action = "Clone";
             viewModel.Heading = "Clone";
 
-            viewModel.Title = job.Title;
-            viewModel.JobDescription = job.JobDescription;
-            viewModel.JobRequirements = job.JobRequirements;
-            viewModel.Salary = job.Salary;
-            viewModel.City = job.City;
-            viewModel.Address = job.Address;
-            viewModel.ZipCode = job.ZipCode;
-            viewModel.MinimumExperience = job.MinimumExperience;
-            viewModel.MaximumExperience = job.MaximumExperience;
-            viewModel.SchedulingPod = job.SchedulingPod;
-            viewModel.OfficeId = job.OfficeId;
-            viewModel.Author = job.Author;
-            viewModel.EmailTo = job.EmailTo;
-            viewModel.IsBestPerforming = job.IsBestPerforming;
-            viewModel.IsEverGreen = job.IsEverGreen;
-            viewModel.IsOnlineApply = job.IsOnlineApply;
-            viewModel.EditedDate = DateTime.Now;
-            viewModel.CompanyName = job.CompanyName;
-            viewModel.Division = job.Division;
-            viewModel.EditedBy = currentUser;
-            viewModel.SalaryTypes = _unitOfWork.SalaryTypeRepository.GetSalaryTypes();
-            viewModel.EmploymentTypes = _unitOfWork.EmploymentTypeRepository.GetEmploymentTypes();
-            viewModel.JobBoards = _unitOfWork.JobBoardRepository.GetJobBoards();
-            viewModel.Countries = _unitOfWork.CountryRepository.GetCountries();
-            viewModel.States = _unitOfWork.StateRepository.GetStates();
-            viewModel.Categories = _unitOfWork.CategoryRepository.GetCategories();
-            viewModel.Occupations = _unitOfWork.OccupationRepository.GetOccupations();
-            viewModel.Currencies = new[] { "USD", "CAD" };
-
-            if (job.ActivationDate != null)
-            {
-                var convertedActivationDate = (DateTime)job.ActivationDate;
-                viewModel.ActivationDate = convertedActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            }
-
-            if (job.ExpirationDate != null)
-            {
-                var convertedExpirationDate = (DateTime)job.ExpirationDate;
-                viewModel.ExpirationDate = convertedExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            }
-
-            viewModel.EmploymentTypeId = job.EmploymentTypeId;
-            viewModel.SalaryTypeId = job.SalaryTypeId;
-            viewModel.JobBoardId = job.JobBoardId;
-            viewModel.StateId = job.StateId;
-            viewModel.CountryId = job.CountryId;
-            viewModel.Currency = job.Currency;
+            PopulateViewModelForEditAndClone(viewModel, job, currentUser);
 
             var categories = _unitOfWork.JobCategoryMapRepository.GetCategoriesForJob(id).ToList();
             viewModel.CategoriesSelected = categories.ToArray();
@@ -348,6 +188,117 @@ namespace JobWindowNew.Web.Controllers
             var currentUser = User.Identity.GetUserName();
             var currentDate = DateTime.Now;
 
+            PopulateJobFromViewModel(viewModel, job, currentUser, currentDate);
+
+
+            _unitOfWork.JobRepository.Add(job);
+
+            _unitOfWork.Complete();
+
+            PopulateMappingEntities(viewModel, job);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+        private JobFormViewModel InitializeJobViewModel(JobFormViewModel viewModel)
+        {
+            viewModel.Heading = "Create";
+            viewModel.SalaryTypes = _unitOfWork.SalaryTypeRepository.GetSalaryTypes();
+            viewModel.EmploymentTypes = _unitOfWork.EmploymentTypeRepository.GetEmploymentTypes();
+            viewModel.JobBoards = _unitOfWork.JobBoardRepository.GetJobBoards();
+            viewModel.Countries = _unitOfWork.CountryRepository.GetCountries();
+            viewModel.States = _unitOfWork.StateRepository.GetStates();
+            viewModel.Categories = _unitOfWork.CategoryRepository.GetCategories();
+            viewModel.Occupations = _unitOfWork.OccupationRepository.GetOccupations();
+            viewModel.Currencies = new[] { "USD", "CAD" };
+            viewModel.ActivationDate = DateTime.Now
+                .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            viewModel.ExpirationDate = DateTime.Now.AddMonths(1)
+                .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+            return viewModel;
+        }
+        private void PopulateMappingEntities(JobFormViewModel viewModel, Job job)
+        {
+            foreach (var occupationId in viewModel.OccupationsSelected)
+            {
+                var jobOccupationMap = new JobOccupationMap()
+                {
+                    JobId = job.Id,
+                    OccupationId = occupationId
+                };
+
+                _unitOfWork.JobOccupationMapRepository.Add(jobOccupationMap);
+            }
+
+            foreach (var categoryId in viewModel.CategoriesSelected)
+            {
+                var jobCategoryMap = new JobCategoryMap()
+                {
+                    JobId = job.Id,
+                    CategoryId = categoryId
+                };
+
+                _unitOfWork.JobCategoryMapRepository.Add(jobCategoryMap);
+            }
+
+            _unitOfWork.Complete();
+        }
+        private void PopulateViewModelForEditAndClone(JobFormViewModel viewModel, Job job, string currentUser)
+        {
+            viewModel.Title = job.Title;
+            viewModel.JobDescription = job.JobDescription;
+            viewModel.JobRequirements = job.JobRequirements;
+            viewModel.Salary = job.Salary;
+            viewModel.City = job.City;
+            viewModel.Address = job.Address;
+            viewModel.ZipCode = job.ZipCode;
+            viewModel.MinimumExperience = job.MinimumExperience;
+            viewModel.MaximumExperience = job.MaximumExperience;
+            viewModel.SchedulingPod = job.SchedulingPod;
+            viewModel.OfficeId = job.OfficeId;
+            viewModel.Author = job.Author;
+            viewModel.EmailTo = job.EmailTo;
+            viewModel.IsBestPerforming = job.IsBestPerforming;
+            viewModel.IsEverGreen = job.IsEverGreen;
+            viewModel.IsOnlineApply = job.IsOnlineApply;
+            viewModel.EditedDate = DateTime.Now;
+            viewModel.CompanyName = job.CompanyName;
+            viewModel.Division = job.Division;
+            viewModel.EditedBy = currentUser;
+            viewModel.SalaryTypes = _unitOfWork.SalaryTypeRepository.GetSalaryTypes();
+            viewModel.EmploymentTypes = _unitOfWork.EmploymentTypeRepository.GetEmploymentTypes();
+            viewModel.JobBoards = _unitOfWork.JobBoardRepository.GetJobBoards();
+            viewModel.Countries = _unitOfWork.CountryRepository.GetCountries();
+            viewModel.States = _unitOfWork.StateRepository.GetStates();
+            viewModel.Categories = _unitOfWork.CategoryRepository.GetCategories();
+            viewModel.Occupations = _unitOfWork.OccupationRepository.GetOccupations();
+            viewModel.Currencies = new[] { "USD", "CAD" };
+
+            if (job.ActivationDate != null)
+            {
+                var convertedActivationDate = (DateTime)job.ActivationDate;
+                viewModel.ActivationDate = convertedActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            }
+
+            if (job.ExpirationDate != null)
+            {
+                var convertedExpirationDate = (DateTime)job.ExpirationDate;
+                viewModel.ExpirationDate = convertedExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            }
+
+            viewModel.EmploymentTypeId = job.EmploymentTypeId;
+            viewModel.SalaryTypeId = job.SalaryTypeId;
+            viewModel.JobBoardId = job.JobBoardId;
+            viewModel.StateId = job.StateId;
+            viewModel.CountryId = job.CountryId;
+            viewModel.Currency = job.Currency;
+        }
+        private static void PopulateJobFromViewModel(JobFormViewModel viewModel, Job job, string currentUser,
+            DateTime currentDate)
+        {
             job.Id = viewModel.Id;
             job.Title = viewModel.Title;
             job.JobDescription = viewModel.JobDescription;
@@ -377,59 +328,6 @@ namespace JobWindowNew.Web.Controllers
             job.IsOnlineApply = viewModel.IsOnlineApply;
             job.EditedBy = currentUser;
             job.EditedDate = currentDate;
-
-
-            _unitOfWork.JobRepository.Add(job);
-            _unitOfWork.Complete();
-
-            _unitOfWork.Complete();
-
-
-            foreach (var occupationId in viewModel.OccupationsSelected)
-            {
-                var jobOccupationMap = new JobOccupationMap()
-                {
-                    JobId = job.Id,
-                    OccupationId = occupationId
-                };
-
-                _unitOfWork.JobOccupationMapRepository.Add(jobOccupationMap);
-            }
-
-            foreach (var categoryId in viewModel.CategoriesSelected)
-            {
-                var jobCategoryMap = new JobCategoryMap()
-                {
-                    JobId = job.Id,
-                    CategoryId = categoryId
-                };
-
-                _unitOfWork.JobCategoryMapRepository.Add(jobCategoryMap);
-            }
-            _unitOfWork.Complete();
-
-            return RedirectToAction("Index", "Home");
-        }
-
-
-
-        private JobFormViewModel InitializeJobViewModel(JobFormViewModel viewModel)
-        {
-            viewModel.Heading = "Create";
-            viewModel.SalaryTypes = _unitOfWork.SalaryTypeRepository.GetSalaryTypes();
-            viewModel.EmploymentTypes = _unitOfWork.EmploymentTypeRepository.GetEmploymentTypes();
-            viewModel.JobBoards = _unitOfWork.JobBoardRepository.GetJobBoards();
-            viewModel.Countries = _unitOfWork.CountryRepository.GetCountries();
-            viewModel.States = _unitOfWork.StateRepository.GetStates();
-            viewModel.Categories = _unitOfWork.CategoryRepository.GetCategories();
-            viewModel.Occupations = _unitOfWork.OccupationRepository.GetOccupations();
-            viewModel.Currencies = new[] { "USD", "CAD" };
-            viewModel.ActivationDate = DateTime.Now
-                .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            viewModel.ExpirationDate = DateTime.Now.AddMonths(1)
-                .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-
-            return viewModel;
         }
     }
 }
