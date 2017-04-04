@@ -9,7 +9,7 @@ namespace JobWindowNew.Domain.ViewModels
     {
         public string Action { get; set; }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public string Heading { get; set; }
 

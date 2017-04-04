@@ -106,7 +106,7 @@
                         </div>
                     }
                      
-                    @if (Model.Action == "Edit")
+                    @if (Model.Action == "Edit" || Model.Action == "Clone")
                     {
                         <div class="form-group" id="stateForEdit">
                             @Html.LabelFor(m => m.StateId)
