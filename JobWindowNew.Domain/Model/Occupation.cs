@@ -16,7 +16,7 @@ namespace JobWindowNew.Domain.Model
         public string OccupationCategory { get; set; }
 
         [NotMapped]
-        public string FullOccupationName => OccupationName + " - " + OccupationCategory;
+        public string FullOccupationName => OccupationCategory + " - " + OccupationName;
 
         public long? SId { get; set; }
     }

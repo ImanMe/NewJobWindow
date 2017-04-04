@@ -11,7 +11,7 @@
     </div>
 </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(@Model.Action, "Jobs"))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Id)
@@ -97,11 +97,23 @@
                     </div>
                 </div>
                 <div style="width: 44%; float: left;">
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.StateId)
-                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "StateName"), "Select a StateId", new { @class = "form-control fcoontrolform" })
-                        @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
-                    </div>
+                    @if (Model.Action == "Create")
+                    {
+                        <div class="form-group" id="stateForCreate">
+                            @Html.LabelFor(m => m.StateId)
+                            <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "StateName"), "Select a StateId", new { @class = "form-control fcoontrolform" })
+                            @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                     
+                    @if (Model.Action == "Edit")
+                    {
+                        <div class="form-group" id="stateForEdit">
+                            @Html.LabelFor(m => m.StateId)
+                            <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Model.States, "Id", "StateName"), "Select a StateId", new { @class = "form-control fcoontrolform" })
+                            @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+                        </div>
+                    }                                      
                 </div>
             </div>
             <div class="col-md-6">

@@ -6,5 +6,6 @@ namespace JobWindowNew.Domain.IRepositories
     public interface IOccupationRepository
     {
         IEnumerable<Occupation> GetOccupations();
+        Occupation GetOccupation(int occupationId);
     }
 }

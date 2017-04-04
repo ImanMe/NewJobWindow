@@ -12,3 +12,17 @@ c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.D
 c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.dll
 c:\users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.pdb
 C:\Users\imanm\documents\visual studio 2015\Projects\JobWindowNew\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.csprojResolveAssemblyReference.cache
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.dll.config
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.dll
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.pdb
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.dll
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.xml
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.csprojResolveAssemblyReference.cache
+C:\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.dll
+C:\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.pdb

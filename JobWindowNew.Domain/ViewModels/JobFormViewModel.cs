@@ -7,6 +7,8 @@ namespace JobWindowNew.Domain.ViewModels
 {
     public class JobFormViewModel
     {
+        public string Action { get; set; }
+
         public int Id { get; set; }
 
         public string Heading { get; set; }

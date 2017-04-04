@@ -1,6 +1,8 @@
 ﻿using JobWindowNew.Domain.IRepositories;
 using JobWindowNew.Domain.Model;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace JobWindowNew.DAL.Persistence.Repositories
 {
@@ -18,10 +20,19 @@ namespace JobWindowNew.DAL.Persistence.Repositories
             return _context.Jobs;
         }
 
+        public void Update(Job job)
+        {
+            _context.Entry(job).State = EntityState.Modified;
+        }
+
         public void Add(Job job)
         {
             _context.Jobs.Add(job);
         }
 
+        public Job GetJob(long jobId)
+        {
+            return _context.Jobs.SingleOrDefault(j => j.Id == jobId);
+        }
     }
 }
