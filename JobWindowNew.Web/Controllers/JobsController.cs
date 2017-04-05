@@ -64,8 +64,6 @@ namespace JobWindowNew.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-
         [Authorize]
         [HttpGet]
         public ActionResult Edit(int id)
@@ -79,18 +77,19 @@ namespace JobWindowNew.Web.Controllers
 
             var currentUser = User.Identity.GetUserName();
 
-            var viewModel = new JobFormViewModel();
-
-            viewModel.Action = "Edit";
-            viewModel.Heading = "Edit";
-
-            PopulateViewModelForEditAndClone(viewModel, job, currentUser);
-
             var categories = _unitOfWork.JobCategoryMapRepository.GetCategoriesForJob(id).ToList();
-            viewModel.CategoriesSelected = categories.ToArray();
 
             var occupations = _unitOfWork.JobOccupationMapRepository.GetOccupationForJob(id).ToList();
-            viewModel.OccupationsSelected = occupations.ToArray();
+
+            var viewModel = new JobFormViewModel
+            {
+                Action = "Edit",
+                Heading = "Edit",
+                CategoriesSelected = categories.ToArray(),
+                OccupationsSelected = occupations.ToArray()
+            };
+
+            PopulateViewModelForEdit(viewModel, job, currentUser);
 
             return View("JobForm", viewModel);
         }
@@ -119,7 +118,6 @@ namespace JobWindowNew.Web.Controllers
 
             PopulateJobFromViewModel(viewModel, job, currentUser, currentDate);
 
-
             _unitOfWork.JobRepository.Update(job);
             _unitOfWork.Complete();
 
@@ -128,12 +126,10 @@ namespace JobWindowNew.Web.Controllers
 
             _unitOfWork.Complete();
 
-
             PopulateMappingEntities(viewModel, job);
 
             return RedirectToAction("Index", "Home");
         }
-
 
         [Authorize]
         [HttpGet]
@@ -148,21 +144,23 @@ namespace JobWindowNew.Web.Controllers
 
             var currentUser = User.Identity.GetUserName();
 
-            var viewModel = new JobFormViewModel();
+            var categories = _unitOfWork.JobCategoryMapRepository
+                .GetCategoriesForJob(id).ToList();
 
-            viewModel.Action = "Clone";
-            viewModel.Heading = "Clone";
+            var occupations = _unitOfWork.JobOccupationMapRepository
+               .GetOccupationForJob(id).ToList();
 
-            PopulateViewModelForEditAndClone(viewModel, job, currentUser);
+            var viewModel = new JobFormViewModel
+            {
+                Action = "Clone",
+                Heading = "Clone",
+                CategoriesSelected = categories.ToArray(),
+                OccupationsSelected = occupations.ToArray()
+            };
 
-            var categories = _unitOfWork.JobCategoryMapRepository.GetCategoriesForJob(id).ToList();
-            viewModel.CategoriesSelected = categories.ToArray();
-
-            var occupations = _unitOfWork.JobOccupationMapRepository.GetOccupationForJob(id).ToList();
-            viewModel.OccupationsSelected = occupations.ToArray();
+            PopulateViewModelForClone(viewModel, job, currentUser);
 
             return View("JobForm", viewModel);
-
         }
 
 
@@ -190,6 +188,12 @@ namespace JobWindowNew.Web.Controllers
 
             PopulateJobFromViewModel(viewModel, job, currentUser, currentDate);
 
+            job.CloneFrom = job.Id;
+
+            if (job.IsEverGreen && job.EverGreenId == null)
+            {
+                job.EverGreenId = job.Id;
+            }
 
             _unitOfWork.JobRepository.Add(job);
 
@@ -199,8 +203,6 @@ namespace JobWindowNew.Web.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
-
 
         private JobFormViewModel InitializeJobViewModel(JobFormViewModel viewModel)
         {
@@ -246,7 +248,7 @@ namespace JobWindowNew.Web.Controllers
 
             _unitOfWork.Complete();
         }
-        private void PopulateViewModelForEditAndClone(JobFormViewModel viewModel, Job job, string currentUser)
+        private void PopulateViewModelForEdit(JobFormViewModel viewModel, Job job, string currentUser)
         {
             viewModel.Title = job.Title;
             viewModel.JobDescription = job.JobDescription;
@@ -288,6 +290,49 @@ namespace JobWindowNew.Web.Controllers
                 var convertedExpirationDate = (DateTime)job.ExpirationDate;
                 viewModel.ExpirationDate = convertedExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             }
+
+            viewModel.EmploymentTypeId = job.EmploymentTypeId;
+            viewModel.SalaryTypeId = job.SalaryTypeId;
+            viewModel.JobBoardId = job.JobBoardId;
+            viewModel.StateId = job.StateId;
+            viewModel.CountryId = job.CountryId;
+            viewModel.Currency = job.Currency;
+        }
+        private void PopulateViewModelForClone(JobFormViewModel viewModel, Job job, string currentUser)
+        {
+            viewModel.Title = job.Title;
+            viewModel.JobDescription = job.JobDescription;
+            viewModel.JobRequirements = job.JobRequirements;
+            viewModel.Salary = job.Salary;
+            viewModel.City = job.City;
+            viewModel.Address = job.Address;
+            viewModel.ZipCode = job.ZipCode;
+            viewModel.MinimumExperience = job.MinimumExperience;
+            viewModel.MaximumExperience = job.MaximumExperience;
+            viewModel.SchedulingPod = job.SchedulingPod;
+            viewModel.OfficeId = job.OfficeId;
+            viewModel.Author = job.Author;
+            viewModel.EmailTo = job.EmailTo;
+            viewModel.IsBestPerforming = job.IsBestPerforming;
+            viewModel.IsEverGreen = job.IsEverGreen;
+            viewModel.IsOnlineApply = job.IsOnlineApply;
+            viewModel.EditedDate = DateTime.Now;
+            viewModel.CompanyName = job.CompanyName;
+            viewModel.Division = job.Division;
+            viewModel.EditedBy = currentUser;
+            viewModel.SalaryTypes = _unitOfWork.SalaryTypeRepository.GetSalaryTypes();
+            viewModel.EmploymentTypes = _unitOfWork.EmploymentTypeRepository.GetEmploymentTypes();
+            viewModel.JobBoards = _unitOfWork.JobBoardRepository.GetJobBoards();
+            viewModel.Countries = _unitOfWork.CountryRepository.GetCountries();
+            viewModel.States = _unitOfWork.StateRepository.GetStates();
+            viewModel.Categories = _unitOfWork.CategoryRepository.GetCategories();
+            viewModel.Occupations = _unitOfWork.OccupationRepository.GetOccupations();
+            viewModel.Currencies = new[] { "USD", "CAD" };
+
+            viewModel.ActivationDate = DateTime.Now
+                .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            viewModel.ExpirationDate = DateTime.Now.AddMonths(1)
+                .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
 
             viewModel.EmploymentTypeId = job.EmploymentTypeId;
             viewModel.SalaryTypeId = job.SalaryTypeId;

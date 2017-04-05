@@ -1,7 +1,8 @@
 ﻿body {
-    padding-top: 70px;
+    padding-top: 90px;
     padding-bottom: 5px;
-    font-family: 'Libre Franklin', sans-serif;
+    /*font-family: 'Libre Franklin', sans-serif;*/
+    font-family: 'Montserrat', sans-serif;
     font-size: 17px;
 }
 
@@ -96,9 +97,7 @@ option:hover {
     background-color: #ebebeb!important;    
 }
 
-select{
-    background-color: red;
-}
+
 
 input[type=checkbox]
 {
@@ -192,6 +191,8 @@ span.field-validation-error {
 }
 .navbar-brand {
     font-weight: bold;
+    padding-top: 30px;
+      margin-right: 30px;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -225,3 +226,35 @@ span.field-validation-error {
     
 }
 
+
+ {
+    margin-right: 50px;
+ 
+}
+ 
+/*.navbar-nav > li:hover {
+    border-bottom: 5px solid #f96816;
+    margin-bottom: 0;
+    
+}
+ 
+.navbar-nav > li>a:focus {
+    border-bottom: 5px solid #f96816;
+    
+}*/
+ 
+.navbar-nav > li:last-child{
+    margin-right: 0;
+}
+ 
+ .navbar-nav > li > a {
+     padding: 30px 8px;
+     color:#888;
+     
+ }
+ 
+ 
+ 
+
+ 
+ 

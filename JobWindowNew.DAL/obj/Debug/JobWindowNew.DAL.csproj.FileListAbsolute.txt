@@ -48,3 +48,4 @@ C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.DateChang
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.csproj.GenerateResource.Cache
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.dll
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.pdb
+C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.JobStat.resources

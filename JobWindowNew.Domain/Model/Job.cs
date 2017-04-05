@@ -99,5 +99,27 @@ namespace JobWindowNew.Domain.Model
         public int StateId { get; set; }
 
         public State State { get; set; }
+
+        public long? CloneFrom { get; set; }
+
+        public long? EverGreenId { get; set; }
+
+        [Range(0, 999999)]
+        public int? Bob { get; set; }
+
+        [Range(0, 999999)]
+        public int? Intvs { get; set; }
+
+        [Range(0, 999999)]
+        public int? Intvs2 { get; set; }
+
+        [Range(0, 999999)]
+        public int? ApsCl { get; set; }
+
+        [Range(0, 999)]
+        public decimal? RemovedCl { get; set; }
+
+        [StringLength(100)]
+        public string RemovedReason { get; set; }
     }
 }
