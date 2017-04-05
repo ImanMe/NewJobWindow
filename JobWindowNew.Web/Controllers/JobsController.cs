@@ -22,6 +22,13 @@ namespace JobWindowNew.Web.Controllers
 
         [Authorize]
         [HttpGet]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpGet]
         public ActionResult GetStates(int countryId)
         {
             var states = _unitOfWork.StateRepository.GetStates(countryId);
