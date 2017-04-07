@@ -2,7 +2,9 @@
 using JobWindowNew.Domain;
 using JobWindowNew.Domain.Model;
 using JobWindowNew.Domain.ViewModels;
+using JobWindowNew.Web.Helpers;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -21,10 +23,105 @@ namespace JobWindowNew.Web.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        public ActionResult Index()
+        //[HttpGet]
+        public ActionResult Index(string sortOrder, string currentFilter, string titleFilter, string idSearch, string titleSearch, int? page)
         {
-            return View();
+            try
+            {
+                ViewBag.CurrentSort = sortOrder;
+                ViewBag.IdParm = String.IsNullOrEmpty(sortOrder) ? "Id" : "";
+                //ViewBag.IdParm = sortOrder == "Id" ? "-Id" : "Id";
+                ViewBag.CloneFromParm = sortOrder == "CloneFrom" ? "-CloneFrom" : "CloneFrom";
+                ViewBag.EverGreenIdParm = sortOrder == "EverGreenId" ? "-EverGreenId" : "EverGreenId";
+                ViewBag.TitleParm = sortOrder == "Title" ? "-Title" : "Title";
+                ViewBag.JobBoardParm = sortOrder == "JobBoard.JobBoardName" ? "-JobBoard.JobBoardName" : "JobBoard.JobBoardName";
+                ViewBag.CityParm = sortOrder == "City" ? "-City" : "City";
+                ViewBag.StateNameParm = sortOrder == "State.StateName" ? "-State.StateName" : "State.StateName";
+                ViewBag.CountryNameParm = sortOrder == "Country.CountryName" ? "-Country.CountryName" : "Country.CountryName";
+                ViewBag.CompanyNameParm = sortOrder == "CompanyName" ? "-CompanyName" : "CompanyName";
+                ViewBag.SchedulingPodParm = sortOrder == "SchedulingPod" ? "-SchedulingPod" : "SchedulingPod";
+                ViewBag.DivisionParm = sortOrder == "Division" ? "-Division" : "Division";
+                ViewBag.ActivationDateParm = sortOrder == "ActivationDate" ? "-ActivationDate" : "ActivationDate";
+                ViewBag.ExpirationDateParm = sortOrder == "ExpirationDate" ? "-ExpirationDate" : "ExpirationDate";
+                ViewBag.CreatedByParm = sortOrder == "CreatedBy" ? "-CreatedBy" : "CreatedBy";
+                ViewBag.CreatedDateParm = sortOrder == "CreatedDate" ? "-CreatedDate" : "CreatedDate";
+                ViewBag.BobParm = sortOrder == "Bob" ? "-Bob" : "Bob";
+                ViewBag.IntvsParm = sortOrder == "Intvs" ? "-Intvs" : "Intvs";
+                ViewBag.Intvs2Parm = sortOrder == "Intvs2" ? "-Intvs2" : "Intvs2";
+                ViewBag.ApsClParm = sortOrder == "ApsCl" ? "-ApsCl" : "ApsCl";
+                ViewBag.RemovedClParm = sortOrder == "RemovedCl" ? "-RemovedCl" : "RemovedCl";
+                sortOrder = ViewBag.CurrentSort;
+                //if (string.IsNullOrEmpty(sortOrder))
+                //{
+                //    sortOrder = "Id";
+                //}
+
+                if (idSearch != null || titleSearch != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    idSearch = currentFilter;
+                    titleSearch = titleFilter;
+                }
+
+
+
+
+                ViewBag.CurrentFilter = idSearch;
+                ViewBag.TitleFilter = titleSearch;
+
+                //ViewBag.Page = page;
+
+                var factory = new Factory();
+                IQueryable<Job> query;
+                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch))
+                {
+                    query = _unitOfWork.JobRepository.GetJobsForGrid()
+                          .ApplySort(sortOrder);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(idSearch))
+                    {
+                        idSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(titleSearch))
+                    {
+                        titleSearch = "";
+                    }
+                    query = _unitOfWork.JobRepository.GetJobsForGrid()
+                         .Where(j => j.Id.ToString().Contains(idSearch))
+                            .Where(j => j.Title.ToString().Contains(titleSearch))
+                            .ApplySort(sortOrder);
+                }
+
+
+                //var pageSize = 5;
+                //Total records
+                //var totalCount = query.Count();
+
+                //Total Pages
+                //var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+
+                //ViewBag.totalPages = totalPages;
+
+                //var jobList = query.Skip(pageSize * (page - 1))
+                //    .Take(pageSize).ToList().Select(j => factory.Create(j));
+                var result = query.ToList().Select(j => factory.Create(j));
+                int pageSize = 3;
+                int pageNumber = (page ?? 1);
+
+
+                return View(result.ToPagedList(pageNumber, pageSize));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         [Authorize]
@@ -285,19 +382,8 @@ namespace JobWindowNew.Web.Controllers
             viewModel.Categories = _unitOfWork.CategoryRepository.GetCategories();
             viewModel.Occupations = _unitOfWork.OccupationRepository.GetOccupations();
             viewModel.Currencies = new[] { "USD", "CAD" };
-
-            if (job.ActivationDate != null)
-            {
-                var convertedActivationDate = (DateTime)job.ActivationDate;
-                viewModel.ActivationDate = convertedActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            }
-
-            if (job.ExpirationDate != null)
-            {
-                var convertedExpirationDate = (DateTime)job.ExpirationDate;
-                viewModel.ExpirationDate = convertedExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            }
-
+            viewModel.ActivationDate = job.ActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            viewModel.ExpirationDate = job.ExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             viewModel.EmploymentTypeId = job.EmploymentTypeId;
             viewModel.SalaryTypeId = job.SalaryTypeId;
             viewModel.JobBoardId = job.JobBoardId;

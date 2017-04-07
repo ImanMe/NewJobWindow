@@ -168,3 +168,8 @@ C:\NewJobWindow\JobWindowNew.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xm
 C:\NewJobWindow\JobWindowNew.Web\obj\Debug\JobWindowNew.Web.csprojResolveAssemblyReference.cache
 C:\NewJobWindow\JobWindowNew.Web\obj\Debug\JobWindowNew.Web.dll
 C:\NewJobWindow\JobWindowNew.Web\obj\Debug\JobWindowNew.Web.pdb
+C:\NewJobWindow\JobWindowNew.Web\bin\System.Linq.Dynamic.dll
+C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.dll
+C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.Mvc.dll
+C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.xml
+C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.Mvc.xml

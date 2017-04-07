@@ -34,5 +34,14 @@ namespace JobWindowNew.DAL.Persistence.Repositories
         {
             return _context.Jobs.SingleOrDefault(j => j.Id == jobId);
         }
+
+        public IQueryable<Job> GetJobsForGrid()
+        {
+            var result = _context.Jobs
+                .Include(j => j.State)
+                .Include(j => j.Country)
+                .Include(j => j.JobBoard);
+            return result;
+        }
     }
 }

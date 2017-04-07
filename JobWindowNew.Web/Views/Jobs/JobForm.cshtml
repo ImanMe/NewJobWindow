@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-12">
         <h3 class="pull-left">@Model.Heading a Job</h3>
-        <button class="btn btn-primary backtolist-btn pull-right" style="margin-top: 10px;">Back To List</button>
+        <button class="btn btn-primary backtolist-btn pull-right" style="margin-top: 10px;" onclick="location.href='@Url.Action("Index", "Jobs")'">Back To List</button>       
     </div>
 </div>
 
@@ -240,8 +240,8 @@
         </div>
         <br />
         <button type="submit" class="btn btn-success create-btn">Save</button>
-        <button class="btn btn-warning cancel-btn">Cancel</button>
-        <button class="btn btn-primary backtolist-btn">Back To List</button>
+        <button class="btn btn-warning cancel-btn" onclick="location.href='@Url.Action("Index", "Jobs")'">Cancel</button>
+        <button class="btn btn-primary backtolist-btn" onclick="location.href='@Url.Action("Index", "Jobs")'">Back To List</button>
     </div>
 }
 

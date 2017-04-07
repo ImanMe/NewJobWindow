@@ -80,10 +80,12 @@
     <Compile Include="Model\SalaryType.cs" />
     <Compile Include="Model\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Factory.cs" />
     <Compile Include="ViewModels\JobCategoryMapViewModel.cs" />
     <Compile Include="ViewModels\JobFormViewModel.cs" />
     <Compile Include="ViewModels\JobGridViewModel.cs" />
     <Compile Include="ViewModels\JobOccupationMapViewModel.cs" />
+    <Compile Include="ViewModels\PaginationInfoViewModel.cs" />
     <Compile Include="ViewModels\ValidDate.cs" />
   </ItemGroup>
   <ItemGroup>

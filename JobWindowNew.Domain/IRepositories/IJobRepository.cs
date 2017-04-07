@@ -1,5 +1,6 @@
 ﻿using JobWindowNew.Domain.Model;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JobWindowNew.Domain.IRepositories
 {
@@ -8,6 +9,7 @@ namespace JobWindowNew.Domain.IRepositories
         IEnumerable<Job> GetJobs();
         Job GetJob(long jobId);
         void Add(Job job);
-        void Update(Job Job);
+        void Update(Job job);
+        IQueryable<Job> GetJobsForGrid();
     }
 }

@@ -49,3 +49,4 @@ C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.csproj.GenerateResou
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.dll
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.pdb
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.JobStat.resources
+C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.DateMandatory.resources

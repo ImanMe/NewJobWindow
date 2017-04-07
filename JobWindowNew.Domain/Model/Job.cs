@@ -44,9 +44,9 @@ namespace JobWindowNew.Domain.Model
         [StringLength(255, MinimumLength = 0)]
         public string CompanyName { get; set; }
 
-        public DateTime? ActivationDate { get; set; }
+        public DateTime ActivationDate { get; set; }
 
-        public DateTime? ExpirationDate { get; set; }
+        public DateTime ExpirationDate { get; set; }
 
         [StringLength(255, MinimumLength = 0)]
         public string EmailTo { get; set; }
@@ -57,7 +57,7 @@ namespace JobWindowNew.Domain.Model
         public string CreatedBy { get; set; }
 
         [Required]
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         [StringLength(255, MinimumLength = 0)]
         public string EditedBy { get; set; }
