@@ -64,7 +64,6 @@ namespace JobWindowNew.Domain.ViewModels
         public string ActivationDate { get; set; }
 
 
-
         [Display(Name = "Expiration Date")]
         [Required]
         public string ExpirationDate { get; set; }

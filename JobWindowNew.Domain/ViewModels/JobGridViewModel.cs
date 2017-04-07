@@ -1,4 +1,6 @@
-﻿namespace JobWindowNew.Domain.ViewModels
+﻿using System;
+
+namespace JobWindowNew.Domain.ViewModels
 {
     public class JobGridViewModel
     {
@@ -22,6 +24,9 @@
         public int? ApsCl { get; set; }
         public decimal? RemovedCl { get; set; }
         public string JobBoard { get; set; }
+
+        public bool IsExpired => DateTime.Parse(ExpirationDate) < DateTime.Now;
+
         public PaginationInfoViewModel PaginationInfoViewModel { get; set; }
 
     }

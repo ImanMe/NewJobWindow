@@ -26,6 +26,7 @@ namespace JobWindowNew.Domain.ViewModels
                 Intvs = job.Intvs,
                 Intvs2 = job.Intvs2,
                 ApsCl = job.ApsCl,
+
                 RemovedCl = job.RemovedCl,
                 ActivationDate = job.ActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                 ExpirationDate = job.ExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),

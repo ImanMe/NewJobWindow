@@ -5,86 +5,137 @@
     
 @using (Html.BeginForm("Index", "Jobs", FormMethod.Get))
 {
-    <p>
-        Find by Id: @Html.TextBox("idSearch", ViewBag.CurrentFilter as string)
+    @*<div class="row">
+        <div div class="col-md-3">
+            <div class="input-group">
+                <input type="text" class="form-control input-lg">
+                <span class="input-group-btn">
+                    <button style="border-radius: 2px; height: 45px; color: gray;" class="btn btn-default btn-lg" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                </span>
+            </div>
+        </div>
+       
+    </div>*@
+
+    @*<p>
+        Find by Id: @Html.TextBox("idSearch", ViewBag.IdFilter as string)
         Find by Title: @Html.TextBox("titleSearch", ViewBag.TitleFilter as string)
         <input type="submit" value="Search"/>
-    </p>
-}
+    </p>*@
+    <div class="row">
+        <div class="pull-right">
+            <button class="btn duplicatebtn">Show Duplicates</button>
+        </div>
+    </div>
+    
     <div class="tablewrap">
         <table class="table">
             <thead>
             <tr>
-                <th colspan="3">Actions</th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.IdParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">ID</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.CloneFromParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">CloneFromID</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.EverGreenIDParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">EverGreenID</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.TitleParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Title</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.JobBoardParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Job Board</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.CityParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">City</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.StateNameParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">State</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.CountryNameParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Country</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.CompanyNameParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Company Name</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.SchedulingPodParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">PodId</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.DivisionParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Division</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.ActivationDateParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Activation Date</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.ExpirationDateParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Expiration Date</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.CreatedByParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Created By</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.CreatedDateParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Created Date</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.BobParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">BOB</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.IntvsParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Intvs</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.Intvs2Parm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">Intvs 2nd</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.ApsClParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">ApsCl</a></th>
-                <th><a href="@Url.Action("Index", new { sortOrder = ViewBag.RemovedClParm,currentFilter=ViewBag.CurrentFilter, titleFilter=ViewBag.TitleFilter})">RemovedCL</a></th>
-            </tr>          
+                <th colspan="3" class="text-center">Actions</th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.IdParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">ID<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.CloneFromParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">CloneFromID<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.EverGreenIDParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">EverGreenID<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.TitleParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Title<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.JobBoardParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Job Board<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.CityParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">City<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.StateNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">State<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.CountryNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Country<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.CompanyNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Company Name<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.SchedulingPodParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">PodId<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.DivisionParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Division<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.ActivationDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Activation Date<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.ExpirationDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Expiration Date<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.CreatedByParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Created By<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.CreatedDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Created Date<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.BobParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">BOB<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.IntvsParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Intvs<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.Intvs2Parm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Intvs 2nd<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.ApsClParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">ApsCl<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.RemovedClParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">RemovedCL<i class="glyphicon glyphicon-sort"></i></a></th>
+            </tr>
             </thead>
             <tbody>
+            
+            <tr>
+                <td colspan="3"><input type="submit" value="Search" /></td>
+                <td>@Html.TextBox("idSearch", ViewBag.IdFilter as string)</td>
+                <td></td>
+                <td></td>
+                <td>@Html.TextBox("titleSearch", ViewBag.TitleFilter as string)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             @foreach (var job in Model)
             {
                 <tr>
                     <td class="actionbutton text-center">
-                        <a class="editaction" href="@Url.Action("Edit", new { @id=job.Id})">
+                        <a class="editaction btn btn-default" href="@Url.Action("Edit", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </a>
                     </td>
                     <td class="actionbutton text-center">
-                        <a class="cloneaction" href="@Url.Action("Clone", new { @id=job.Id})">
+                        <a class="cloneaction btn btn-default" href="@Url.Action("Clone", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-repeat"></i>
                         </a>
                     </td>
                     <td class="actionbutton text-center">
-                        <a class="deleteaction" href="@Url.Action("", new { @id=job.Id})">
+                        <a class="deleteaction btn btn-default" href="@Url.Action("", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>
-                    <td>@Html.DisplayFor(m => job.Id)</td>
-                    <td>@Html.DisplayFor(m => job.CloneFrom)</td>
-                    <td>@Html.DisplayFor(m => job.EverGreenId)</td>
-                    <td>@Html.DisplayFor(m => job.Title)</td>
-                    <td>@Html.DisplayFor(m => job.JobBoard)</td>
-                    <td>@Html.DisplayFor(m => job.City)</td>
-                    <td>@Html.DisplayFor(m => job.StateName)</td>
-                    <td>@Html.DisplayFor(m => job.CountryName)</td>
-                    <td>@Html.DisplayFor(m => job.CompanyName)</td>
-                    <td>@Html.DisplayFor(m => job.SchedulingPod)</td>
-                    <td>@Html.DisplayFor(m => job.Division)</td>
-                    <td>@Html.DisplayFor(m => job.ActivationDate)</td>
-                    <td>@Html.DisplayFor(m => job.ExpirationDate)</td>
-                    <td>@Html.DisplayFor(m => job.CreatedBy)</td>
-                    <td>@Html.DisplayFor(m => job.CreatedDate)</td>
-                    <td>@Html.DisplayFor(m => job.Bob)</td>
-                    <td>@Html.DisplayFor(m => job.Intvs)</td>
-                    <td>@Html.DisplayFor(m => job.Intvs2)</td>
-                    <td>@Html.DisplayFor(m => job.ApsCl)</td>
-                    <td>@Html.DisplayFor(m => job.RemovedCl)</td>
-                </tr>                
-            }                     
+                    <td class="itemtd">@Html.DisplayFor(m => job.Id) @if (job.IsExpired)
+                                                                     {
+                                                                         <span class="label label-danger">Expired</span>
+                                                                     }
+                                                                     else
+                                                                     {
+                                                                         <span class="label label-success">Active</span>
+                                                                     }</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.CloneFrom)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.EverGreenId)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.Title)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.JobBoard)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.City)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.StateName)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.CountryName)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.CompanyName)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.SchedulingPod)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.Division)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.ActivationDate)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.ExpirationDate)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.CreatedBy)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.CreatedDate)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.Bob)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.Intvs)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.Intvs2)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.ApsCl)</td>
+                    <td class="itemtd">@Html.DisplayFor(m => job.RemovedCl)</td>
+                </tr>
+            }
             </tbody>
         </table>
     </div>
+}
+<div class="customePager">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    <div class="text-center">
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, titleFilter = ViewBag.TitleFilter, IdFilter = ViewBag.IdFilter, sortOrder = ViewBag.CurrentSort }))
+    </div>
+</div>
 
-
-@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new {page, titleFilter = ViewBag.TitleFilter, currentFilter = ViewBag.CurrentFilter, sortOrder = ViewBag.CurrentSort }))

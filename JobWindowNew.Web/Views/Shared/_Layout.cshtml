@@ -20,11 +20,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("The Job Window", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("The Job Window", "Index", "Jobs", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>
+                    @*<li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>*@
                     <li>@Html.ActionLink("Listing Management", "Index", "Home")</li>
                     <li>@Html.ActionLink("Reports", "About", "Home")</li>
                     <li>@Html.ActionLink("Users", "Contact", "Home")</li>
@@ -37,7 +37,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer style="font-size: small">
             <p>&copy; @DateTime.Now.Year - The Job Window</p>
         </footer>
     </div>

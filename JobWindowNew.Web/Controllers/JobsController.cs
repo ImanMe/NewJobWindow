@@ -24,7 +24,7 @@ namespace JobWindowNew.Web.Controllers
 
         [Authorize]
         //[HttpGet]
-        public ActionResult Index(string sortOrder, string currentFilter, string titleFilter, string idSearch, string titleSearch, int? page)
+        public ActionResult Index(string sortOrder, string idFilter, string titleFilter, string idSearch, string titleSearch, int? page)
         {
             try
             {
@@ -62,14 +62,14 @@ namespace JobWindowNew.Web.Controllers
                 }
                 else
                 {
-                    idSearch = currentFilter;
+                    idSearch = idFilter;
                     titleSearch = titleFilter;
                 }
 
 
 
 
-                ViewBag.CurrentFilter = idSearch;
+                ViewBag.IdFilter = idSearch;
                 ViewBag.TitleFilter = titleSearch;
 
                 //ViewBag.Page = page;
@@ -98,22 +98,11 @@ namespace JobWindowNew.Web.Controllers
                             .ApplySort(sortOrder);
                 }
 
-
-                //var pageSize = 5;
-                //Total records
-                //var totalCount = query.Count();
-
-                //Total Pages
-                //var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
-
-                //ViewBag.totalPages = totalPages;
-
-                //var jobList = query.Skip(pageSize * (page - 1))
-                //    .Take(pageSize).ToList().Select(j => factory.Create(j));
                 var result = query.ToList().Select(j => factory.Create(j));
-                int pageSize = 3;
-                int pageNumber = (page ?? 1);
 
+                var pageSize = 5;
+
+                var pageNumber = (page ?? 1);
 
                 return View(result.ToPagedList(pageNumber, pageSize));
             }
