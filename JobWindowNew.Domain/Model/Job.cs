@@ -121,5 +121,7 @@ namespace JobWindowNew.Domain.Model
 
         [StringLength(100)]
         public string RemovedReason { get; set; }
+
+        public bool HasStats { get; set; }
     }
 }

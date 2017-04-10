@@ -30,7 +30,7 @@ namespace JobWindowNew.Web.Controllers
             {
                 ViewBag.CurrentSort = sortOrder;
                 ViewBag.IdParm = String.IsNullOrEmpty(sortOrder) ? "Id" : "";
-                //ViewBag.IdParm = sortOrder == "Id" ? "-Id" : "Id";
+                ViewBag.IdParm = sortOrder == "Id" ? "-Id" : "Id";
                 ViewBag.CloneFromParm = sortOrder == "CloneFrom" ? "-CloneFrom" : "CloneFrom";
                 ViewBag.EverGreenIdParm = sortOrder == "EverGreenId" ? "-EverGreenId" : "EverGreenId";
                 ViewBag.TitleParm = sortOrder == "Title" ? "-Title" : "Title";
@@ -154,7 +154,7 @@ namespace JobWindowNew.Web.Controllers
 
             PopulateMappingEntities(viewModel, job);
 
-            return RedirectToAction("Index", "Home");
+            return View("Index");
         }
 
         [Authorize]

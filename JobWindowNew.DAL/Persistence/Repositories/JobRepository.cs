@@ -1,5 +1,6 @@
 ﻿using JobWindowNew.Domain.IRepositories;
 using JobWindowNew.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -37,11 +38,28 @@ namespace JobWindowNew.DAL.Persistence.Repositories
 
         public IQueryable<Job> GetJobsForGrid()
         {
-            var result = _context.Jobs
+            var result = _context.Jobs.AsNoTracking()
                 .Include(j => j.State)
                 .Include(j => j.Country)
                 .Include(j => j.JobBoard);
             return result;
+        }
+
+        public IQueryable<Job> GetJobsWithStats()
+        {
+            var todayMinusOneMonth = DateTime.Now.AddDays(-30);
+            var result = _context.Jobs.AsNoTracking()
+                .Where(j => j.HasStats == false)
+                //.Where(j => j.ExpirationDate < todayMinusOneMonth)
+                .Include(j => j.State)
+                .Include(j => j.Country)
+                .Include(j => j.JobBoard)
+                .OrderBy(j => j.SchedulingPod)
+                .ThenBy(j => j.JobBoard)
+                .ThenBy(j => j.Title);
+
+            return result;
+
         }
     }
 }

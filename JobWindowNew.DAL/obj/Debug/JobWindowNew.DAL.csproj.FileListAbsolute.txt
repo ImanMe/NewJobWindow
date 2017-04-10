@@ -45,8 +45,9 @@ C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.MappingTa
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.JustToSee.resources
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.ModificationToOccupation.resources
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.DateChanged.resources
+C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.JobStat.resources
+C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.DateMandatory.resources
+C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.AddHasStatsField.resources
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.csproj.GenerateResource.Cache
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.dll
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.pdb
-C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.JobStat.resources
-C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.DateMandatory.resources

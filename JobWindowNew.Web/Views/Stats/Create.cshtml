@@ -1,0 +1,184 @@
+﻿@model PagedList.IPagedList<JobWindowNew.Domain.ViewModels.JobStatsViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Stats Pending";
+}
+<div class="row" style="margin-top: 30px;">
+    <div class="col-md-3">
+        <label>Scheduling Pod Id</label>
+        <div class="input-group">
+            @Html.TextBox("podIdSearch", ViewBag.PodIdFilter as string, new {@class = "form-control", @id = "searchText"})
+            <span class="input-group-btn">
+                <a style="width: 100%" class="btn btn-primary BookName" href=""><i class="glyphicon glyphicon-search"></i></a>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="row" style="margin-top: 30px">
+    <div class="col-md-3">
+       @Html.TextBox("podIdSearch", ViewBag.PodIdFilter as string, new { @class = "form-control", @id = "searchText" }) 
+    </div>
+    <div class="col-md-2">
+        <a style="width: 100%" class="btn btn-primary btnsearch BookName" href="">Search</a>
+    </div>
+    
+</div>*@
+
+
+   @using (Html.BeginForm("Create", "Stats", FormMethod.Post))
+   {
+       <div class="tablewrap">
+           <table class="table table-striped stattable">
+               <tr>
+                   <th>
+                       Id
+                   </th>
+                   <th>
+                       Title
+                   </th>
+                   <th>
+                       City
+                   </th>
+                   <th>
+                       State
+                   </th>
+                   <th>
+                       Country
+                   </th>
+                   <th>
+                       Company
+                   </th>
+                   <th>
+                       Pod Id
+                   </th>
+                   <th>
+                       Activation Date
+                   </th>
+                   <th>
+                       Expiration Date
+                   </th>
+                   <th>
+                       Job Board
+                   </th>
+                   <th>
+                       #BOB
+                   </th>
+                   <th>
+                       #Intvs
+                   </th>
+                   <th>
+                       #Intvs2
+                   </th>
+                   <th>
+                       #ApsCL
+                   </th>
+                   <th>
+                       RemovedCL
+                   </th>
+                   <th>
+                       Removes Reason
+                   </th>
+
+               </tr>
+
+               @for (var i = 0; i < Model.Count; i++)
+               {
+                   <tr class="inputtr">
+                       @Html.HiddenFor(model => model[i].Id)
+                       <td>
+                           @Html.DisplayFor(model => model[i].Id, new { @id = "jobid" })
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].Title)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].City)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].StateName)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].CountryName)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].CompanyName)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].SchedulingPod)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].ActivationDate)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].ExpirationDate)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].JobBoard)
+                       </td>
+                       <td class="inputtd">
+                           @Html.TextBoxFor(model => model[i].Bob, new { id = "bobid", @class="form-control" })
+                       </td>
+                       <td class="inputtd">
+                           @Html.TextBoxFor(model => model[i].Intvs, new { id = "intvsid", @class = "form-control" })
+                       </td>
+                       <td class="inputtd">
+                           @Html.TextBoxFor(model => model[i].Intvs2, new { id = "intvs2id", @class = "form-control" })
+                       </td>
+                       <td class="inputtd">
+                           @Html.TextBoxFor(model => model[i].ApsCl, new { id = "apsclid", @class = "form-control" })
+                       </td>
+                       <td class="inputtd">
+                           @Html.TextBoxFor(model => model[i].RemovedCl, new { id = "removedclid", @class = "form-control" })
+                       </td>
+                       <td class="inputtd">
+                           @Html.TextBoxFor(model => model[i].RemovedReason, new { @id = "removedreasonid", @class = "form-control" })
+                       </td>
+                   </tr>
+               }
+           </table>
+       </div>
+        <input style="display: none;" type="submit" name="submitButton" value="Save" class="btn btn-primary" id="" />
+        }
+
+        <div class="customePager">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            <div class="text-center">
+                @Html.PagedListPager(Model, page => Url.Action("Create",
+            new { page, podIdFilter = ViewBag.PodIdFilter }))
+            </div>
+        </div>
+
+        @section Scripts{
+            <script>
+                $(".BookName").click(function (event) {
+                    event.preventDefault();
+                    var url = '@Url.Action("Create", "Stats", new {podIdSearch = "PARENT_ID"})';
+                    url = url.replace("PARENT_ID", $("#searchText").val());
+                    alert(url); //just for debugging
+                    window.location.href = url;
+                });
+            </script>
+            @*<script>
+                        $(".SaveStat").click(function (event) {
+                            event.preventDefault();
+                            var url = '@Url.Action("Build", "Stats", new { Id = "PARENT_ID",Intvs="child1",Intvs2="child2",ApsCl="child3", RemovedCl="child4", RemovedReason="child5", Bob = "child6"})';
+                            alert($('#intvsid').val());
+                            url = url.replace("PARENT_ID",$("#jobid").val());
+                            url = url.replace("child1",$("#intvsid").val());
+                            url = url.replace("child2",$("#intvs2id").val());
+                            url = url.replace("child3",$("#apsclid").val());
+                            url = url.replace("child4",$("#removedclid").val());
+                            url = url.replace("child5", $("#removedreasonid").val());
+                            url = url.replace("child6", $("#bobid").val());
+                            url = url.replace(/&amp;/g, "&");
+                            alert(url); //just for debugging
+
+                            window.location.href = url;
+                        });
+                </script>*@
+
+        }

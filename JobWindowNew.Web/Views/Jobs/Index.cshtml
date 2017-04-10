@@ -4,19 +4,7 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
     
 @using (Html.BeginForm("Index", "Jobs", FormMethod.Get))
-{
-    @*<div class="row">
-        <div div class="col-md-3">
-            <div class="input-group">
-                <input type="text" class="form-control input-lg">
-                <span class="input-group-btn">
-                    <button style="border-radius: 2px; height: 45px; color: gray;" class="btn btn-default btn-lg" type="button"><i class="glyphicon glyphicon-search"></i></button>
-                </span>
-            </div>
-        </div>
-       
-    </div>*@
-
+{   
     @*<p>
         Find by Id: @Html.TextBox("idSearch", ViewBag.IdFilter as string)
         Find by Title: @Html.TextBox("titleSearch", ViewBag.TitleFilter as string)
@@ -26,11 +14,9 @@
         <div class="pull-right">
             <button class="btn duplicatebtn">Show Duplicates</button>
         </div>
-    </div>
-    
+    </div>    
     <div class="tablewrap">
-        <table class="table">
-            <thead>
+        <table class="table jobtable">            
             <tr>
                 <th colspan="3" class="text-center">Actions</th>
                 <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.IdParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">ID<i class="glyphicon glyphicon-sort"></i></a></th>
@@ -53,52 +39,49 @@
                 <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.Intvs2Parm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">Intvs 2nd<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.ApsClParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">ApsCl<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.RemovedClParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter})">RemovedCL<i class="glyphicon glyphicon-sort"></i></a></th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td colspan="3"><input type="submit" value="Search" /></td>
-                <td>@Html.TextBox("idSearch", ViewBag.IdFilter as string)</td>
-                <td></td>
-                <td></td>
-                <td>@Html.TextBox("titleSearch", ViewBag.TitleFilter as string)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            </tr>                                   
+            <tr class="inputtr">
+                <th colspan="3" style="padding-left: 9px;" class=""><button class="btn btn-primary btnsearch" type="submit"><i class="glyphicon glyphicon-search"></i> Search</button></th>
+                <th>@Html.TextBox("idSearch", ViewBag.IdFilter as string, new {@class="form-control"})</th>
+                <th></th>
+                <th></th>
+                <th>@Html.TextBox("titleSearch", ViewBag.TitleFilter as string, new { @class = "form-control" })</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             @foreach (var job in Model)
             {
-                <tr>
-                    <td class="actionbutton text-center">
-                        <a class="editaction btn btn-default" href="@Url.Action("Edit", new {@id = job.Id})">
+                <tr class="">
+                    <td class="btnactions text-center">
+                        <a class="btn btn-default" href="@Url.Action("Edit", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </a>
                     </td>
-                    <td class="actionbutton text-center">
-                        <a class="cloneaction btn btn-default" href="@Url.Action("Clone", new {@id = job.Id})">
+                    <td class="btnactions text-center">
+                        <a class="btn btn-default" href="@Url.Action("Clone", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-repeat"></i>
                         </a>
                     </td>
-                    <td class="actionbutton text-center">
-                        <a class="deleteaction btn btn-default" href="@Url.Action("", new {@id = job.Id})">
+                    <td class="btnactionslast text-center">
+                        <a class="btn btn-default" href="@Url.Action("", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.Id) @if (job.IsExpired)
+                    <td class="">@Html.DisplayFor(m => job.Id) @if (job.IsExpired)
                                                                      {
                                                                          <span class="label label-danger">Expired</span>
                                                                      }
@@ -106,28 +89,27 @@
                                                                      {
                                                                          <span class="label label-success">Active</span>
                                                                      }</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.CloneFrom)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.EverGreenId)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.Title)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.JobBoard)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.City)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.StateName)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.CountryName)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.CompanyName)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.SchedulingPod)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.Division)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.ActivationDate)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.ExpirationDate)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.CreatedBy)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.CreatedDate)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.Bob)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.Intvs)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.Intvs2)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.ApsCl)</td>
-                    <td class="itemtd">@Html.DisplayFor(m => job.RemovedCl)</td>
+                    <td class="">@Html.DisplayFor(m => job.CloneFrom)</td>
+                    <td class="">@Html.DisplayFor(m => job.EverGreenId)</td>
+                    <td class="">@Html.DisplayFor(m => job.Title)</td>
+                    <td class="">@Html.DisplayFor(m => job.JobBoard)</td>
+                    <td class="">@Html.DisplayFor(m => job.City)</td>
+                    <td class="">@Html.DisplayFor(m => job.StateName)</td>
+                    <td class="">@Html.DisplayFor(m => job.CountryName)</td>
+                    <td class="">@Html.DisplayFor(m => job.CompanyName)</td>
+                    <td class="">@Html.DisplayFor(m => job.SchedulingPod)</td>
+                    <td class="">@Html.DisplayFor(m => job.Division)</td>
+                    <td class="">@Html.DisplayFor(m => job.ActivationDate)</td>
+                    <td class="">@Html.DisplayFor(m => job.ExpirationDate)</td>
+                    <td class="">@Html.DisplayFor(m => job.CreatedBy)</td>
+                    <td class="">@Html.DisplayFor(m => job.CreatedDate)</td>
+                    <td class="">@Html.DisplayFor(m => job.Bob)</td>
+                    <td class="">@Html.DisplayFor(m => job.Intvs)</td>
+                    <td class="">@Html.DisplayFor(m => job.Intvs2)</td>
+                    <td class="">@Html.DisplayFor(m => job.ApsCl)</td>
+                    <td class="">@Html.DisplayFor(m => job.RemovedCl)</td>
                 </tr>
-            }
-            </tbody>
+            }           
         </table>
     </div>
 }
@@ -135,7 +117,7 @@
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     <div class="text-center">
         @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, titleFilter = ViewBag.TitleFilter, IdFilter = ViewBag.IdFilter, sortOrder = ViewBag.CurrentSort }))
+    new { page, titleFilter = ViewBag.TitleFilter, ViewBag.IdFilter, sortOrder = ViewBag.CurrentSort }))
     </div>
 </div>
 

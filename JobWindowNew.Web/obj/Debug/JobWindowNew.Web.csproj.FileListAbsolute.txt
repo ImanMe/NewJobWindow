@@ -125,6 +125,9 @@ C:\NewJobWindow\JobWindowNew.Web\bin\Ninject.Extensions.Conventions.dll
 C:\NewJobWindow\JobWindowNew.Web\bin\Ninject.Web.Common.dll
 C:\NewJobWindow\JobWindowNew.Web\bin\Ninject.Web.Mvc.dll
 C:\NewJobWindow\JobWindowNew.Web\bin\Owin.dll
+C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.dll
+C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.Mvc.dll
+C:\NewJobWindow\JobWindowNew.Web\bin\System.Linq.Dynamic.dll
 C:\NewJobWindow\JobWindowNew.Web\bin\System.Web.Helpers.dll
 C:\NewJobWindow\JobWindowNew.Web\bin\System.Web.Mvc.dll
 C:\NewJobWindow\JobWindowNew.Web\bin\System.Web.Optimization.dll
@@ -142,6 +145,8 @@ C:\NewJobWindow\JobWindowNew.Web\bin\Ninject.xml
 C:\NewJobWindow\JobWindowNew.Web\bin\Ninject.Extensions.Conventions.xml
 C:\NewJobWindow\JobWindowNew.Web\bin\Ninject.Web.Common.xml
 C:\NewJobWindow\JobWindowNew.Web\bin\Ninject.Web.Mvc.xml
+C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.xml
+C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.Mvc.xml
 C:\NewJobWindow\JobWindowNew.Web\bin\System.Web.Helpers.xml
 C:\NewJobWindow\JobWindowNew.Web\bin\System.Web.Mvc.xml
 C:\NewJobWindow\JobWindowNew.Web\bin\System.Web.Optimization.xml
@@ -168,8 +173,3 @@ C:\NewJobWindow\JobWindowNew.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xm
 C:\NewJobWindow\JobWindowNew.Web\obj\Debug\JobWindowNew.Web.csprojResolveAssemblyReference.cache
 C:\NewJobWindow\JobWindowNew.Web\obj\Debug\JobWindowNew.Web.dll
 C:\NewJobWindow\JobWindowNew.Web\obj\Debug\JobWindowNew.Web.pdb
-C:\NewJobWindow\JobWindowNew.Web\bin\System.Linq.Dynamic.dll
-C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.dll
-C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.Mvc.dll
-C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.xml
-C:\NewJobWindow\JobWindowNew.Web\bin\PagedList.Mvc.xml

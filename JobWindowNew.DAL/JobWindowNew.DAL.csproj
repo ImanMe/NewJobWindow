@@ -98,6 +98,10 @@
     <Compile Include="Migrations\201704050559233_DateMandatory.Designer.cs">
       <DependentUpon>201704050559233_DateMandatory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704090040424_AddHasStatsField.cs" />
+    <Compile Include="Migrations\201704090040424_AddHasStatsField.Designer.cs">
+      <DependentUpon>201704090040424_AddHasStatsField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Repositories\CategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\CountryRepository.cs" />
@@ -152,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704050559233_DateMandatory.resx">
       <DependentUpon>201704050559233_DateMandatory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704090040424_AddHasStatsField.resx">
+      <DependentUpon>201704090040424_AddHasStatsField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
