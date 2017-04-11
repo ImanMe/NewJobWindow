@@ -318,15 +318,19 @@ namespace JobWindowNew.Web.Controllers
 
         private void PopulateMappingEntities(JobFormViewModel viewModel, Job job)
         {
-            foreach (var occupationId in viewModel.OccupationsSelected)
+            if (viewModel.OccupationsSelected != null)
             {
-                var jobOccupationMap = new JobOccupationMap()
+                foreach (var occupationId in viewModel.OccupationsSelected)
                 {
-                    JobId = job.Id,
-                    OccupationId = occupationId
-                };
+                    var jobOccupationMap = new JobOccupationMap()
+                    {
+                        JobId = job.Id,
+                        OccupationId = occupationId
+                    };
 
-                _unitOfWork.JobOccupationMapRepository.Add(jobOccupationMap);
+                    _unitOfWork.JobOccupationMapRepository.Add(jobOccupationMap);
+                }
+
             }
 
             foreach (var categoryId in viewModel.CategoriesSelected)

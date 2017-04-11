@@ -81,6 +81,8 @@
     <Compile Include="Model\SalaryType.cs" />
     <Compile Include="Model\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\EverGreenReportViewModel.cs" />
+    <Compile Include="ViewModels\Factories\EverGreenReportFactory.cs" />
     <Compile Include="ViewModels\Factories\StatsFactory.cs" />
     <Compile Include="ViewModels\Factory.cs" />
     <Compile Include="ViewModels\JobCategoryMapViewModel.cs" />

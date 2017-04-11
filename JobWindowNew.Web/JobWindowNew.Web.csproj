@@ -213,6 +213,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -718,6 +719,7 @@
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Stats\Create.cshtml" />
     <Content Include="Views\Home\OnlineApply.cshtml" />
+    <Content Include="Views\Reports\InActiveReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

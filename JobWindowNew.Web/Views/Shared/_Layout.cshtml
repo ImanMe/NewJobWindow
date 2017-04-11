@@ -32,8 +32,17 @@
                             <li class="leftitems">@Html.ActionLink("Create", "Create", "Jobs")</li>
                         </ul>
                     </li>
-                    <li class="leftitems">@Html.ActionLink("Stats", "Create", "Stats")</li>
-                    <li class="leftitems">@Html.ActionLink("Reports", "About", "Home")</li>
+                    <li class="dropdown leftitems">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="leftitems">@Html.ActionLink("EverGreen", "EverGreenReport", "Reports")</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="leftitems">@Html.ActionLink("Active", "ActiveReport", "Reports")</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="leftitems">@Html.ActionLink("InActive", "InActiveReport", "Reports")</li>
+                        </ul>
+                    </li>
+                    <li class="leftitems">@Html.ActionLink("Stats", "Create", "Stats")</li>                    
                     <li class="leftitems">@Html.ActionLink("Users", "Contact", "Home")</li>
                     <li class="leftitems">@Html.ActionLink("Applicants", "Contact", "Home")</li>
                 </ul>
