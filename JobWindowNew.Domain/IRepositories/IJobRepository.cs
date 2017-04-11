@@ -12,5 +12,6 @@ namespace JobWindowNew.Domain.IRepositories
         void Update(Job job);
         IQueryable<Job> GetJobsForGrid();
         IQueryable<Job> GetJobsWithStats();
+        Job GetJobForOnlineApply(long jobId);
     }
 }

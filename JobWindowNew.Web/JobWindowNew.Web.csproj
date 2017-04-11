@@ -235,6 +235,8 @@
     <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\onlineApply.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -715,6 +717,7 @@
     <Content Include="Views\Jobs\JobForm.cshtml" />
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Stats\Create.cshtml" />
+    <Content Include="Views\Home\OnlineApply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,146 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: 'Open Sans', sans-serif!important;
+    
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+    border-radius:0!important;
+}
+
+.panel-noborder{
+    border:none!important;
+}
+.panel-first{
+    border-radius:0!important;
+    background-color:#fff!important;
+}
+
+/*.btn-apply{
+    float:left;
+    margin-top:15px;
+    margin-left:10px;
+    position:fixed; 
+    background-color:orange!important;
+    border-color:darkorange!important;     
+}*/
+
+.header-title{
+    float:left;
+    color:#3399ff;
+}
+
+#createbtn{
+    width:100%;
+    border-radius:0;
+    height:50px;
+    font-size:medium;
+    background-color:green!important;
+    
+    
+}
+
+#createbtn:hover{
+    
+    background-color:#006600!important;
+    
+}
+
+.form-group-padding{
+    padding-right:8px!important;
+    padding-left:8px!important;
+}
+.panel-apply{
+    
+    border:none!important;
+}
+
+.heading-apply{
+    color:green!important;
+    font-size:medium!important;
+    font-weight:bold!important;
+    background-color:white!important;
+    padding-top:15px!important;
+    padding-bottom:15px!important;
+    text-align:center;
+}
+
+.apply-wrap{
+    position:fixed;
+}
+
+.desc-header{
+    color:orange!important;
+    font-size:large!important;
+}
+
+dt{
+    
+    color:gray;
+}
+dd{
+    font-weight:bold;
+    color:navy;
+}
+
+.logo{
+    text-align:center!important;
+    margin-bottom:20px;
+    left:0!important;
+    width:200px!important;
+    
+    
+    
+}
+v{
+    color:red;
+}
+
+.fileextensions{
+    color:#ffcccc;
+}
+
+#dl{
+    color:red!important;
+}
+
+@media only screen and (max-width: 1200px) {
+   .apply-wrap{
+    position:relative;
+}
+}
+
+
+@media only screen and (max-width: 767px) {
+    .panel-first{
+    padding-left:20px;
+}
+    .header-title{
+    margin-left:10px;
+}
+}
+
+
+
+.panel-first{
+    border-radius:0!important;
+    background-color:#fff!important;
+}

@@ -214,6 +214,48 @@
                     @Html.ValidationMessageFor(model => model.EmailTo, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ApsCl)
+                    @Html.EditorFor(model => model.ApsCl, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                    @Html.ValidationMessageFor(model => model.ApsCl, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Bob)
+                @Html.EditorFor(model => model.Bob, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.Bob, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Intvs)
+                @Html.EditorFor(model => model.Intvs, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.Intvs, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Intvs2)
+                @Html.EditorFor(model => model.Intvs2, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.Intvs2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.RemovedCl)
+                @Html.EditorFor(model => model.RemovedCl, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.RemovedCl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RemovedReason)
+                    @Html.EditorFor(model => model.RemovedReason, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                    @Html.ValidationMessageFor(model => model.RemovedReason, "", new { @class = "text-danger" })
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-2">

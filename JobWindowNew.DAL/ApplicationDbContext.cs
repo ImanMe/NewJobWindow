@@ -16,6 +16,7 @@ namespace JobWindowNew.DAL
         public DbSet<Job> Jobs { get; set; }
         public DbSet<JobOccupationMap> JobOccupationMaps { get; set; }
         public DbSet<JobCategoryMap> JobCategoryMaps { get; set; }
+        public DbSet<Applicant> Applicants { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

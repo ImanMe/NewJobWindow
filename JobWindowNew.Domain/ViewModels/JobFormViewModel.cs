@@ -1,6 +1,7 @@
 ﻿using JobWindowNew.Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace JobWindowNew.Domain.ViewModels
@@ -142,5 +143,24 @@ namespace JobWindowNew.Domain.ViewModels
         public DateTime GetActivationDate() => DateTime.Parse($"{ActivationDate}");
 
         public DateTime GetExpirationDate() => DateTime.Parse($"{ExpirationDate}");
+
+        [DisplayName("BOB")]
+        [Range(0, 999999)]
+        public int? Bob { get; set; }
+
+        [Range(0, 999999)]
+        public int? Intvs { get; set; }
+
+        [Range(0, 999999)]
+        public int? Intvs2 { get; set; }
+
+        [Range(0, 999999)]
+        public int? ApsCl { get; set; }
+
+        [Range(0, 999)]
+        public decimal? RemovedCl { get; set; }
+
+        [StringLength(100)]
+        public string RemovedReason { get; set; }
     }
 }

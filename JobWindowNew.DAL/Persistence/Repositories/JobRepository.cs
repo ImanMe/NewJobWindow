@@ -45,6 +45,14 @@ namespace JobWindowNew.DAL.Persistence.Repositories
             return result;
         }
 
+        public Job GetJobForOnlineApply(long jobId)
+        {
+            return _context.Jobs.AsNoTracking()
+                .Include(j => j.State)
+                .Include(j => j.Country)
+                .FirstOrDefault(j => j.Id == jobId);
+        }
+
         public IQueryable<Job> GetJobsWithStats()
         {
             var todayMinusOneMonth = DateTime.Now.AddDays(-30);
@@ -59,7 +67,6 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .ThenBy(j => j.Title);
 
             return result;
-
         }
     }
 }

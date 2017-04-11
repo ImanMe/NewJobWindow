@@ -158,27 +158,8 @@
                     event.preventDefault();
                     var url = '@Url.Action("Create", "Stats", new {podIdSearch = "PARENT_ID"})';
                     url = url.replace("PARENT_ID", $("#searchText").val());
-                    alert(url); //just for debugging
+                    //alert(url); //just for debugging
                     window.location.href = url;
                 });
-            </script>
-            @*<script>
-                        $(".SaveStat").click(function (event) {
-                            event.preventDefault();
-                            var url = '@Url.Action("Build", "Stats", new { Id = "PARENT_ID",Intvs="child1",Intvs2="child2",ApsCl="child3", RemovedCl="child4", RemovedReason="child5", Bob = "child6"})';
-                            alert($('#intvsid').val());
-                            url = url.replace("PARENT_ID",$("#jobid").val());
-                            url = url.replace("child1",$("#intvsid").val());
-                            url = url.replace("child2",$("#intvs2id").val());
-                            url = url.replace("child3",$("#apsclid").val());
-                            url = url.replace("child4",$("#removedclid").val());
-                            url = url.replace("child5", $("#removedreasonid").val());
-                            url = url.replace("child6", $("#bobid").val());
-                            url = url.replace(/&amp;/g, "&");
-                            alert(url); //just for debugging
-
-                            window.location.href = url;
-                        });
-                </script>*@
-
+            </script>           
         }

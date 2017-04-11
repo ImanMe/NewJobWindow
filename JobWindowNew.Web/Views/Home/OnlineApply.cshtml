@@ -1,0 +1,133 @@
+﻿@model JobWindowNew.Domain.ViewModels.JobOnlineApplyViewModel
+@{
+    ViewBag.Title = "OnlineApply";
+    Layout = null;
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Apply</title>
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    @Styles.Render("~/Online/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/ckeditorjs")
+</head>
+<body>
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-8">
+
+                <div class="row">
+                    <div class="">
+                        <h3 class="header-title">@Html.DisplayFor(model => model.Title)</h3>
+                        @*<button class="btn btn-success btn-apply">Apply Now</button>*@
+
+                    </div>
+                </div>
+                <div class="panel panel-default panel-first">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    Reference No
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Id)
+                                </dd>
+                                <dt>Location</dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.City) @Html.DisplayFor(model => model.StateName)
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    Category
+                                </dt>
+                                <dd>
+                                    
+                                </dd>
+                                <dt>Employment Type</dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.EmploymentType)
+                                </dd>
+                            </dl>
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+                <h3 class="desc-header">Job Description</h3>
+                <div class="panel panel-default panel-noborder">
+
+                    <div class="panel-body">@Html.Raw(Server.HtmlDecode(Model.JobDescription))</div>
+                </div>
+                <h3 class="desc-header">Job Requirements</h3>
+                <div class="panel panel-default panel-noborder">
+
+                    <div class="panel-body">@Html.Raw(Server.HtmlDecode(Model.JobRequirements))</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-pull-8">
+
+
+                <div class="apply-wrap">
+                    <div class="div panel panel-default panel-apply">
+                        <div class="panel-heading heading-apply">
+                            <div class="text-center">
+                                <img src="~/Content/Images/logo.png" width="150" height="100" />
+                            </div>
+
+                        </div>
+                        <br />
+                        @using (Html.BeginForm("OnlineApply", "Home", FormMethod.Post,
+            new { enctype = "multipart/form-data", id = "formid" }))
+                        {
+                            @Html.HiddenFor(model => model.Id)
+                            <div class="form-group form-group-padding">
+                                <label class="control-label">First Name</label>
+                                <v>*</v>@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group form-group-padding">
+                                <label class="control-label">Last Name</label>
+                                <v>*</v>@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group form-group-padding">
+                                <label class="control-label">E-mail</label>
+                                <v>*</v>@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group form-group-padding">
+                                <label class="control-label">Phone</label>
+                                <v>*</v>@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group form-group-padding">
+                                <label class="control-label">Upload Resume</label>
+                                <input id="fileUpload" type="file" name="fileUpload">                                
+                            </div>
+                            <div class="form-group form-group-padding">
+                                <div class="">
+                                    <input style="" type="submit" class="btn btn-success" value="Apply Now" id="createbtn" onclick="return ValidateExtension()">
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+       </div>
+                <hr />
+                <footer style="font-size: small">
+                    <p>&copy; @DateTime.Now.Year - The Job Window</p>
+                </footer>
+            </div>
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")           
+</body>
+
