@@ -13,6 +13,21 @@
     @Styles.Render("~/Online/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/ckeditorjs")
+    <script type="text/javascript">
+    function ValidateExtension() {
+        var allowedFiles = [".doc", ".docx", ".pdf", ".txt"];
+        var fileUpload = document.getElementById("fileUpload");
+        var lblError = document.getElementById("lblError");
+        var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + allowedFiles.join('|') + ")$");
+        //if (!regex.test(fileUpload.value.toLowerCase())) {
+        //    lblError.innerHTML = allowedFiles.join(', ') + " Only";
+        //    return false;
+        //}
+        lblError.innerHTML = "";
+        return true;
+    }
+
+    </script>
 </head>
 <body>
     <div class="container body-content">
@@ -48,7 +63,7 @@
                                     Category
                                 </dt>
                                 <dd>
-                                    
+
                                 </dd>
                                 <dt>Employment Type</dt>
                                 <dd>
@@ -83,8 +98,7 @@
 
                         </div>
                         <br />
-                        @using (Html.BeginForm("OnlineApply", "Home", FormMethod.Post,
-            new { enctype = "multipart/form-data", id = "formid" }))
+                        @using (Html.BeginForm("OnlineApply", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "formid" }))
                         {
                             @Html.HiddenFor(model => model.Id)
                             <div class="form-group form-group-padding">
@@ -109,7 +123,10 @@
                             </div>
                             <div class="form-group form-group-padding">
                                 <label class="control-label">Upload Resume</label>
-                                <input id="fileUpload" type="file" name="fileUpload">                                
+                                <input id="fileUpload" type="file" name="fileUpload">
+                                <v id="lblError" style="color: red;"></v>
+                                <br />
+                                <span id="lblError" style="color: red;"></span>
                             </div>
                             <div class="form-group form-group-padding">
                                 <div class="">
@@ -121,13 +138,13 @@
                 </div>
             </div>
 
-       </div>
-                <hr />
-                <footer style="font-size: small">
-                    <p>&copy; @DateTime.Now.Year - The Job Window</p>
-                </footer>
-            </div>
-            @Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/bootstrap")           
+        </div>
+        <hr />
+        <footer style="font-size: small">
+            <p>&copy; @DateTime.Now.Year - The Job Window</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </body>
 

@@ -154,7 +154,7 @@ namespace JobWindowNew.Web.Controllers
 
             PopulateMappingEntities(viewModel, job);
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         [Authorize]
@@ -295,6 +295,20 @@ namespace JobWindowNew.Web.Controllers
             PopulateMappingEntities(viewModel, job);
 
             return RedirectToAction("Index", "Jobs");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Delete(long id)
+        {
+            _unitOfWork.JobCategoryMapRepository.Delete(id);
+            _unitOfWork.JobOccupationMapRepository.Delete(id);
+            _unitOfWork.Complete();
+
+            _unitOfWork.JobRepository.Delete(id);
+            _unitOfWork.Complete();
+
+            return RedirectToAction("Index");
         }
 
         private JobFormViewModel InitializeJobViewModel(JobFormViewModel viewModel)

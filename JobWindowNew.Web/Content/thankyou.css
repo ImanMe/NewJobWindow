@@ -1,0 +1,37 @@
+﻿body {
+    padding-top:5%;
+    /*background-color:#ffc966*/
+    background-color:white;
+}
+
+
+/*.alert-success{
+    background-color:transparent;
+    padding:50px
+}
+
+
+
+img{
+    float:left;
+    position:relative;
+}
+p{
+    float:left;
+    bottom:0!important;
+}*/
+
+em{
+    color:orange;
+    font-size:large;
+}
+
+j{
+    color:navy;
+    font-size : large;
+    
+}
+
+img{
+    margin-bottom:2%;
+}

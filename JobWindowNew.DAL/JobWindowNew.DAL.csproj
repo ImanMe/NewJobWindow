@@ -111,6 +111,7 @@
       <DependentUpon>201704100538180_ApplicantPhone.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Persistence\Repositories\ApplicantRepository.cs" />
     <Compile Include="Persistence\Repositories\CategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\CountryRepository.cs" />
     <Compile Include="Persistence\Repositories\EmploymentTypeRepository.cs" />

@@ -19,10 +19,12 @@ namespace JobWindowNew.DAL.Persistence
         public ISalaryTypeRepository SalaryTypeRepository { get; }
         public IJobOccupationMapRepository JobOccupationMapRepository { get; }
         public IJobCategoryMapRepository JobCategoryMapRepository { get; }
+        public IApplicantRepository ApplicantRepository { get; }
 
         public UnitOfWork(ApplicationDbContext context, IJobBoardRepository jobBoardRepository, ICountryRepository countryRepository, IStateRepository stateRepository, IOccupationRepository occupationRepository, ICategoryRepository categoryRepository, IEmploymentTypeRepository employmentTypeRepository, ISalaryTypeRepository salaryTypeRepository, IJobOccupationMapRepository jobOccupationMapRepository, IJobCategoryMapRepository jobCategoryMapRepository)
         {
             _context = context;
+            ApplicantRepository = new ApplicantRepository(context);
             JobCategoryMapRepository = new JobCategoryMapRepository(context);
             JobOccupationMapRepository = new JobOccupationMapRepository(context);
             JobBoardRepository = new JobBoardRepository(context);

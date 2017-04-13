@@ -1,0 +1,35 @@
+﻿@model JobWindowNew.Domain.ViewModels.JobOnlineApplyViewModel
+@{
+    ViewBag.Title = "Thank You";
+    Layout = null;
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Apply</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic,300italic,300' rel='stylesheet' type='text/css'>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/thankyou.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/Images/favicon-16x16.png">
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+
+    <div class="container body-content">
+
+        <div class="media">
+            <div class="media-heading">
+
+                <img class="" src="~/Content/Images/logo.png" width="220" height="150" alt="Job Window"/>
+
+            </div>
+            <div class="media-body">
+
+                <j>Your application for "</j><em>@Html.DisplayFor(model => model.Title)</em><j>" has been submitted!</j>
+            </div>
+        </div>
+    </div>
+
+</body>
+

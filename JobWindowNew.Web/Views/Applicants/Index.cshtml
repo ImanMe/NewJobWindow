@@ -1,0 +1,101 @@
+﻿@model PagedList.IPagedList<JobWindowNew.Domain.ViewModels.ApplicantViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Applicants";
+}
+
+@*<h2>Applicants</h2>*@
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-3">
+            <label>Job ID</label>
+            <div class="input-group">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control searchtext", @type = "number" })
+                <span class="input-group-btn">
+                    <button type="submit" style="width: 100%" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>    
+}
+<div style="margin-top: 10px" class="tablewrap">
+    <table style="margin-top: 30px;" class="table table-striped">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Job Id
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                #Phone
+            </th>
+            <th>Resume</th>
+
+        </tr>
+
+        @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        @if (item.FileName == "NoResume.txt" || item.FileName =="")
+        {
+            <td class="text-center">
+                <a style="color: orangered; font-size: larger" class="" title="No Resume">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </a>
+            </td>
+        }
+        else
+        {
+            <td class="text-center">
+                <a style="color: green;font-size: larger" class="" href=@Url.Action("Download", new { fname=@item.FileName}) title="Download Resume">
+                    <i class="glyphicon glyphicon-download"></i>
+                </a>
+            </td>
+        }        
+    </tr>
+}
+
+    </table>
+</div>
+    <div class="customePager">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        <div class="text-center">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+    </div>

@@ -68,5 +68,11 @@ namespace JobWindowNew.DAL.Persistence.Repositories
 
             return result;
         }
+
+        public void Delete(long id)
+        {
+            var job = _context.Jobs.Find(id);
+            if (job != null) _context.Jobs.Remove(job);
+        }
     }
 }

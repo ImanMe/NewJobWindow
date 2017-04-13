@@ -77,7 +77,7 @@
                         </a>
                     </td>
                     <td class="btnactionslast text-center">
-                        <a class="btn btn-default" href="@Url.Action("", new {@id = job.Id})">
+                        <a class="btn btn-default deleteButton" , href="@Url.Action("Delete", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>
@@ -117,7 +117,17 @@
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     <div class="text-center">
         @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, titleFilter = ViewBag.TitleFilter, ViewBag.IdFilter, sortOrder = ViewBag.CurrentSort }))
+            new { page, titleFilter = ViewBag.TitleFilter, ViewBag.IdFilter, sortOrder = ViewBag.CurrentSort }))
     </div>
 </div>
 
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".deleteButton").click(function () {
+                confirm('Are you sure?');
+            });
+
+        });
+    </script>
+}

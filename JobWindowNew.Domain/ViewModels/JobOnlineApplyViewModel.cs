@@ -14,16 +14,21 @@ namespace JobWindowNew.Domain.ViewModels
         public string JobDescription { get; set; }
         public string JobRequirements { get; set; }
         public string Category { get; set; }
+
+        [Required]
         public string FirstName { get; set; }
+
+        [Required]
         public string LastName { get; set; }
         public string FileName { get; set; }
         public long JobId { get; set; }
 
         [EmailAddress]
+        [Required]
         public string Email { get; set; }
 
         [StringLength(13, MinimumLength = 10)]
-        public long Phone { get; set; }
+        public string Phone { get; set; }
 
         public DateTime Date { get; set; }
         public string EmploymentType { get; set; }

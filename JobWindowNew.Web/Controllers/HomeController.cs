@@ -1,5 +1,8 @@
 ﻿using JobWindowNew.Domain;
+using JobWindowNew.Domain.Model;
 using JobWindowNew.Domain.ViewModels;
+using System;
+using System.IO;
 using System.Web.Mvc;
 
 namespace JobWindowNew.Web.Controllers
@@ -61,15 +64,18 @@ namespace JobWindowNew.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult OnlineApply(JobOnlineApplyViewModel viewModel)
         {
             var job = _unitOfWork.JobRepository.GetJobForOnlineApply(viewModel.Id);
+            if (job == null)
+            {
+                return HttpNotFound();
+            }
 
             if (!ModelState.IsValid)
             {
-                viewModel.Id = job.Id;
+                viewModel.JobId = job.Id;
                 viewModel.Title = job.Title;
                 viewModel.JobRequirements = job.JobRequirements;
                 viewModel.JobDescription = job.JobDescription;
@@ -80,7 +86,67 @@ namespace JobWindowNew.Web.Controllers
                 return View(viewModel);
             }
 
-            return null;
+            var applicant = new Applicant
+            {
+                FirstName = viewModel.FirstName,
+                LastName = viewModel.LastName,
+                Phone = viewModel.Phone,
+                Email = viewModel.Email,
+                Date = DateTime.Now,
+                JobId = viewModel.Id,
+                FileName = viewModel.FileName ?? string.Empty
+            };
+
+            _unitOfWork.ApplicantRepository.Add(applicant);
+            _unitOfWork.Complete();
+
+            var n1 = viewModel.Id.ToString();
+            var n2 = applicant.Id.ToString();
+
+            _unitOfWork.ApplicantRepository.Add(applicant);
+            _unitOfWork.Complete();
+
+            foreach (string upload in Request.Files)
+            {
+                var httpPostedFileBase = Request.Files[upload];
+                if (httpPostedFileBase != null && httpPostedFileBase.ContentLength == 0)
+                {
+                    applicant.FileName = "NoResume.txt";
+                    _unitOfWork.ApplicantRepository.Update(applicant);
+                    _unitOfWork.Complete();
+                    continue;
+                }
+                var pathToSave = Server.MapPath("~/Resumes/");
+                var filename = Path.GetFileName(Request.Files[upload]?.FileName);
+                var formattedFileName = string.Format("{1}{2}"
+                    , Path.GetFileNameWithoutExtension(filename)
+                    //, Guid.NewGuid().ToString("N")
+                    , n1 + "-" + n2
+                    , Path.GetExtension(filename));
+                Request.Files[upload]?.SaveAs(Path.Combine(pathToSave, formattedFileName));
+                //n3 = formattedFileName;
+                applicant.FileName = formattedFileName;
+
+                _unitOfWork.ApplicantRepository.Update(applicant);
+                _unitOfWork.Complete();
+            }
+            return RedirectToAction("ThankYou", new { id = n1 });
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Thankyou(long id)
+        {
+            var job = _unitOfWork.JobRepository.GetJob(id);
+
+            if (job == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new JobOnlineApplyViewModel { Title = job.Title };
+
+            return View(viewModel);
         }
     }
 }

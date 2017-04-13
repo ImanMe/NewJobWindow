@@ -13,5 +13,6 @@ namespace JobWindowNew.Domain.IRepositories
         IQueryable<Job> GetJobsForGrid();
         IQueryable<Job> GetJobsWithStats();
         Job GetJobForOnlineApply(long jobId);
+        void Delete(long id);
     }
 }
