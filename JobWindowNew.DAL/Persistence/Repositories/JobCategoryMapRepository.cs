@@ -37,14 +37,15 @@ namespace JobWindowNew.DAL.Persistence.Repositories
         public IQueryable<JobCategoryMap> GetJobsForEverGreenReport()
         {
             return _context.JobCategoryMaps
+                .Where(j => j.Job.IsEverGreen)
+                .GroupBy(m => m.Job.Id).SelectMany(gr => gr.Take(1))
                 .Include(m => m.Job)
                 .Include(m => m.Job.Country)
                 .Include(m => m.Job.State)
                 .Include(m => m.Job.EmploymentType)
                 .Include(m => m.Job.JobBoard)
                 .Include(m => m.Job.SalaryType)
-                .Include(m => m.Category).Where(j => j.Job.IsEverGreen);
-
+                .Include(m => m.Category);
         }
 
         public void Delete(long jobId)
@@ -62,30 +63,32 @@ namespace JobWindowNew.DAL.Persistence.Repositories
         public IQueryable<JobCategoryMap> GetJobsForActiveReport()
         {
             return _context.JobCategoryMaps
-               .Include(m => m.Job)
-               .Include(m => m.Job.Country)
-               .Include(m => m.Job.State)
-               .Include(m => m.Job.EmploymentType)
-               .Include(m => m.Job.JobBoard)
-               .Include(m => m.Job.SalaryType)
-               .Include(m => m.Category).Where(j => j.Job.IsEverGreen == false)
-               .Where(j => j.Job.ExpirationDate > DateTime.Now);
+                .Where(m => m.Job.ExpirationDate > DateTime.Now)
+                .GroupBy(m => m.Job.Id).SelectMany(gr => gr.Take(1))
+                .Include(m => m.Job)
+                .Include(m => m.Job.Country)
+                .Include(m => m.Job.State)
+                .Include(m => m.Job.EmploymentType)
+                .Include(m => m.Job.JobBoard)
+                .Include(m => m.Job.SalaryType)
+                .Include(m => m.Category).Where(j => j.Job.IsEverGreen == false);
         }
 
 
         public IQueryable<JobCategoryMap> GetJobsForInActiveReport(int podId)
         {
             return _context.JobCategoryMaps
-               .Include(m => m.Job)
-               .Include(m => m.Job.Country)
-               .Include(m => m.Job.State)
-               .Include(m => m.Job.EmploymentType)
-               .Include(m => m.Job.JobBoard)
-               .Include(m => m.Job.SalaryType)
-               .Include(m => m.Category)
-               .Where(j => j.Job.SchedulingPod == podId)
-               .Where(j => j.Job.IsEverGreen == false)
-               .Where(j => j.Job.ExpirationDate < DateTime.Now);
+                .Where(j => j.Job.SchedulingPod == podId)
+                .Where(j => j.Job.IsEverGreen == false)
+                .Where(j => j.Job.ExpirationDate < DateTime.Now)
+                .GroupBy(m => m.Job.Id).SelectMany(gr => gr.Take(1))
+                .Include(m => m.Job)
+                .Include(m => m.Job.Country)
+                .Include(m => m.Job.State)
+                .Include(m => m.Job.EmploymentType)
+                .Include(m => m.Job.JobBoard)
+                .Include(m => m.Job.SalaryType)
+                .Include(m => m.Category);
         }
     }
 }

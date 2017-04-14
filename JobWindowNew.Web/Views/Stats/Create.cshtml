@@ -75,13 +75,7 @@
                    </th>
                    <th>
                        #ApsCL
-                   </th>
-                   <th>
-                       RemovedCL
-                   </th>
-                   <th>
-                       Removes Reason
-                   </th>
+                  </th>                  
 
                </tr>
 
@@ -130,13 +124,7 @@
                        </td>
                        <td class="inputtd">
                            @Html.TextBoxFor(model => model[i].ApsCl, new { id = "apsclid", @class = "form-control" })
-                       </td>
-                       <td class="inputtd">
-                           @Html.TextBoxFor(model => model[i].RemovedCl, new { id = "removedclid", @class = "form-control" })
-                       </td>
-                       <td class="inputtd">
-                           @Html.TextBoxFor(model => model[i].RemovedReason, new { @id = "removedreasonid", @class = "form-control" })
-                       </td>
+                       </td>                       
                    </tr>
                }
            </table>

@@ -8,31 +8,27 @@ namespace JobWindowNew.Domain.ViewModels
 
         public JobGridViewModel Create(Job job)
         {
-            return new JobGridViewModel()
-            {
-                Id = job.Id,
-                CloneFrom = job.CloneFrom,
-                EverGreenId = job.EverGreenId,
-                Title = job.Title,
-                JobBoard = job.JobBoard.JobBoardName,
-                City = job.City,
-                StateName = job.State.StateName,
-                CountryName = job.Country.CountryName,
-                CompanyName = job.CompanyName,
-                SchedulingPod = job.SchedulingPod,
-                Division = job.Division,
-                CreatedBy = job.CreatedBy,
-                Bob = job.Bob,
-                Intvs = job.Intvs,
-                Intvs2 = job.Intvs2,
-                ApsCl = job.ApsCl,
-
-                RemovedCl = job.RemovedCl,
-                ActivationDate = job.ActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
-                ExpirationDate = job.ExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
-                CreatedDate = job.CreatedDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture)
-                // PaginationInfoViewModel = paginationInfo
-            };
+            var model = new JobGridViewModel();
+            model.Id = job.Id;
+            model.CloneFrom = job.CloneFrom;
+            model.EverGreenId = job.EverGreenId;
+            model.Title = job.Title;
+            model.JobBoard = job.JobBoard.JobBoardName;
+            model.City = job.City;
+            model.StateName = job.State.StateName;
+            model.CountryName = job.Country.CountryName;
+            model.CompanyName = job.CompanyName;
+            model.SchedulingPod = job.SchedulingPod;
+            model.Division = job.Division;
+            model.CreatedBy = job.CreatedBy;
+            model.Bob = job.Bob;
+            model.Intvs = job.Intvs;
+            model.Intvs2 = job.Intvs2;
+            model.ApsCl = job.ApsCl;
+            model.ActivationDate = job.ActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            model.ExpirationDate = job.ExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            model.CreatedDate = job.CreatedDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            return model;
         }
 
     }

@@ -1,9 +1,9 @@
 ﻿body {
 	padding-top: 90px;
 	padding-bottom: 5px;
-	font-family: 'Libre Franklin', sans-serif;
-	/*font-family: 'Montserrat', sans-serif;*/
-	/*font-size: 17px;*/
+	/*font-family: 'Libre Franklin', sans-serif;*/
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
 	
 }
 
@@ -55,7 +55,7 @@ label {
 	
 	transition: none;
 	border: 1px solid;
-	border-left: 6px solid #B0BEC5;
+	border-left: 3px solid #B0BEC5;
 	border-color: #B0BEC5;
 	font-size: 17px;
 	height: 44px;
@@ -86,12 +86,12 @@ label {
 }
 
 .form-group {
-	margin-bottom: 30px;
+	margin-bottom: 40px;
 
 }
 
 .custom-list-box {
-	min-height: 200px;
+	min-height: 250px;
 	width: 100%;
 	padding: 0;
 }
@@ -136,25 +136,53 @@ input[type=checkbox]
 
 .text-danger {
 	color: red;
-	font-size: small;
+	font-size: smaller;
 }
 .create-btn {
 	/*background-color: #00897B;*/
-	color: white;
-	padding: 8px 100px;
+	color: #2E7D32;
+    background-color: white;
+	padding: 6px 30px;
 	font-size: 17px;
 	margin-right: 90px;
-	background-color: #2E7D32;
+	border: 2px solid #2E7D32;
 
+}
+
+.createNew-btn {
+    color: #2E7D32;
+    background-color: white;
+
+    
+	margin-right: 10px;
+	border: 2px solid #2E7D32;
+}
+
+.createNew-btn:hover {
+    color: white;
+    background-color: #2E7D32;
+
+    
+	margin-right: 10px;
+	border: 2px solid #2E7D32;
 }
 
 .cancel-btn {
 	/*background-color: #F9A825;*/
-	color: white;
-	padding: 8px 20px;
+	color: #EF6C00;
+	padding: 6px 16px;
 	font-size: 17px;
-	background-color: #EF6C00;
-	border-color: #EF6C00
+	background-color: white;
+	border:2px solid #EF6C00
+	
+}
+
+.duplicate-btn {
+	/*background-color: #F9A825;*/
+	color: #EF6C00;
+	
+	background-color: white;
+	border:2px solid #EF6C00
 	
 }
 
@@ -174,11 +202,11 @@ input[type=checkbox]
 
 .backtolist-btn {
 	/*background-color: #3F51B5;*/
-	color: white;
-	padding: 8px 20px;
+	color: #546E7A;
+	padding: 6px 16px;
 	font-size: 17px;
-	background-color: #546E7A;
-	border-color: #546E7A;
+	background-color: white;
+	border:2px solid #546E7A;
 }
 
 .backtolist-btn:hover {
@@ -214,8 +242,8 @@ span.field-validation-error {
 }
 .navbar-brand {
 	font-weight: bold;
-	padding-top: 25px;
-	padding-bottom: 10px;
+	padding-top: 20px;
+	/*padding-bottom: 10px;*/
 	  margin-right: 30px;
 }
 
@@ -228,11 +256,15 @@ span.field-validation-error {
 	color: #fff!important;
 }
 
-.dropdown-menu {
+.customeMenu {
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	background-color: #11283c !important;
 	
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;    
 }
 
 .dropdown-menu > li> a {
@@ -261,11 +293,14 @@ span.field-validation-error {
 	padding-bottom: 25px;
 }
 
+
+
 .navbar-nav > .leftitems {
 	background-color: #163550;
 	margin-right: 3px;
 	float:left;
-width:7em; /*Fixes the width of all elements*/
+    white-space:nowrap;
+/*width:7em; /*Fixes the width of all elements*/
 	padding-top:10px;
 	 padding-bottom:10px;
 	
@@ -313,7 +348,7 @@ width:7em; /*Fixes the width of all elements*/
 
 
  .navbar-nav > li > a {
-	 padding: 16px 8px;
+	 padding: 10px 13px;
 	 color:#888;
 	 
  }

@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-12">
         <h3 class="pull-left">@Model.Heading a Job</h3>
-        <button class="btn btn-primary backtolist-btn pull-right" style="margin-top: 10px;" onclick="location.href='@Url.Action("Index", "Jobs")'">Back To List</button>       
+        <button class="btn btn-primary backtolist-btn pull-right" style="margin-top: 10px;" onclick="location.href='@Url.Action("Index", "Jobs")'">Back To List</button>
     </div>
 </div>
 
@@ -16,275 +16,309 @@
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Id)
     <div class="">
-        @*<hr />*@
-        <div style="margin-top: 20px;" class="alert alert-warning alert-dismissable">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            All fields marked with <span class="glyphicon glyphicon-asterisk text-danger"></span> are <strong>required</strong>
+    @*<hr />*@
+    <div style="margin-top: 20px;" class="alert alert-warning alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        All fields marked with <span class="glyphicon glyphicon-asterisk text-danger"></span> are <strong>required</strong>
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title)
+
+                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+
+            </div>
         </div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Title)
-
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-
-                </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.EmploymentTypeId)
+                @Html.DropDownListFor(m => m.EmploymentTypeId, new SelectList(Model.EmploymentTypes, "Id", "Type"), "", new { @class = "form-control fcoontrolform" })
+                @Html.ValidationMessageFor(m => m.EmploymentTypeId, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.EmploymentTypeId)
-                    @Html.DropDownListFor(m => m.EmploymentTypeId, new SelectList(Model.EmploymentTypes, "Id", "Type"), "", new { @class = "form-control fcoontrolform" })
-                    @Html.ValidationMessageFor(m => m.EmploymentTypeId, "", new { @class = "text-danger" })
-                </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.OccupationsSelected)
+                @Html.ListBoxFor(m => m.OccupationsSelected, new SelectList(Model.Occupations, "Id", "FullOccupationName"), new { @class = "form-control custom-list-box fcoontrolform" })
+                @Html.ValidationMessageFor(m => m.OccupationsSelected, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.OccupationsSelected)
-                    @Html.ListBoxFor(m => m.OccupationsSelected, new SelectList(Model.Occupations, "Id", "FullOccupationName"), new { @class = "form-control custom-list-box fcoontrolform" })
-                    @Html.ValidationMessageFor(m => m.OccupationsSelected, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.CategoriesSelected)
+                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.ListBoxFor(m => m.CategoriesSelected, new SelectList(Model.Categories, "Id", "CategoryName"), new { @class = "form-control custom-list-box fcoontrolform" })
+                @Html.ValidationMessageFor(m => m.CategoriesSelected, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.CategoriesSelected)
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.ListBoxFor(m => m.CategoriesSelected, new SelectList(Model.Categories, "Id", "CategoryName"), new { @class = "form-control custom-list-box fcoontrolform" })
-                    @Html.ValidationMessageFor(m => m.CategoriesSelected, "", new { @class = "text-danger" })
-                </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobDescription, htmlAttributes: new { @class = "text-base" })
+                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.TextAreaFor(model => model.JobDescription, new { @class = "ckeditor", @id = "text1" })
+                @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-8">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.JobDescription, htmlAttributes: new { @class = "text-base" })
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.TextAreaFor(model => model.JobDescription, new { @class = "ckeditor", @id = "text1" })
-                    @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
-                </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobRequirements, htmlAttributes: new { @class = "text-base" })
+                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.TextAreaFor(model => model.JobRequirements, new { @class = "ckeditor", @id = "text2" })
+                @Html.ValidationMessageFor(model => model.JobRequirements, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-8">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.JobRequirements, htmlAttributes: new { @class = "text-base" })
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.TextAreaFor(model => model.JobRequirements, new { @class = "ckeditor", @id = "text2" })
-                    @Html.ValidationMessageFor(model => model.JobRequirements, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <span style="width: 70%; float: left;">
                     @Html.LabelFor(model => model.Salary)
                     @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
                     @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
+                </span>
+                <span style="width: 30%; float: left;">
                     @Html.LabelFor(m => m.Currency)
                     @Html.DropDownListFor(m => m.Currency, new SelectList(Model.Currencies), "", new { @class = "form-control fcoontrolform" })
                     @Html.ValidationMessageFor(m => m.Currency, "", new { @class = "text-danger" })
-                </div>
+                </span>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.SalaryTypeId)
-                    @Html.DropDownListFor(m => m.SalaryTypeId, new SelectList(Model.SalaryTypes, "Id", "Type"), "", new { @class = "form-control fcoontrolform" })
-                    @Html.ValidationMessageFor(m => m.SalaryTypeId, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SalaryTypeId)
+                @Html.DropDownListFor(m => m.SalaryTypeId, new SelectList(Model.SalaryTypes, "Id", "Type"), "", new { @class = "form-control fcoontrolform" })
+                @Html.ValidationMessageFor(m => m.SalaryTypeId, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6" style="height: 107px;">
-                <div style="width: 45%; float: left;">
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.CountryId)
-                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.CountryId, new SelectList(Model.Countries, "Id", "CountryName"), "Select a CountryId", new { @class = "form-control fcoontrolform", @onchange = "FillCity()" })
-                        @Html.ValidationMessageFor(m => m.CountryId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div style="width: 44%; float: left;">
-                    @if (Model.Action == "Create")
-                    {
-                        <div class="form-group" id="stateForCreate">
-                            @Html.LabelFor(m => m.StateId)
-                            <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "StateName"), "Select a StateId", new { @class = "form-control fcoontrolform" })
-                            @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
-                        </div>
-                    }
-                     
-                    @if (Model.Action == "Edit" || Model.Action == "Clone")
-                    {
-                        <div class="form-group" id="stateForEdit">
-                            @Html.LabelFor(m => m.StateId)
-                            <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Model.States, "Id", "StateName"), "Select a StateId", new { @class = "form-control fcoontrolform" })
-                            @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
-                        </div>
-                    }                                      
-                </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-4" style="height: 107px;">
+            <div class="form-group">
+                <span style="width: 50%;float: left">
+                    @Html.LabelFor(m => m.CountryId)
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.CountryId, new SelectList(Model.Countries, "Id", "CountryName"), "", new { @class = "form-control fcoontrolform", @onchange = "FillCity()" })
+                    @Html.ValidationMessageFor(m => m.CountryId, "", new { @class = "text-danger" })
+                </span>
+                @if (Model.Action == "Create")
+                {
+                    <span style="width: 50%; float: left">
+
+                        @Html.LabelFor(m => m.StateId)
+                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "StateName"), "", new { @class = "form-control fcoontrolform" })
+                        @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+
+                    </span>
+                }
+                @if (Model.Action == "Edit" || Model.Action == "Clone")
+                {
+                    <span style="width: 50%; float: left">
+
+                        @Html.LabelFor(m => m.StateId)
+                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Model.States, "Id", "StateName"), "Select a StateId", new { @class = "form-control fcoontrolform" })
+                        @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+
+                    </span>
+                }
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.City)
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.City)
+                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ZipCode)
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
-                </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>              
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ZipCode)
+                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Address)
-                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address)
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <span style="width: 50%;float: left">
                     @Html.LabelFor(model => model.MinimumExperience)
                     @Html.EditorFor(model => model.MinimumExperience, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
                     @Html.ValidationMessageFor(model => model.MinimumExperience, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
+                </span>
+                <span style="width: 50%;float: left">
                     @Html.LabelFor(model => model.MaximumExperience)
                     @Html.EditorFor(model => model.MaximumExperience, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
                     @Html.ValidationMessageFor(model => model.MaximumExperience, "", new { @class = "text-danger" })
-                </div>
+                </span>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CompanyName)
-                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CompanyName)
+                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">            
+        <div class="col-md-4">
+            <div class="form-group">
+                <span style="width: 50%;float: left">
                     @Html.LabelFor(model => model.ActivationDate)
                     <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.ActivationDate, new { htmlAttributes = new { @class = "form-control datepicker fcoontrolform", placeholder = "" } })
                     @Html.ValidationMessageFor(model => model.ActivationDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
+                </span>
+                <span style="width: 50%;float: left">
                     @Html.LabelFor(model => model.ExpirationDate)
                     <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.ExpirationDate, new { htmlAttributes = new { @class = "form-control datepicker fcoontrolform", placeholder = "" } })
                     @Html.ValidationMessageFor(model => model.ExpirationDate, "", new { @class = "text-danger" })
-                </div>
+                </span>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.SchedulingPod)
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.SchedulingPod, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.SchedulingPod, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.JobBoardId)
+                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.JobBoardId, new SelectList(Model.JobBoards, "Id", "JobBoardName"), "", new { @class = "form-control fcoontrolform" })
+                @Html.ValidationMessageFor(m => m.JobBoardId, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.OfficeId)
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.OfficeId, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.OfficeId, "", new { @class = "text-danger" })
-                </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">           
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SchedulingPod)
+                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.SchedulingPod, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.SchedulingPod, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Division)
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.Division, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.Division, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.OfficeId)
+                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.OfficeId, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.OfficeId, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.JobBoardId)
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.JobBoardId, new SelectList(Model.JobBoards, "Id", "JobBoardName"), "", new { @class = "form-control fcoontrolform" })
-                    @Html.ValidationMessageFor(m => m.JobBoardId, "", new { @class = "text-danger" })
-                </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">           
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Division)
+                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.Division, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.Division, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Author)
-                    @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmailTo)
+                @Html.EditorFor(model => model.EmailTo, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.EmailTo, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.EmailTo)
-                    @Html.EditorFor(model => model.EmailTo, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.EmailTo, "", new { @class = "text-danger" })
-                </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="clearfix"></div>
+    <div class="row">            
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Author)
+                @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ApsCl)
-                    @Html.EditorFor(model => model.ApsCl, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.ApsCl, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">           
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApsCl)
+                @Html.EditorFor(model => model.ApsCl, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                @Html.ValidationMessageFor(model => model.ApsCl, "", new { @class = "text-danger" })
             </div>
-        <div class="col-md-6">
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Bob)
                 @Html.EditorFor(model => model.Bob, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
                 @Html.ValidationMessageFor(model => model.Bob, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-6">
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">           
+        <div class="col-md-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Intvs)
                 @Html.EditorFor(model => model.Intvs, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
                 @Html.ValidationMessageFor(model => model.Intvs, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Intvs2)
                 @Html.EditorFor(model => model.Intvs2, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
                 @Html.ValidationMessageFor(model => model.Intvs2, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-6">
+    </div>           
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-2">
             <div class="form-group">
-                @Html.LabelFor(model => model.RemovedCl)
-                @Html.EditorFor(model => model.RemovedCl, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.RemovedCl, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.IsBestPerforming, htmlAttributes: new { @class = "" })
+                @Html.CheckBoxFor(model => model.IsBestPerforming, new { @class = "customecheckbox" })
+                @Html.ValidationMessageFor(model => model.IsBestPerforming, "", new { @class = "text-danger" })
             </div>
         </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.RemovedReason)
-                    @Html.EditorFor(model => model.RemovedReason, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.RemovedReason, "", new { @class = "text-danger" })
-                </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsOnlineApply, htmlAttributes: new { @class = "" })
+                @Html.CheckBoxFor(model => model.IsOnlineApply, new { @class = "customecheckbox" })
+                @Html.ValidationMessageFor(model => model.IsOnlineApply, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IsBestPerforming, htmlAttributes: new { @class = "" })
-                    @Html.CheckBoxFor(model => model.IsBestPerforming, new { @class = "customecheckbox" })
-                    @Html.ValidationMessageFor(model => model.IsBestPerforming, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IsOnlineApply, htmlAttributes: new { @class = "" })
-                    @Html.CheckBoxFor(model => model.IsOnlineApply, new { @class = "customecheckbox" })
-                    @Html.ValidationMessageFor(model => model.IsOnlineApply, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IsEverGreen, htmlAttributes: new { @class = "" })
-                    @Html.CheckBoxFor(model => model.IsEverGreen, new { @class = "customecheckbox" })
-                    @Html.ValidationMessageFor(model => model.IsEverGreen, "", new { @class = "text-danger" })
-                </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsEverGreen, htmlAttributes: new { @class = "" })
+                @Html.CheckBoxFor(model => model.IsEverGreen, new { @class = "customecheckbox" })
+                @Html.ValidationMessageFor(model => model.IsEverGreen, "", new { @class = "text-danger" })
             </div>
         </div>
-        <br />
-        <button type="submit" class="btn btn-success create-btn">Save</button>
-        <button class="btn btn-warning cancel-btn" onclick="location.href='@Url.Action("Index", "Jobs")'">Cancel</button>
-        <button class="btn btn-primary backtolist-btn" onclick="location.href='@Url.Action("Index", "Jobs")'">Back To List</button>
     </div>
+    <br />
+    <button type="submit" class="btn btn-success create-btn">Save</button>
+    <button class="btn btn-warning cancel-btn" onclick="location.href='@Url.Action("Index", "Jobs")'">Cancel</button>
+    <button class="btn btn-primary backtolist-btn" onclick="location.href='@Url.Action("Index", "Jobs")'">Back To List</button>
+    </div>
+    <br />
+    <br />
+    <br />
 }
 
 @section Scripts {

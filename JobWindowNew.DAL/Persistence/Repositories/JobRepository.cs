@@ -45,6 +45,19 @@ namespace JobWindowNew.DAL.Persistence.Repositories
             return result;
         }
 
+        public IQueryable<Job> GetDuplicateJobs()
+        {
+            return _context.Jobs.AsNoTracking()
+
+                .GroupBy(j => new { j.CloneFrom, j.City })
+                .Where(x => x.Count() > 1)
+                .SelectMany(x => x.Select(r => r))
+                .Include(j => j.State)
+                .Include(j => j.Country)
+                .Include(j => j.JobBoard)
+                .OrderBy(j => j.CloneFrom);
+        }
+
         public Job GetJobForOnlineApply(long jobId)
         {
             return _context.Jobs.AsNoTracking()
@@ -62,6 +75,10 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .Include(j => j.State)
                 .Include(j => j.Country)
                 .Include(j => j.JobBoard)
+                .Where(j => j.Bob == null)
+                .Where(j => j.ApsCl == null)
+                .Where(j => j.Intvs == null)
+                .Where(j => j.Intvs2 == null)
                 .OrderBy(j => j.SchedulingPod)
                 .ThenBy(j => j.JobBoard)
                 .ThenBy(j => j.Title);

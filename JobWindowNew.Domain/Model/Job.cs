@@ -116,12 +116,6 @@ namespace JobWindowNew.Domain.Model
         [Range(0, 999999)]
         public int? ApsCl { get; set; }
 
-        [Range(0, 999)]
-        public decimal? RemovedCl { get; set; }
-
-        [StringLength(100)]
-        public string RemovedReason { get; set; }
-
         public bool HasStats { get; set; }
     }
 }

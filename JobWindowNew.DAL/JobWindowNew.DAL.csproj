@@ -110,6 +110,10 @@
     <Compile Include="Migrations\201704100538180_ApplicantPhone.Designer.cs">
       <DependentUpon>201704100538180_ApplicantPhone.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704140306505_StatsRemovedFields.cs" />
+    <Compile Include="Migrations\201704140306505_StatsRemovedFields.Designer.cs">
+      <DependentUpon>201704140306505_StatsRemovedFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Repositories\ApplicantRepository.cs" />
     <Compile Include="Persistence\Repositories\CategoryRepository.cs" />
@@ -174,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704100538180_ApplicantPhone.resx">
       <DependentUpon>201704100538180_ApplicantPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704140306505_StatsRemovedFields.resx">
+      <DependentUpon>201704140306505_StatsRemovedFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

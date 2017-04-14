@@ -30,13 +30,5 @@ namespace JobWindowNew.Domain.ViewModels
         [Required]
         [Range(0, 999999)]
         public int? ApsCl { get; set; }
-
-        [Required]
-        [Range(0, 999)]
-        public decimal? RemovedCl { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string RemovedReason { get; set; }
     }
 }

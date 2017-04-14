@@ -20,10 +20,8 @@ namespace JobWindowNew.Domain.ViewModels.Factories
                 ActivationDate = job.ActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                 ExpirationDate = job.ExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                 ApsCl = job.ApsCl,
-                RemovedCl = job.RemovedCl,
                 Intvs = job.Intvs,
                 Intvs2 = job.Intvs2,
-                RemovedReason = job.RemovedReason,
                 Bob = job.Bob
             };
         }

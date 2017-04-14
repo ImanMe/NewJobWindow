@@ -75,15 +75,12 @@ namespace JobWindowNew.Web.Controllers
             foreach (var vm in viewModel)
             {
                 if (vm.Bob != null && vm.ApsCl != null && vm.Intvs != null
-                    && vm.Intvs2 != null && vm.RemovedCl != null
-                    && vm.RemovedReason != null)
+                    && vm.Intvs2 != null)
                 {
                     var job = _unitOfWork.JobRepository.GetJob(vm.Id);
                     job.ApsCl = vm.ApsCl;
                     job.Intvs = vm.Intvs;
                     job.Intvs2 = vm.Intvs2;
-                    job.RemovedCl = vm.RemovedCl;
-                    job.RemovedReason = vm.RemovedReason;
                     job.Bob = vm.Bob;
                     job.HasStats = true;
                     _unitOfWork.JobRepository.Update(job);

@@ -105,26 +105,29 @@ namespace JobWindowNew.Domain.ViewModels
 
         public string Author { get; set; }
 
+        [DisplayName("Job Board")]
         public int JobBoardId { get; set; }
 
         public IEnumerable<JobBoard> JobBoards { get; set; }
 
-        [Display(Name = "Employment Types")]
+        [Display(Name = "Employment Type")]
         public int EmploymentTypeId { get; set; }
 
 
         public IEnumerable<EmploymentType> EmploymentTypes { get; set; }
 
-        [Display(Name = "Salary Types")]
+        [Display(Name = "Salary Type")]
         public int SalaryTypeId { get; set; }
 
 
         public IEnumerable<SalaryType> SalaryTypes { get; set; }
 
+        [DisplayName("Country")]
         public int CountryId { get; set; }
 
         public IEnumerable<Country> Countries { get; set; }
 
+        [DisplayName("State")]
         public int StateId { get; set; }
 
         public IEnumerable<State> States { get; set; }
@@ -156,11 +159,5 @@ namespace JobWindowNew.Domain.ViewModels
 
         [Range(0, 999999)]
         public int? ApsCl { get; set; }
-
-        [Range(0, 999)]
-        public decimal? RemovedCl { get; set; }
-
-        [StringLength(100)]
-        public string RemovedReason { get; set; }
     }
 }

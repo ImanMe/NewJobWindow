@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     @Styles.Render("~/Content/css")
@@ -25,24 +25,27 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">                    
                     <li class="dropdown leftitems">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings<span class="caret"></span></a>
-                        <ul class="dropdown-menu">                           
-                            <li class="leftitems">@Html.ActionLink("List", "Index", "Jobs")</li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listing Management<span class="caret"></span></a>
+                        <ul class="dropdown-menu customeMenu">                           
+                            <li class="leftitems">@Html.ActionLink("Job List", "Index", "Jobs")</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="leftitems">@Html.ActionLink("Show Duplicates", "Duplicates", "Jobs")</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="leftitems">@Html.ActionLink("Stats Pending", "Create", "Stats")</li>
                             <li role="separator" class="divider"></li>
                             <li class="leftitems">@Html.ActionLink("Create", "Create", "Jobs")</li>
                         </ul>
                     </li>
                     <li class="dropdown leftitems">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu customeMenu">
                             <li class="leftitems">@Html.ActionLink("EverGreen", "EverGreenReport", "Reports")</li>
                             <li role="separator" class="divider"></li>
                             <li class="leftitems">@Html.ActionLink("Active", "ActiveReport", "Reports")</li>
                             <li role="separator" class="divider"></li>
                             <li class="leftitems">@Html.ActionLink("InActive", "InActiveReport", "Reports")</li>
                         </ul>
-                    </li>
-                    <li class="leftitems">@Html.ActionLink("Stats", "Create", "Stats")</li>                    
+                    </li>                   
                     <li class="leftitems">@Html.ActionLink("Users", "Contact", "Home")</li>
                     <li class="leftitems">@Html.ActionLink("Applicants", "Index", "Applicants")</li>
                 </ul>

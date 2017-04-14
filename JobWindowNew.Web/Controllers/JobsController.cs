@@ -49,7 +49,6 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.IntvsParm = sortOrder == "Intvs" ? "-Intvs" : "Intvs";
                 ViewBag.Intvs2Parm = sortOrder == "Intvs2" ? "-Intvs2" : "Intvs2";
                 ViewBag.ApsClParm = sortOrder == "ApsCl" ? "-ApsCl" : "ApsCl";
-                ViewBag.RemovedClParm = sortOrder == "RemovedCl" ? "-RemovedCl" : "RemovedCl";
                 sortOrder = ViewBag.CurrentSort;
                 //if (string.IsNullOrEmpty(sortOrder))
                 //{
@@ -113,6 +112,100 @@ namespace JobWindowNew.Web.Controllers
             }
         }
 
+
+
+
+
+
+        [Authorize]
+        //[HttpGet]
+        public ActionResult Duplicates(string sortOrder, string idFilter, string titleFilter, string idSearch, string titleSearch, int? page)
+        {
+            try
+            {
+                ViewBag.CurrentSort = sortOrder;
+                ViewBag.IdParm = String.IsNullOrEmpty(sortOrder) ? "Id" : "";
+                ViewBag.IdParm = sortOrder == "Id" ? "-Id" : "Id";
+                ViewBag.CloneFromParm = sortOrder == "CloneFrom" ? "-CloneFrom" : "CloneFrom";
+                ViewBag.EverGreenIdParm = sortOrder == "EverGreenId" ? "-EverGreenId" : "EverGreenId";
+                ViewBag.TitleParm = sortOrder == "Title" ? "-Title" : "Title";
+                ViewBag.JobBoardParm = sortOrder == "JobBoard.JobBoardName" ? "-JobBoard.JobBoardName" : "JobBoard.JobBoardName";
+                ViewBag.CityParm = sortOrder == "City" ? "-City" : "City";
+                ViewBag.StateNameParm = sortOrder == "State.StateName" ? "-State.StateName" : "State.StateName";
+                ViewBag.CountryNameParm = sortOrder == "Country.CountryName" ? "-Country.CountryName" : "Country.CountryName";
+                ViewBag.CompanyNameParm = sortOrder == "CompanyName" ? "-CompanyName" : "CompanyName";
+                ViewBag.SchedulingPodParm = sortOrder == "SchedulingPod" ? "-SchedulingPod" : "SchedulingPod";
+                ViewBag.DivisionParm = sortOrder == "Division" ? "-Division" : "Division";
+                ViewBag.ActivationDateParm = sortOrder == "ActivationDate" ? "-ActivationDate" : "ActivationDate";
+                ViewBag.ExpirationDateParm = sortOrder == "ExpirationDate" ? "-ExpirationDate" : "ExpirationDate";
+                ViewBag.CreatedByParm = sortOrder == "CreatedBy" ? "-CreatedBy" : "CreatedBy";
+                ViewBag.CreatedDateParm = sortOrder == "CreatedDate" ? "-CreatedDate" : "CreatedDate";
+                ViewBag.BobParm = sortOrder == "Bob" ? "-Bob" : "Bob";
+                ViewBag.IntvsParm = sortOrder == "Intvs" ? "-Intvs" : "Intvs";
+                ViewBag.Intvs2Parm = sortOrder == "Intvs2" ? "-Intvs2" : "Intvs2";
+                ViewBag.ApsClParm = sortOrder == "ApsCl" ? "-ApsCl" : "ApsCl";
+                sortOrder = ViewBag.CurrentSort;
+                //if (string.IsNullOrEmpty(sortOrder))
+                //{
+                //    sortOrder = "Id";
+                //}
+
+                if (idSearch != null || titleSearch != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    idSearch = idFilter;
+                    titleSearch = titleFilter;
+                }
+
+
+
+
+                ViewBag.IdFilter = idSearch;
+                ViewBag.TitleFilter = titleSearch;
+
+                //ViewBag.Page = page;
+
+                var factory = new Factory();
+                IQueryable<Job> query;
+                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch))
+                {
+                    query = _unitOfWork.JobRepository.GetDuplicateJobs()
+                          .ApplySort(sortOrder);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(idSearch))
+                    {
+                        idSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(titleSearch))
+                    {
+                        titleSearch = "";
+                    }
+                    query = _unitOfWork.JobRepository.GetDuplicateJobs()
+                         .Where(j => j.Id.ToString().Contains(idSearch))
+                            .Where(j => j.Title.ToString().Contains(titleSearch))
+                            .ApplySort(sortOrder);
+                }
+
+                var result = query.ToList().Select(j => factory.Create(j));
+
+                var pageSize = 5;
+
+                var pageNumber = (page ?? 1);
+
+                return View(result.ToPagedList(pageNumber, pageSize));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
         [Authorize]
         [HttpGet]
         public ActionResult GetStates(int countryId)
@@ -401,8 +494,6 @@ namespace JobWindowNew.Web.Controllers
             viewModel.ApsCl = job.ApsCl;
             viewModel.Intvs = job.Intvs;
             viewModel.Intvs2 = job.Intvs2;
-            viewModel.RemovedCl = job.RemovedCl;
-            viewModel.RemovedReason = job.RemovedReason;
             viewModel.Bob = job.Bob;
         }
         private void PopulateViewModelForClone(JobFormViewModel viewModel, Job job, string currentUser)
@@ -448,8 +539,6 @@ namespace JobWindowNew.Web.Controllers
             viewModel.ApsCl = job.ApsCl;
             viewModel.Intvs = job.Intvs;
             viewModel.Intvs2 = job.Intvs2;
-            viewModel.RemovedCl = job.RemovedCl;
-            viewModel.RemovedReason = job.RemovedReason;
             viewModel.Bob = job.Bob;
         }
         private static void PopulateJobFromViewModel(JobFormViewModel viewModel, Job job, string currentUser,
@@ -484,12 +573,9 @@ namespace JobWindowNew.Web.Controllers
             job.IsOnlineApply = viewModel.IsOnlineApply;
             job.EditedBy = currentUser;
             job.EditedDate = currentDate;
-
             job.ApsCl = viewModel.ApsCl;
             job.Intvs = viewModel.Intvs;
             job.Intvs2 = viewModel.Intvs2;
-            job.RemovedCl = viewModel.RemovedCl;
-            job.RemovedReason = viewModel.RemovedReason;
             job.Bob = viewModel.Bob;
         }
     }
