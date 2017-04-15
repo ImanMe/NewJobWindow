@@ -21,7 +21,7 @@ namespace JobWindowNew.Domain.Model
         [StringLength(255)]
         public string Email { get; set; }
 
-        [StringLength(13, MinimumLength = 10)]
+        [StringLength(15, MinimumLength = 10)]
         public string Phone { get; set; }
 
         public string FileName { get; set; }

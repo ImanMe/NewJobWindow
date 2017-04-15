@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobWindowNew.Web", "JobWind
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobWindowNew.DAL", "JobWindowNew.DAL\JobWindowNew.DAL.csproj", "{B73E051A-E009-4B6A-80FF-483842CE1ADA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobWindowNew.API", "JobWindowNew.API\JobWindowNew.API.csproj", "{80D86832-425F-4C61-8BF5-E70583D4EDD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B73E051A-E009-4B6A-80FF-483842CE1ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B73E051A-E009-4B6A-80FF-483842CE1ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B73E051A-E009-4B6A-80FF-483842CE1ADA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80D86832-425F-4C61-8BF5-E70583D4EDD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D86832-425F-4C61-8BF5-E70583D4EDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D86832-425F-4C61-8BF5-E70583D4EDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D86832-425F-4C61-8BF5-E70583D4EDD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

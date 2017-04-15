@@ -114,6 +114,10 @@
     <Compile Include="Migrations\201704140306505_StatsRemovedFields.Designer.cs">
       <DependentUpon>201704140306505_StatsRemovedFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704152114541_PhoneFix.cs" />
+    <Compile Include="Migrations\201704152114541_PhoneFix.Designer.cs">
+      <DependentUpon>201704152114541_PhoneFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Repositories\ApplicantRepository.cs" />
     <Compile Include="Persistence\Repositories\CategoryRepository.cs" />
@@ -126,6 +130,7 @@
     <Compile Include="Persistence\Repositories\OccupationRepository.cs" />
     <Compile Include="Persistence\Repositories\SalaryTypeTypeRepository.cs" />
     <Compile Include="Persistence\Repositories\StateRepository.cs" />
+    <Compile Include="Persistence\Repositories\UserRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -181,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704140306505_StatsRemovedFields.resx">
       <DependentUpon>201704140306505_StatsRemovedFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704152114541_PhoneFix.resx">
+      <DependentUpon>201704152114541_PhoneFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

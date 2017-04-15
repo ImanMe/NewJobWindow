@@ -14,7 +14,8 @@ namespace JobWindowNew.Domain.ViewModels.Factories
                 Email = applicant.Email,
                 JobId = applicant.JobId,
                 Id = applicant.Id,
-                FileName = applicant.FileName
+                FileName = applicant.FileName,
+                Date = applicant.Date
             };
         }
     }
