@@ -70,20 +70,22 @@ namespace JobWindowNew.Web.Controllers
                 ApsCl = j.ApsCl,
                 Intvs = j.Intvs,
                 Intvs2 = j.Intvs2,
-                Bob = j.Bob
+                Bob = j.Bob,
+                ExpDate = j.ExpirationDate,
+                ActiveDate = j.ActivationDate
             });
 
             var pageSize = 15;
             var pageNumber = (page ?? 1);
 
-            //var dd = mappedResult.ToPagedList(pageNumber, pageSize);
-            foreach (var item in mappedResult)
+            var finalResult = mappedResult.ToPagedList(pageNumber, pageSize);
+            foreach (var item in finalResult)
             {
                 item.ActivationDate = item.ActiveDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 item.ExpirationDate = item.ExpDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             }
 
-            return View(mappedResult.ToPagedList(pageNumber, pageSize));
+            return View(finalResult);
         }
 
         [Authorize]

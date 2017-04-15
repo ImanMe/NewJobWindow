@@ -124,8 +124,8 @@ namespace JobWindowNew.Web.Controllers
                 var pageSize = 15;
                 var pageNumber = (page ?? 1);
 
-                //var dd = mappedResult.ToPagedList(pageNumber, pageSize);
-                foreach (var item in mappedResult)
+                var finalResult = mappedResult.ToPagedList(pageNumber, pageSize);
+                foreach (var item in finalResult)
                 {
                     item.ActivationDate = item.ActiveDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     item.ExpirationDate = item.ExpDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
@@ -133,7 +133,7 @@ namespace JobWindowNew.Web.Controllers
                     item.IsExpired = DateTime.Parse(item.ExpirationDate) < DateTime.Now;
                 }
 
-                return View(mappedResult.ToPagedList(pageNumber, pageSize));
+                return View(finalResult);
             }
             catch (Exception e)
             {
@@ -248,8 +248,9 @@ namespace JobWindowNew.Web.Controllers
                 var pageSize = 15;
                 var pageNumber = (page ?? 1);
 
-                //var dd = mappedResult.ToPagedList(pageNumber, pageSize);
-                foreach (var item in mappedResult)
+                var finalResult = mappedResult.ToPagedList(pageNumber, pageSize);
+
+                foreach (var item in finalResult)
                 {
                     item.ActivationDate = item.ActiveDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     item.ExpirationDate = item.ExpDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
@@ -257,7 +258,7 @@ namespace JobWindowNew.Web.Controllers
                     item.IsExpired = DateTime.Parse(item.ExpirationDate) < DateTime.Now;
                 }
 
-                return View(mappedResult.ToPagedList(pageNumber, pageSize));
+                return View(finalResult);
             }
             catch (Exception e)
             {
