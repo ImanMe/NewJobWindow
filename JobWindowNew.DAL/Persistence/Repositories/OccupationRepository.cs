@@ -16,7 +16,9 @@ namespace JobWindowNew.DAL.Persistence.Repositories
 
         public IEnumerable<Occupation> GetOccupations()
         {
-            return _context.Occupations;
+            return _context.Occupations
+                .OrderBy(o => o.OccupationCategory)
+                .ThenBy(o => o.OccupationName);
         }
 
         public Occupation GetOccupation(int occupationId)

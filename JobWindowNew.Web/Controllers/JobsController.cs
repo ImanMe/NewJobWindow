@@ -29,7 +29,6 @@ namespace JobWindowNew.Web.Controllers
             try
             {
                 ViewBag.CurrentSort = sortOrder;
-                ViewBag.IdParm = String.IsNullOrEmpty(sortOrder) ? "Id" : "";
                 ViewBag.IdParm = sortOrder == "Id" ? "-Id" : "Id";
                 ViewBag.CloneFromParm = sortOrder == "CloneFrom" ? "-CloneFrom" : "CloneFrom";
                 ViewBag.EverGreenIdParm = sortOrder == "EverGreenId" ? "-EverGreenId" : "EverGreenId";
@@ -65,20 +64,19 @@ namespace JobWindowNew.Web.Controllers
                     titleSearch = titleFilter;
                 }
 
-
-
-
                 ViewBag.IdFilter = idSearch;
                 ViewBag.TitleFilter = titleSearch;
 
-                //ViewBag.Page = page;
+                if (string.IsNullOrEmpty(sortOrder))
+                {
+                    sortOrder = "Id";
+                }
 
-                var factory = new Factory();
                 IQueryable<Job> query;
                 if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch))
                 {
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
-                          .OrderBy(j => sortOrder);
+                          .ApplySort(sortOrder);
                 }
                 else
                 {
@@ -95,7 +93,7 @@ namespace JobWindowNew.Web.Controllers
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
                          .Where(j => j.Id.ToString().Contains(idSearch))
                             .Where(j => j.Title.ToString().Contains(titleSearch))
-                            .OrderBy(j => sortOrder);
+                            .ApplySort(sortOrder);
                 }
 
                 var mappedResult = query.Select(j => new JobGridViewModel
@@ -142,11 +140,6 @@ namespace JobWindowNew.Web.Controllers
             }
         }
 
-
-
-
-
-
         [Authorize]
         //[HttpGet]
         public ActionResult Duplicates(string sortOrder, string idFilter, string titleFilter, string idSearch, string titleSearch, int? page)
@@ -154,7 +147,6 @@ namespace JobWindowNew.Web.Controllers
             try
             {
                 ViewBag.CurrentSort = sortOrder;
-                ViewBag.IdParm = String.IsNullOrEmpty(sortOrder) ? "Id" : "";
                 ViewBag.IdParm = sortOrder == "Id" ? "-Id" : "Id";
                 ViewBag.CloneFromParm = sortOrder == "CloneFrom" ? "-CloneFrom" : "CloneFrom";
                 ViewBag.EverGreenIdParm = sortOrder == "EverGreenId" ? "-EverGreenId" : "EverGreenId";
@@ -175,10 +167,6 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.Intvs2Parm = sortOrder == "Intvs2" ? "-Intvs2" : "Intvs2";
                 ViewBag.ApsClParm = sortOrder == "ApsCl" ? "-ApsCl" : "ApsCl";
                 sortOrder = ViewBag.CurrentSort;
-                //if (string.IsNullOrEmpty(sortOrder))
-                //{
-                //    sortOrder = "Id";
-                //}
 
                 if (idSearch != null || titleSearch != null)
                 {
@@ -190,15 +178,9 @@ namespace JobWindowNew.Web.Controllers
                     titleSearch = titleFilter;
                 }
 
-
-
-
                 ViewBag.IdFilter = idSearch;
                 ViewBag.TitleFilter = titleSearch;
 
-                //ViewBag.Page = page;
-
-                var factory = new Factory();
                 IQueryable<Job> query;
                 if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch))
                 {
@@ -266,6 +248,7 @@ namespace JobWindowNew.Web.Controllers
                 throw;
             }
         }
+
         [Authorize]
         [HttpGet]
         public ActionResult GetStates(int countryId)
@@ -409,7 +392,6 @@ namespace JobWindowNew.Web.Controllers
             return View("JobForm", viewModel);
         }
 
-
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -482,7 +464,6 @@ namespace JobWindowNew.Web.Controllers
 
             return viewModel;
         }
-
         private void PopulateMappingEntities(JobFormViewModel viewModel, Job job)
         {
             if (viewModel.OccupationsSelected != null)

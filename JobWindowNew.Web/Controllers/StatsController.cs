@@ -75,7 +75,7 @@ namespace JobWindowNew.Web.Controllers
                 ActiveDate = j.ActivationDate
             });
 
-            var pageSize = 15;
+            var pageSize = 20;
             var pageNumber = (page ?? 1);
 
             var finalResult = mappedResult.ToPagedList(pageNumber, pageSize);

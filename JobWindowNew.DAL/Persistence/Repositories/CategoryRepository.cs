@@ -16,7 +16,7 @@ namespace JobWindowNew.DAL.Persistence.Repositories
 
         public IEnumerable<Category> GetCategories()
         {
-            return _context.Categories;
+            return _context.Categories.OrderBy(c => c.CategoryName);
         }
 
         public Category GetCategory(int categoryId)

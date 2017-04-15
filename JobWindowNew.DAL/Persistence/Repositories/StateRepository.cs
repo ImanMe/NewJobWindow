@@ -22,7 +22,7 @@ namespace JobWindowNew.DAL.Persistence.Repositories
 
         public IEnumerable<State> GetStates()
         {
-            return _context.States;
+            return _context.States.OrderBy(s => s.StateName);
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using JobWindowNew.Domain.IRepositories;
+﻿using JobWindowNew.Domain.IRepositories;
 using JobWindowNew.Domain.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace JobWindowNew.DAL.Persistence.Repositories
 {
@@ -15,7 +16,7 @@ namespace JobWindowNew.DAL.Persistence.Repositories
 
         public IEnumerable<Country> GetCountries()
         {
-            return _context.Countries;
+            return _context.Countries.OrderBy(c => c.CountryName);
         }
     }
 }
