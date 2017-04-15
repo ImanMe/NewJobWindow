@@ -78,7 +78,7 @@ namespace JobWindowNew.Web.Controllers
                 if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch))
                 {
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
-                          .ApplySort(sortOrder);
+                          .OrderBy(j => sortOrder);
                 }
                 else
                 {
@@ -91,19 +91,49 @@ namespace JobWindowNew.Web.Controllers
                     {
                         titleSearch = "";
                     }
+
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
                          .Where(j => j.Id.ToString().Contains(idSearch))
                             .Where(j => j.Title.ToString().Contains(titleSearch))
-                            .ApplySort(sortOrder);
+                            .OrderBy(j => sortOrder);
                 }
 
-                var result = query.ToList().Select(j => factory.Create(j));
+                var mappedResult = query.Select(j => new JobGridViewModel
+                {
+                    Id = j.Id,
+                    CloneFrom = j.CloneFrom,
+                    EverGreenId = j.EverGreenId,
+                    Title = j.Title,
+                    JobBoard = j.JobBoard.JobBoardName,
+                    City = j.City,
+                    StateName = j.State.StateName,
+                    CountryName = j.Country.CountryName,
+                    CompanyName = j.CompanyName,
+                    SchedulingPod = j.SchedulingPod,
+                    Division = j.Division,
+                    CreatedBy = j.CreatedBy,
+                    Bob = j.Bob,
+                    Intvs = j.Intvs,
+                    Intvs2 = j.Intvs2,
+                    ApsCl = j.ApsCl,
+                    ActiveDate = j.ActivationDate,
+                    ExpDate = j.ExpirationDate,
+                    CreDate = j.CreatedDate
+                });
 
-                var pageSize = 5;
-
+                var pageSize = 15;
                 var pageNumber = (page ?? 1);
 
-                return View(result.ToPagedList(pageNumber, pageSize));
+                //var dd = mappedResult.ToPagedList(pageNumber, pageSize);
+                foreach (var item in mappedResult)
+                {
+                    item.ActivationDate = item.ActiveDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    item.ExpirationDate = item.ExpDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    item.CreatedDate = item.CreDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    item.IsExpired = DateTime.Parse(item.ExpirationDate) < DateTime.Now;
+                }
+
+                return View(mappedResult.ToPagedList(pageNumber, pageSize));
             }
             catch (Exception e)
             {
@@ -192,13 +222,42 @@ namespace JobWindowNew.Web.Controllers
                             .ApplySort(sortOrder);
                 }
 
-                var result = query.ToList().Select(j => factory.Create(j));
+                var mappedResult = query.Select(j => new JobGridViewModel
+                {
+                    Id = j.Id,
+                    CloneFrom = j.CloneFrom,
+                    EverGreenId = j.EverGreenId,
+                    Title = j.Title,
+                    JobBoard = j.JobBoard.JobBoardName,
+                    City = j.City,
+                    StateName = j.State.StateName,
+                    CountryName = j.Country.CountryName,
+                    CompanyName = j.CompanyName,
+                    SchedulingPod = j.SchedulingPod,
+                    Division = j.Division,
+                    CreatedBy = j.CreatedBy,
+                    Bob = j.Bob,
+                    Intvs = j.Intvs,
+                    Intvs2 = j.Intvs2,
+                    ApsCl = j.ApsCl,
+                    ActiveDate = j.ActivationDate,
+                    ExpDate = j.ExpirationDate,
+                    CreDate = j.CreatedDate
+                });
 
-                var pageSize = 5;
-
+                var pageSize = 15;
                 var pageNumber = (page ?? 1);
 
-                return View(result.ToPagedList(pageNumber, pageSize));
+                //var dd = mappedResult.ToPagedList(pageNumber, pageSize);
+                foreach (var item in mappedResult)
+                {
+                    item.ActivationDate = item.ActiveDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    item.ExpirationDate = item.ExpDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    item.CreatedDate = item.CreDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    item.IsExpired = DateTime.Parse(item.ExpirationDate) < DateTime.Now;
+                }
+
+                return View(mappedResult.ToPagedList(pageNumber, pageSize));
             }
             catch (Exception e)
             {

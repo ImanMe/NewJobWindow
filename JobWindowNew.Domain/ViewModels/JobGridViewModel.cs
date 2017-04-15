@@ -24,7 +24,13 @@ namespace JobWindowNew.Domain.ViewModels
         public int? ApsCl { get; set; }
         public string JobBoard { get; set; }
 
-        public bool IsExpired => DateTime.Parse(ExpirationDate) < DateTime.Now;
+        public DateTime ActiveDate { get; set; }
+        public DateTime ExpDate { get; set; }
+        public DateTime CreDate { get; set; }
+
+        //public bool IsExpired => DateTime.Parse(ExpirationDate) < DateTime.Now;
+
+        public bool IsExpired { get; set; }
 
         public PaginationInfoViewModel PaginationInfoViewModel { get; set; }
 

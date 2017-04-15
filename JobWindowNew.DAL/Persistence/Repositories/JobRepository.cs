@@ -75,10 +75,6 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .Include(j => j.State)
                 .Include(j => j.Country)
                 .Include(j => j.JobBoard)
-                .Where(j => j.Bob == null)
-                .Where(j => j.ApsCl == null)
-                .Where(j => j.Intvs == null)
-                .Where(j => j.Intvs2 == null)
                 .OrderBy(j => j.SchedulingPod)
                 .ThenBy(j => j.JobBoard)
                 .ThenBy(j => j.Title);

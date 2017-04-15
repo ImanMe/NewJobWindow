@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace JobWindowNew.Domain.ViewModels
 {
@@ -14,6 +15,9 @@ namespace JobWindowNew.Domain.ViewModels
         public string ActivationDate { get; set; }
         public string ExpirationDate { get; set; }
         public string JobBoard { get; set; }
+
+        public DateTime ActiveDate { get; set; }
+        public DateTime ExpDate { get; set; }
 
         [Required]
         [Range(0, 999999)]

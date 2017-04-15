@@ -391,11 +391,9 @@ th,td {
 }
 
 .jobtable > tbody > tr > td {
-	padding-bottom: 20px;
-	padding-top: 20px;
-   padding-right: 50px;
-   
-	
+	padding-bottom: 10px;
+	padding-top: 10px;
+   padding-right: 50px;   	
 }
 
 

@@ -1,9 +1,9 @@
 ﻿using JobWindowNew.Domain;
 using JobWindowNew.Domain.Model;
 using JobWindowNew.Domain.ViewModels;
-using JobWindowNew.Domain.ViewModels.Factories;
 using PagedList;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -57,15 +57,33 @@ namespace JobWindowNew.Web.Controllers
                     .Where(j => j.SchedulingPod.ToString() == podIdSearch);
             }
 
-            var statsFactory = new StatsFactory();
+            var mappedResult = query.Select(j => new JobStatsViewModel
+            {
+                Id = j.Id,
+                Title = j.Title,
+                CompanyName = j.CompanyName,
+                CountryName = j.Country.CountryName,
+                StateName = j.State.StateName,
+                City = j.City,
+                SchedulingPod = j.SchedulingPod,
+                JobBoard = j.JobBoard.JobBoardName,
+                ApsCl = j.ApsCl,
+                Intvs = j.Intvs,
+                Intvs2 = j.Intvs2,
+                Bob = j.Bob
+            });
 
-            var result = query.ToList().Select(j => statsFactory.Create(j));
-
-            var pageSize = 5;
-
+            var pageSize = 15;
             var pageNumber = (page ?? 1);
 
-            return View(result.ToPagedList(pageNumber, pageSize));
+            //var dd = mappedResult.ToPagedList(pageNumber, pageSize);
+            foreach (var item in mappedResult)
+            {
+                item.ActivationDate = item.ActiveDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                item.ExpirationDate = item.ExpDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            }
+
+            return View(mappedResult.ToPagedList(pageNumber, pageSize));
         }
 
         [Authorize]
