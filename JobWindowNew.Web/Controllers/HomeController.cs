@@ -94,17 +94,13 @@ namespace JobWindowNew.Web.Controllers
                 Email = viewModel.Email,
                 Date = DateTime.Now,
                 JobId = viewModel.Id,
-                FileName = viewModel.FileName ?? string.Empty
+                //FileName = viewModel.FileName ?? string.Empty
             };
 
-            _unitOfWork.ApplicantRepository.Add(applicant);
-            _unitOfWork.Complete();
+
 
             var n1 = viewModel.Id.ToString();
             var n2 = applicant.Id.ToString();
-
-            _unitOfWork.ApplicantRepository.Add(applicant);
-            _unitOfWork.Complete();
 
             foreach (string upload in Request.Files)
             {
@@ -112,22 +108,23 @@ namespace JobWindowNew.Web.Controllers
                 if (httpPostedFileBase != null && httpPostedFileBase.ContentLength == 0)
                 {
                     applicant.FileName = "NoResume.txt";
-                    _unitOfWork.ApplicantRepository.Update(applicant);
-                    _unitOfWork.Complete();
-                    continue;
                 }
-                var pathToSave = Server.MapPath("~/Resumes/");
-                var filename = Path.GetFileName(Request.Files[upload]?.FileName);
-                var formattedFileName = string.Format("{1}{2}"
-                    , Path.GetFileNameWithoutExtension(filename)
-                    //, Guid.NewGuid().ToString("N")
-                    , n1 + "-" + n2
-                    , Path.GetExtension(filename));
-                Request.Files[upload]?.SaveAs(Path.Combine(pathToSave, formattedFileName));
-                //n3 = formattedFileName;
-                applicant.FileName = formattedFileName;
+                else
+                {
+                    var pathToSave = Server.MapPath("~/Resumes/");
+                    var filename = Path.GetFileName(Request.Files[upload]?.FileName);
+                    var formattedFileName = string.Format("{1}{2}"
+                        , Path.GetFileNameWithoutExtension(filename)
+                        //, Guid.NewGuid().ToString("N")
+                        , n1 + "-" + n2
+                        , Path.GetExtension(filename));
+                    Request.Files[upload]?.SaveAs(Path.Combine(pathToSave, formattedFileName));
+                    //n3 = formattedFileName;
+                    applicant.FileName = formattedFileName;
+                }
 
-                _unitOfWork.ApplicantRepository.Update(applicant);
+
+                _unitOfWork.ApplicantRepository.Add(applicant);
                 _unitOfWork.Complete();
             }
             return RedirectToAction("ThankYou", new { id = n1 });

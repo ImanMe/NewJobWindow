@@ -71,7 +71,7 @@ namespace JobWindowNew.DAL.Persistence.Repositories
             var todayMinusOneMonth = DateTime.Now.AddDays(-30);
             var result = _context.Jobs.AsNoTracking()
                 .Where(j => j.HasStats == false)
-                //.Where(j => j.ExpirationDate < todayMinusOneMonth)
+                .Where(j => j.ExpirationDate < todayMinusOneMonth)
                 .Include(j => j.State)
                 .Include(j => j.Country)
                 .Include(j => j.JobBoard)
