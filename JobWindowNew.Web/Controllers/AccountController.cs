@@ -149,7 +149,7 @@ namespace JobWindowNew.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Jobs");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -206,7 +206,7 @@ namespace JobWindowNew.Web.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Roles = "Root, Admin")]
         public ActionResult Register()
         {
             return View();
