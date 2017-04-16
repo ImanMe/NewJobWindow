@@ -58,67 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201703290549554_MyInitials.cs" />
-    <Compile Include="Migrations\201703290549554_MyInitials.Designer.cs">
-      <DependentUpon>201703290549554_MyInitials.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703290553058_Jobs.cs" />
-    <Compile Include="Migrations\201703290553058_Jobs.Designer.cs">
-      <DependentUpon>201703290553058_Jobs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703290554213_JobComplete.cs" />
-    <Compile Include="Migrations\201703290554213_JobComplete.Designer.cs">
-      <DependentUpon>201703290554213_JobComplete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703290613555_JobAgain.cs" />
-    <Compile Include="Migrations\201703290613555_JobAgain.Designer.cs">
-      <DependentUpon>201703290613555_JobAgain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703292320375_MappingTables.cs" />
-    <Compile Include="Migrations\201703292320375_MappingTables.Designer.cs">
-      <DependentUpon>201703292320375_MappingTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703292328389_JustToSee.cs" />
-    <Compile Include="Migrations\201703292328389_JustToSee.Designer.cs">
-      <DependentUpon>201703292328389_JustToSee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703300139122_ModificationToOccupation.cs" />
-    <Compile Include="Migrations\201703300139122_ModificationToOccupation.Designer.cs">
-      <DependentUpon>201703300139122_ModificationToOccupation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703300403311_DateChanged.cs" />
-    <Compile Include="Migrations\201703300403311_DateChanged.Designer.cs">
-      <DependentUpon>201703300403311_DateChanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704042349502_JobStat.cs" />
-    <Compile Include="Migrations\201704042349502_JobStat.Designer.cs">
-      <DependentUpon>201704042349502_JobStat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704050559233_DateMandatory.cs" />
-    <Compile Include="Migrations\201704050559233_DateMandatory.Designer.cs">
-      <DependentUpon>201704050559233_DateMandatory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704090040424_AddHasStatsField.cs" />
-    <Compile Include="Migrations\201704090040424_AddHasStatsField.Designer.cs">
-      <DependentUpon>201704090040424_AddHasStatsField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704100451406_ApplicantAdded.cs" />
-    <Compile Include="Migrations\201704100451406_ApplicantAdded.Designer.cs">
-      <DependentUpon>201704100451406_ApplicantAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704100538180_ApplicantPhone.cs" />
-    <Compile Include="Migrations\201704100538180_ApplicantPhone.Designer.cs">
-      <DependentUpon>201704100538180_ApplicantPhone.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704140306505_StatsRemovedFields.cs" />
-    <Compile Include="Migrations\201704140306505_StatsRemovedFields.Designer.cs">
-      <DependentUpon>201704140306505_StatsRemovedFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704152114541_PhoneFix.cs" />
-    <Compile Include="Migrations\201704152114541_PhoneFix.Designer.cs">
-      <DependentUpon>201704152114541_PhoneFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Repositories\ApplicantRepository.cs" />
     <Compile Include="Persistence\Repositories\CategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\CountryRepository.cs" />
@@ -143,53 +82,6 @@
       <Project>{8E3E8B4D-A720-422F-B59F-11BB3F73EBF9}</Project>
       <Name>JobWindowNew.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703290549554_MyInitials.resx">
-      <DependentUpon>201703290549554_MyInitials.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703290553058_Jobs.resx">
-      <DependentUpon>201703290553058_Jobs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703290554213_JobComplete.resx">
-      <DependentUpon>201703290554213_JobComplete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703290613555_JobAgain.resx">
-      <DependentUpon>201703290613555_JobAgain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703292320375_MappingTables.resx">
-      <DependentUpon>201703292320375_MappingTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703292328389_JustToSee.resx">
-      <DependentUpon>201703292328389_JustToSee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703300139122_ModificationToOccupation.resx">
-      <DependentUpon>201703300139122_ModificationToOccupation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703300403311_DateChanged.resx">
-      <DependentUpon>201703300403311_DateChanged.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704042349502_JobStat.resx">
-      <DependentUpon>201704042349502_JobStat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704050559233_DateMandatory.resx">
-      <DependentUpon>201704050559233_DateMandatory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704090040424_AddHasStatsField.resx">
-      <DependentUpon>201704090040424_AddHasStatsField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704100451406_ApplicantAdded.resx">
-      <DependentUpon>201704100451406_ApplicantAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704100538180_ApplicantPhone.resx">
-      <DependentUpon>201704100538180_ApplicantPhone.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704140306505_StatsRemovedFields.resx">
-      <DependentUpon>201704140306505_StatsRemovedFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704152114541_PhoneFix.resx">
-      <DependentUpon>201704152114541_PhoneFix.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

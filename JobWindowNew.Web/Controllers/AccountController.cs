@@ -1,12 +1,17 @@
-﻿using JobWindowNew.Web.Models;
+﻿using JobWindowNew.DAL;
+using JobWindowNew.Domain.Model;
+using JobWindowNew.Domain.ViewModels;
+using JobWindowNew.Web.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using JobWindowNew.Domain.Model;
 
 namespace JobWindowNew.Web.Controllers
 {
@@ -48,6 +53,73 @@ namespace JobWindowNew.Web.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult AssignRole()
+        {
+            var context = new ApplicationDbContext();
+            var users = UserManager.Users.ToList();
+            var roles = context.Roles.ToList();
+            var viewModel = new AssignRoleViewModel
+            {
+                Roles = roles,
+                Users = users
+            };
+
+            return View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> AssignRole(AssignRoleViewModel viewModel)
+        {
+            var context = new ApplicationDbContext();
+
+            if (!ModelState.IsValid)
+            {
+                var users = UserManager.Users.ToList();
+                var roles = context.Roles.ToList();
+
+                viewModel.Roles = roles;
+                viewModel.Users = users;
+
+                return View(viewModel);
+            }
+
+            await UserManager.RemoveFromRolesAsync(viewModel.UserId, UserManager.GetRoles(viewModel.UserId).ToArray());
+            //UserManager.AddToRoleAsync(viewModel.UserId, "NewRole");
+            // await UserManager.Update(user);
+            UserManager.AddToRole(viewModel.UserId, viewModel.RoleName);
+            context.SaveChanges();
+            return RedirectToAction("AssignRole");
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult GetUsersWithRoles()
+        {
+            var userRoles = new List<RolesViewModel>();
+            var ss = UserManager.Users.Include(u => u.Roles).ToList();
+            var context = new ApplicationDbContext();
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+            foreach (var user in userStore.Users)
+            {
+                var r = new RolesViewModel
+                {
+                    UserName = user.UserName
+                };
+                userRoles.Add(r);
+            }
+            //Get all the Roles for our users
+            foreach (var user in userRoles)
+            {
+                user.RoleNames = userManager.GetRoles(userStore.Users.First(s => s.UserName == user.UserName).Id);
+            }
+
+            return View(userRoles);
         }
 
         //

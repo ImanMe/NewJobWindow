@@ -1,0 +1,28 @@
+﻿@model IEnumerable<JobWindowNew.Domain.ViewModels.RolesViewModel>
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="pull-left">View User Roles</h3>
+        <button class="btn btn-primary backtolist-btn pull-right" style="margin-top: 10px;" onclick="location.href='@Url.Action("Index", "Jobs")'">Back To List</button>
+    </div>
+</div>
+<hr />
+    <table class="table table-striped">
+        <tr>
+            <th>User Name</th>
+            <th>Role</th>
+            
+        </tr>
+       @foreach (var user in Model.ToList())
+       {
+           <tr>
+               <td> @user.UserName</td>
+               
+               <td>@user.RoleNames.FirstOrDefault()</td>
+               
+           </tr>
+        
+       }
+    
+        
+    </table>
+  

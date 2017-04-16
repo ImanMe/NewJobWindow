@@ -84,6 +84,7 @@
     <Compile Include="Model\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ApplicantViewModel.cs" />
+    <Compile Include="ViewModels\AssignRoleViewModel.cs" />
     <Compile Include="ViewModels\ReportViewModel.cs" />
     <Compile Include="ViewModels\Factories\ApplicantsFactory.cs" />
     <Compile Include="ViewModels\Factories\ReportFactory.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="ViewModels\JobOnlineApplyViewModel.cs" />
     <Compile Include="ViewModels\JobStatsViewModel.cs" />
     <Compile Include="ViewModels\PaginationInfoViewModel.cs" />
+    <Compile Include="ViewModels\RolesViewModel.cs" />
     <Compile Include="ViewModels\ValidDate.cs" />
   </ItemGroup>
   <ItemGroup>
