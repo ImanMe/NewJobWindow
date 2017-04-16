@@ -2,6 +2,7 @@
 
 namespace JobWindowNew.Web.Controllers
 {
+    [AllowAnonymous]
     public class ErrorsController : Controller
     {
         // GET: Errors

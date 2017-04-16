@@ -20,7 +20,7 @@ namespace JobWindowNew.Web.Controllers
         }
 
         // GET: Applicant
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         public ActionResult Index(string currentFilter, string searchString, int? page)
         {
             if (searchString != null)
@@ -58,7 +58,7 @@ namespace JobWindowNew.Web.Controllers
 
         }
 
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         public FileResult Download(string fName)
         {
             if (string.IsNullOrEmpty(fName))

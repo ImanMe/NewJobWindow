@@ -19,12 +19,12 @@ namespace JobWindowNew.Web.Controllers
         }
 
         // GET: Stats
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         [HttpGet]
         public ActionResult Create(string podIdFilter, string podIdSearch, int? page)
         {
@@ -88,7 +88,7 @@ namespace JobWindowNew.Web.Controllers
             return View(finalResult);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         [HttpPost]
         public ActionResult Create(IEnumerable<JobStatsViewModel> viewModel)
         {

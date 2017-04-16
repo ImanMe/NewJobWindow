@@ -19,7 +19,7 @@ namespace JobWindowNew.Web.Controllers
 
         // GET: Reports
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         public void EverGreenReport()
         {
             var factory = new EverGreenReportFactory();
@@ -47,7 +47,7 @@ namespace JobWindowNew.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         public void ActiveReport()
         {
             var factory = new EverGreenReportFactory();
@@ -77,14 +77,14 @@ namespace JobWindowNew.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         public ActionResult InActiveReport()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         public ActionResult InActiveReport(string podId)
         {
             var pId = int.Parse(podId);
