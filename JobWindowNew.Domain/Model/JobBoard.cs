@@ -11,5 +11,7 @@ namespace JobWindowNew.Domain.Model
         public string JobBoardName { get; set; }
 
         public int? SId { get; set; }
+
+        public int EstreamJBsID { get; set; }
     }
 }

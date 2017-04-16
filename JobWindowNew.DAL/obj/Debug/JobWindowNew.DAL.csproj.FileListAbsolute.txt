@@ -55,3 +55,4 @@ C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.dll
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.pdb
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.StatsRemovedFields.resources
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.PhoneFix.resources
+C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.EstreamAdded.resources
