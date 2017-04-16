@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JobWindowModelStoreContainer" CdmEntityContainer="JobWindowContext">
+    <FunctionImportMapping FunctionImportName="sp_BeyondFeed" FunctionName="JobWindowModel.Store.sp_BeyondFeed">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_BeyondFeed_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
+          <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="EmploymentType" ColumnName="EmploymentType" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_CareerBuilder" FunctionName="JobWindowModel.Store.sp_CareerBuilder">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_CareerBuilder_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Craigslist" FunctionName="JobWindowModel.Store.sp_Craigslist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_Craigslist_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GlassdoorFeed" FunctionName="JobWindowModel.Store.sp_GlassdoorFeed">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_GlassdoorFeed_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="EmploymentType" ColumnName="EmploymentType" />
+          <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_IndeedFeed" FunctionName="JobWindowModel.Store.sp_IndeedFeed">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_IndeedFeed_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
+          <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="EmploymentType" ColumnName="EmploymentType" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_JobingFeed" FunctionName="JobWindowModel.Store.sp_JobingFeed">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_JobingFeed_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="EmploymentType" ColumnName="EmploymentType" />
+          <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Jobs2CareersFeed" FunctionName="JobWindowModel.Store.sp_Jobs2CareersFeed">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_Jobs2CareersFeed_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="EmploymentType" ColumnName="EmploymentType" />
+          <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_JobWindow" FunctionName="JobWindowModel.Store.sp_JobWindow">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_JobWindow_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="EmploymentType" ColumnName="EmploymentType" />
+          <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Monster" FunctionName="JobWindowModel.Store.sp_Monster">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_Monster_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SnagaJobFeed" FunctionName="JobWindowModel.Store.sp_SnagaJobFeed">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_SnagaJobFeed_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_TweetMyJobs" FunctionName="JobWindowModel.Store.sp_TweetMyJobs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_TweetMyJobs_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
+          <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="EmploymentType" ColumnName="EmploymentType" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_TweetMyJobsOA" FunctionName="JobWindowModel.Store.sp_TweetMyJobsOA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_TweetMyJobsOA_Result">
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
+          <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="EmploymentType" ColumnName="EmploymentType" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ZipRecruiterFeed" FunctionName="JobWindowModel.Store.sp_ZipRecruiterFeed">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_ZipRecruiterFeed_Result">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="JobPostingsID" ColumnName="JobPostingsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="ApplicantApstreams">
+      <EntityTypeMapping TypeName="JobWindowModel.ApplicantApstream">
+        <MappingFragment StoreEntitySet="ApplicantApstream">
+          <ScalarProperty Name="specificSourceName" ColumnName="specificSourceName" />
+          <ScalarProperty Name="specificSourceID" ColumnName="specificSourceID" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="listingTitle" ColumnName="listingTitle" />
+          <ScalarProperty Name="File" ColumnName="File" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="listingID" ColumnName="listingID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -52,6 +52,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -208,6 +209,66 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\XMLFeedController.cs" />
+    <Compile Include="DTOs\ApplicantDTO.cs" />
+    <Compile Include="DTOs\ApplicantFactory.cs" />
+    <Compile Include="Entities\ApplicantApstream.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\JobWindowModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobWindowModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\JobWindowModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\JobWindowModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobWindowModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_BeyondFeed_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_CareerBuilder_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_Craigslist_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_GlassdoorFeed_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_IndeedFeed_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_JobingFeed_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_Jobs2CareersFeed_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_JobWindow_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_Monster_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_SnagaJobFeed_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_TweetMyJobsOA_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_TweetMyJobs_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_ZipRecruiterFeed_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +284,16 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Entities\JobWindowModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JobWindowModel.edmx</DependentUpon>
+      <LastGenOutput>JobWindowModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\JobWindowModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JobWindowModel.edmx</DependentUpon>
+      <LastGenOutput>JobWindowModel.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -247,6 +318,13 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <EntityDeploy Include="Entities\JobWindowModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>JobWindowModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\JobWindowModel.edmx.diagram">
+      <DependentUpon>JobWindowModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -284,6 +362,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

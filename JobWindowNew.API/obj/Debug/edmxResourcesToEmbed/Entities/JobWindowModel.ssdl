@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JobWindowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ApplicantApstream">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="listingID" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="date" />
+      <PropertyRef Name="SchedulingPod" />
+      <PropertyRef Name="listingTitle" />
+      <PropertyRef Name="OfficeId" />
+      <PropertyRef Name="specificSourceName" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" />
+    <Property Name="listingID" Type="bigint" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="SchedulingPod" Type="int" Nullable="false" />
+    <Property Name="File" Type="nvarchar(max)" />
+    <Property Name="listingTitle" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="OfficeId" Type="int" Nullable="false" />
+    <Property Name="specificSourceID" Type="int" />
+    <Property Name="specificSourceName" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Function Name="sp_BeyondFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_CareerBuilder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Craigslist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GlassdoorFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_IndeedFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_JobingFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Jobs2CareersFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_JobWindow" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Monster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_SnagaJobFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_TweetMyJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_TweetMyJobsOA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ZipRecruiterFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="JobWindowModelStoreContainer">
+    <EntitySet Name="ApplicantApstream" EntityType="Self.ApplicantApstream" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ApplicantApstream].[Id] AS [Id], 
+    [ApplicantApstream].[listingID] AS [listingID], 
+    [ApplicantApstream].[FirstName] AS [FirstName], 
+    [ApplicantApstream].[LastName] AS [LastName], 
+    [ApplicantApstream].[Email] AS [Email], 
+    [ApplicantApstream].[Phone] AS [Phone], 
+    [ApplicantApstream].[date] AS [date], 
+    [ApplicantApstream].[SchedulingPod] AS [SchedulingPod], 
+    [ApplicantApstream].[File] AS [File], 
+    [ApplicantApstream].[listingTitle] AS [listingTitle], 
+    [ApplicantApstream].[OfficeId] AS [OfficeId], 
+    [ApplicantApstream].[specificSourceID] AS [specificSourceID], 
+    [ApplicantApstream].[specificSourceName] AS [specificSourceName]
+    FROM [dbo].[ApplicantApstream] AS [ApplicantApstream]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
