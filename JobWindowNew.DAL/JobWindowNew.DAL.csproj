@@ -118,10 +118,6 @@
     <Compile Include="Migrations\201704152114541_PhoneFix.Designer.cs">
       <DependentUpon>201704152114541_PhoneFix.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704160554021_EstreamAdded.cs" />
-    <Compile Include="Migrations\201704160554021_EstreamAdded.Designer.cs">
-      <DependentUpon>201704160554021_EstreamAdded.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Repositories\ApplicantRepository.cs" />
     <Compile Include="Persistence\Repositories\CategoryRepository.cs" />
@@ -193,9 +189,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704152114541_PhoneFix.resx">
       <DependentUpon>201704152114541_PhoneFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704160554021_EstreamAdded.resx">
-      <DependentUpon>201704160554021_EstreamAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
