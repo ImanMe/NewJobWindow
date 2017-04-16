@@ -26,10 +26,10 @@
                 @Html.ActionLink("The Job Window", "Index", "Jobs", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">                    
+                <ul class="nav navbar-nav">
                     <li class="dropdown leftitems">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listing Management<span class="caret"></span></a>
-                        <ul class="dropdown-menu customeMenu">                           
+                        <ul class="dropdown-menu customeMenu">
                             <li class="leftitems">@Html.ActionLink("Job List", "Index", "Jobs")</li>
                             <li role="separator" class="divider"></li>
                             <li class="leftitems">@Html.ActionLink("Show Duplicates", "Duplicates", "Jobs")</li>
@@ -48,18 +48,21 @@
                             <li role="separator" class="divider"></li>
                             <li class="leftitems">@Html.ActionLink("InActive", "InActiveReport", "Reports")</li>
                         </ul>
-                    </li>                   
-                    <li class="dropdown leftitems">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users<span class="caret"></span></a>
-                        <ul class="dropdown-menu customeMenu">
-                            <li class="leftitems">@Html.ActionLink("Register", "Register", "Account")</li>
-                            <li role="separator" class="divider"></li>
-                            <li class="leftitems">@Html.ActionLink("Assign Role", "AssignRole", "Account")</li>
-                            <li role="separator" class="divider"></li>
-                            <li class="leftitems">@Html.ActionLink("View User Roles", "GetUsersWithRoles", "Account")</li>
-                        </ul>
                     </li>
-                    <li class="leftitems">@Html.ActionLink("Applicants", "Index", "Applicants")</li>
+@if (User.IsInRole("Root") || User.IsInRole("Admin"))
+{
+    <li class="dropdown leftitems">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users<span class="caret"></span></a>
+        <ul class="dropdown-menu customeMenu">
+            <li class="leftitems">@Html.ActionLink("Register", "Register", "Account")</li>
+            <li role="separator" class="divider"></li>
+            <li class="leftitems">@Html.ActionLink("Assign Role", "AssignRole", "Account")</li>
+            <li role="separator" class="divider"></li>
+            <li class="leftitems">@Html.ActionLink("View User Roles", "GetUsersWithRoles", "Account")</li>
+        </ul>
+    </li>
+    <li class="leftitems">@Html.ActionLink("Applicants", "Index", "Applicants")</li>
+}
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

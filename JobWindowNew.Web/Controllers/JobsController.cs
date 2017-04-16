@@ -22,7 +22,7 @@ namespace JobWindowNew.Web.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         //[HttpGet]
         public ActionResult Index(string sortOrder, string idFilter, string titleFilter, string idSearch, string titleSearch, int? page)
         {
@@ -140,7 +140,7 @@ namespace JobWindowNew.Web.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         //[HttpGet]
         public ActionResult Duplicates(string sortOrder, string idFilter, string titleFilter, string idSearch, string titleSearch, int? page)
         {
@@ -257,7 +257,7 @@ namespace JobWindowNew.Web.Controllers
             return Json(states, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         [HttpGet]
         public ActionResult Create()
         {
@@ -268,7 +268,7 @@ namespace JobWindowNew.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public ActionResult Create(JobFormViewModel viewModel)
@@ -293,7 +293,7 @@ namespace JobWindowNew.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -323,7 +323,7 @@ namespace JobWindowNew.Web.Controllers
             return View("JobForm", viewModel);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
@@ -360,7 +360,7 @@ namespace JobWindowNew.Web.Controllers
             return RedirectToAction("Index", "Jobs");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         [HttpGet]
         public ActionResult Clone(int id)
         {
@@ -392,7 +392,7 @@ namespace JobWindowNew.Web.Controllers
             return View("JobForm", viewModel);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
@@ -433,7 +433,7 @@ namespace JobWindowNew.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
         public ActionResult Delete(long id)
         {
             _unitOfWork.JobCategoryMapRepository.Delete(id);

@@ -240,13 +240,26 @@
         </div>
     </div>
     <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsOnlineApply, htmlAttributes: new { @class = "" })
+                @Html.CheckBoxFor(model => model.IsOnlineApply, new { @class = "customecheckbox" })
+                @Html.ValidationMessageFor(model => model.IsOnlineApply, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
     <div class="clearfix"></div>
-    <div class="row">            
+@if (User.IsInRole("Root") || User.IsInRole("Admin"))
+{
+    <h3>Admin Section</h3>
+    <hr/>
+    <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Author)
-                @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Author, new {htmlAttributes = new {@class = "form-control fcoontrolform"}})
+                @Html.ValidationMessageFor(model => model.Author, "", new {@class = "text-danger"})
             </div>
         </div>
         <div class="col-md-4">
@@ -254,63 +267,58 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="row">           
+    <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.ApsCl)
-                @Html.EditorFor(model => model.ApsCl, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.ApsCl, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApsCl, new {htmlAttributes = new {@class = "form-control fcoontrolform"}})
+                @Html.ValidationMessageFor(model => model.ApsCl, "", new {@class = "text-danger"})
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Bob)
-                @Html.EditorFor(model => model.Bob, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.Bob, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Bob, new {htmlAttributes = new {@class = "form-control fcoontrolform"}})
+                @Html.ValidationMessageFor(model => model.Bob, "", new {@class = "text-danger"})
             </div>
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="row">           
+    <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Intvs)
-                @Html.EditorFor(model => model.Intvs, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.Intvs, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Intvs, new {htmlAttributes = new {@class = "form-control fcoontrolform"}})
+                @Html.ValidationMessageFor(model => model.Intvs, "", new {@class = "text-danger"})
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Intvs2)
-                @Html.EditorFor(model => model.Intvs2, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.Intvs2, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>           
-    <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-2">
-            <div class="form-group">
-                @Html.LabelFor(model => model.IsBestPerforming, htmlAttributes: new { @class = "" })
-                @Html.CheckBoxFor(model => model.IsBestPerforming, new { @class = "customecheckbox" })
-                @Html.ValidationMessageFor(model => model.IsBestPerforming, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                @Html.LabelFor(model => model.IsOnlineApply, htmlAttributes: new { @class = "" })
-                @Html.CheckBoxFor(model => model.IsOnlineApply, new { @class = "customecheckbox" })
-                @Html.ValidationMessageFor(model => model.IsOnlineApply, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                @Html.LabelFor(model => model.IsEverGreen, htmlAttributes: new { @class = "" })
-                @Html.CheckBoxFor(model => model.IsEverGreen, new { @class = "customecheckbox" })
-                @Html.ValidationMessageFor(model => model.IsEverGreen, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Intvs2, new {htmlAttributes = new {@class = "form-control fcoontrolform"}})
+                @Html.ValidationMessageFor(model => model.Intvs2, "", new {@class = "text-danger"})
             </div>
         </div>
     </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsBestPerforming, htmlAttributes: new {@class = ""})
+                @Html.CheckBoxFor(model => model.IsBestPerforming, new {@class = "customecheckbox"})
+                @Html.ValidationMessageFor(model => model.IsBestPerforming, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsEverGreen, htmlAttributes: new {@class = ""})
+                @Html.CheckBoxFor(model => model.IsEverGreen, new {@class = "customecheckbox"})
+                @Html.ValidationMessageFor(model => model.IsEverGreen, "", new {@class = "text-danger"})
+            </div>
+        </div>
+    </div>
+}
     <br />
     <button type="submit" class="btn btn-success create-btn">Save</button>
     <button class="btn btn-warning cancel-btn" onclick="location.href='@Url.Action("Index", "Jobs")'">Cancel</button>

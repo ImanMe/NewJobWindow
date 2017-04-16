@@ -15,19 +15,19 @@
     <div class="col-md-12">
         <div class="form-group">
             @Html.LabelFor(m => m.Email, new { @class = "control-label" })
-
+            <span class="glyphicon glyphicon-asterisk text-danger"></span>
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control fcoontrolform" })
 
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Password, new { @class = "control-label" })
-
+            <span class="glyphicon glyphicon-asterisk text-danger"></span>
             @Html.PasswordFor(m => m.Password, new { @class = "form-control fcoontrolform" })
 
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
-
+            <span class="glyphicon glyphicon-asterisk text-danger"></span>
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control fcoontrolform" })
 
         </div>
