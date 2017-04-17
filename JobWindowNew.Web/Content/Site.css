@@ -57,7 +57,7 @@ label {
 	border: 1px solid;
 	border-left: 3px solid #B0BEC5;
 	border-color: #B0BEC5;
-	font-size: 17px;
+	font-size: 15px;
 	height: 40px;
 	max-width: 480px;
 	border-radius: 2px;
@@ -444,8 +444,7 @@ th,td {
 }
 
 .btnsearch {
-	width: 85%;
-	height: 90%;
+	width: 85%;	
 	border-radius: 2px;
 	color: #11283c;   
 	font-size: 14px;
