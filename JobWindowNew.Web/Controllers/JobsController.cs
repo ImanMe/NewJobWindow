@@ -150,7 +150,7 @@ namespace JobWindowNew.Web.Controllers
 
         [Authorize(Roles = "Root, Admin, Internal-Employee")]
         //[HttpGet]
-        public ActionResult Duplicates(string sortOrder, string idFilter, string titleFilter, string idSearch, string titleSearch, int? page)
+        public ActionResult Duplicates(string sortOrder, string idFilter, string titleFilter, string podIdFilter, string idSearch, string titleSearch, string podIdSearch, int? page)
         {
             try
             {
@@ -176,7 +176,7 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.ApsClParm = sortOrder == "ApsCl" ? "-ApsCl" : "ApsCl";
                 sortOrder = ViewBag.CurrentSort;
 
-                if (idSearch != null || titleSearch != null)
+                if (idSearch != null || titleSearch != null || podIdSearch != null)
                 {
                     page = 1;
                 }
@@ -184,13 +184,15 @@ namespace JobWindowNew.Web.Controllers
                 {
                     idSearch = idFilter;
                     titleSearch = titleFilter;
+                    podIdSearch = podIdFilter;
                 }
 
                 ViewBag.IdFilter = idSearch;
                 ViewBag.TitleFilter = titleSearch;
+                ViewBag.PodIdFilter = podIdSearch;
 
                 IQueryable<Job> query;
-                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch))
+                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch) && string.IsNullOrEmpty(podIdSearch))
                 {
                     query = _unitOfWork.JobRepository.GetDuplicateJobs()
                           .ApplySort(sortOrder);
@@ -206,9 +208,16 @@ namespace JobWindowNew.Web.Controllers
                     {
                         titleSearch = "";
                     }
+
+                    if (string.IsNullOrEmpty(podIdSearch))
+                    {
+                        podIdSearch = "";
+                    }
+
                     query = _unitOfWork.JobRepository.GetDuplicateJobs()
                          .Where(j => j.Id.ToString().Contains(idSearch))
                             .Where(j => j.Title.ToString().Contains(titleSearch))
+                            .Where(j => j.SchedulingPod.ToString().Contains(podIdSearch))
                             .ApplySort(sortOrder);
                 }
 
