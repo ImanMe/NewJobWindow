@@ -23,12 +23,12 @@
             <div class="col-md-6">
                 <div class="form-group">
                     @Html.LabelFor(m => m.UserId)
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.UserId, new SelectList(Model.Users, "Id", "UserName"), "", new { @class = "form-control fcoontrolform" })
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.UserId, new SelectList(Model.Users, "Id", "UserName"), "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.UserId, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.RoleName)
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.RoleName, new SelectList(Model.Roles, "Name", "Name"), "", new { @class = "form-control fcoontrolform" })
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.RoleName, new SelectList(Model.Roles, "Name", "Name"), "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.RoleName, "", new { @class = "text-danger" })
                 </div>
                 <button class="btn btn-primary" type="submit">Save</button>

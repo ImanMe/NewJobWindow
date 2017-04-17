@@ -25,7 +25,7 @@
 input,
 select,
 textarea {
-	max-width: 380px;
+	max-width: 280px;
 }
 
 /* Bootstrap Override */
@@ -58,8 +58,8 @@ label {
 	border-left: 3px solid #B0BEC5;
 	border-color: #B0BEC5;
 	font-size: 17px;
-	height: 44px;
-	
+	height: 40px;
+	max-width: 480px;
 	border-radius: 2px;
 	
 }

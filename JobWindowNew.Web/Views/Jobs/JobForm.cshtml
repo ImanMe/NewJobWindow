@@ -22,41 +22,48 @@
         All fields marked with <span class="glyphicon glyphicon-asterisk text-danger"></span> are <strong>required</strong>
     </div>
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Title)
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title)
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
 
-                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(m => m.EmploymentTypeId)
-                @Html.DropDownListFor(m => m.EmploymentTypeId, new SelectList(Model.EmploymentTypes, "Id", "Type"), "", new { @class = "form-control fcoontrolform" })
-                @Html.ValidationMessageFor(m => m.EmploymentTypeId, "", new { @class = "text-danger" })
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EmploymentTypeId)
+                    @Html.DropDownListFor(m => m.EmploymentTypeId, new SelectList(Model.EmploymentTypes, "Id", "Type"), "", new { @class = "form-control fcoontrolform" })
+                    @Html.ValidationMessageFor(m => m.EmploymentTypeId, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
     <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(m => m.OccupationsSelected)
-                @Html.ListBoxFor(m => m.OccupationsSelected, new SelectList(Model.Occupations, "Id", "FullOccupationName"), new { @class = "form-control custom-list-box fcoontrolform" })
-                @Html.ValidationMessageFor(m => m.OccupationsSelected, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.OccupationsSelected)
+                    @Html.ListBoxFor(m => m.OccupationsSelected, new SelectList(Model.Occupations, "Id", "FullOccupationName"), new { @class = "form-control custom-list-box fcoontrolform" })
+                    @Html.ValidationMessageFor(m => m.OccupationsSelected, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(m => m.CategoriesSelected)
-                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.ListBoxFor(m => m.CategoriesSelected, new SelectList(Model.Categories, "Id", "CategoryName"), new { @class = "form-control custom-list-box fcoontrolform" })
-                @Html.ValidationMessageFor(m => m.CategoriesSelected, "", new { @class = "text-danger" })
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CategoriesSelected)
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.ListBoxFor(m => m.CategoriesSelected, new SelectList(Model.Categories, "Id", "CategoryName"), new { @class = "form-control custom-list-box fcoontrolform" })
+                    @Html.ValidationMessageFor(m => m.CategoriesSelected, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
+        <div class="clearfix"></div>
+    
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-8">
@@ -78,113 +85,128 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <span style="width: 70%; float: left;">
-                    @Html.LabelFor(model => model.Salary)
-                    @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
-                </span>
-                <span style="width: 30%; float: left;">
-                    @Html.LabelFor(m => m.Currency)
-                    @Html.DropDownListFor(m => m.Currency, new SelectList(Model.Currencies), "", new { @class = "form-control fcoontrolform" })
-                    @Html.ValidationMessageFor(m => m.Currency, "", new { @class = "text-danger" })
-                </span>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(m => m.SalaryTypeId)
-                @Html.DropDownListFor(m => m.SalaryTypeId, new SelectList(Model.SalaryTypes, "Id", "Type"), "", new { @class = "form-control fcoontrolform" })
-                @Html.ValidationMessageFor(m => m.SalaryTypeId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-4" style="height: 107px;">
-            <div class="form-group">
-                <span style="width: 50%;float: left">
-                    @Html.LabelFor(m => m.CountryId)
-                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.CountryId, new SelectList(Model.Countries, "Id", "CountryName"), "", new { @class = "form-control fcoontrolform", @onchange = "FillCity()" })
-                    @Html.ValidationMessageFor(m => m.CountryId, "", new { @class = "text-danger" })
-                </span>
-                @if (Model.Action == "Create")
-                {
-                    <span style="width: 50%; float: left">
-
-                        @Html.LabelFor(m => m.StateId)
-                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "StateName"), "", new { @class = "form-control fcoontrolform" })
-                        @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
-
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group" style="margin-bottom: 120px;">
+                    <span style="width: 70%; float: left;">
+                        @Html.LabelFor(model => model.Salary)
+                        @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                        @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
                     </span>
-                }
-                @if (Model.Action == "Edit" || Model.Action == "Clone")
-                {
-                    <span style="width: 50%; float: left">
-
-                        @Html.LabelFor(m => m.StateId)
-                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Model.States, "Id", "StateName"), "Select a StateId", new { @class = "form-control fcoontrolform" })
-                        @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
-
+                    <span style="width: 30%; float: left;">
+                        @Html.LabelFor(m => m.Currency)
+                        @Html.DropDownListFor(m => m.Currency, new SelectList(Model.Currencies), "", new { @class = "form-control fcoontrolform" })
+                        @Html.ValidationMessageFor(m => m.Currency, "", new { @class = "text-danger" })
                     </span>
-                }
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(model => model.City)
-                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.SalaryTypeId)
+                    @Html.DropDownListFor(m => m.SalaryTypeId, new SelectList(Model.SalaryTypes, "Id", "Type"), "", new { @class = "form-control fcoontrolform" })
+                    @Html.ValidationMessageFor(m => m.SalaryTypeId, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
-    <div class="clearfix"></div>              
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(model => model.ZipCode)
-                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+        <div class="clearfix"></div>
+    
+        <div class="row">
+            <div class="col-md-5" style="height: 107px;">
+                <div class="form-group">
+                    <span style="width: 50%;float: left">
+                        @Html.LabelFor(m => m.CountryId)
+                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.CountryId, new SelectList(Model.Countries, "Id", "CountryName"), "", new { @class = "form-control fcoontrolform", @onchange = "FillCity()" })
+                        @Html.ValidationMessageFor(m => m.CountryId, "", new { @class = "text-danger" })
+                    </span>
+                    @if (Model.Action == "Create")
+                    {
+                        <span style="width: 50%; float: left">
+
+                            @Html.LabelFor(m => m.StateId)
+                            <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "StateName"), "", new { @class = "form-control fcoontrolform" })
+                            @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+
+                        </span>
+                    }
+                    @if (Model.Action == "Edit" || Model.Action == "Clone")
+                    {
+                        <span style="width: 50%; float: left">
+
+                            @Html.LabelFor(m => m.StateId)
+                            <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.StateId, new SelectList(Model.States, "Id", "StateName"), "Select a StateId", new { @class = "form-control fcoontrolform" })
+                            @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+
+                        </span>
+                    }
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Address)
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        <div class="clearfix"></div> 
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.City)
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <span style="width: 50%;float: left">
-                    @Html.LabelFor(model => model.MinimumExperience)
-                    @Html.EditorFor(model => model.MinimumExperience, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.MinimumExperience, "", new { @class = "text-danger" })
-                </span>
-                <span style="width: 50%;float: left">
-                    @Html.LabelFor(model => model.MaximumExperience)
-                    @Html.EditorFor(model => model.MaximumExperience, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                    @Html.ValidationMessageFor(model => model.MaximumExperience, "", new { @class = "text-danger" })
-                </span>
+        <div class="clearfix"></div> 
+                
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ZipCode)
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                    @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(model => model.CompanyName)
-                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+        <div class="clearfix"></div> 
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address)
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
-    <div class="clearfix"></div>
+        <div class="clearfix"></div> 
+   
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group"style="margin-bottom: 120px;">
+                    <span style="width: 50%;float: left">
+                        @Html.LabelFor(model => model.MinimumExperience)
+                        @Html.EditorFor(model => model.MinimumExperience, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                        @Html.ValidationMessageFor(model => model.MinimumExperience, "", new { @class = "text-danger" })
+                    </span>
+                    <span style="width: 50%;float: left">
+                        @Html.LabelFor(model => model.MaximumExperience)
+                        @Html.EditorFor(model => model.MaximumExperience, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                        @Html.ValidationMessageFor(model => model.MaximumExperience, "", new { @class = "text-danger" })
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div> 
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CompanyName)
+                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>        
     <div class="row">            
-        <div class="col-md-4">
-            <div class="form-group">
+        <div class="col-md-5">
+            <div class="form-group" style="margin-bottom: 120px;">
                 <span style="width: 50%;float: left">
                     @Html.LabelFor(model => model.ActivationDate)
                     <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.ActivationDate, new { htmlAttributes = new { @class = "form-control datepicker fcoontrolform", placeholder = "" } })
@@ -197,51 +219,58 @@
                 </span>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(m => m.JobBoardId)
-                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.JobBoardId, new SelectList(Model.JobBoards, "Id", "JobBoardName"), "", new { @class = "form-control fcoontrolform" })
-                @Html.ValidationMessageFor(m => m.JobBoardId, "", new { @class = "text-danger" })
-            </div>
-        </div>
     </div>
     <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.JobBoardId)
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.JobBoardId, new SelectList(Model.JobBoards, "Id", "JobBoardName"), "", new { @class = "form-control fcoontrolform" })
+                    @Html.ValidationMessageFor(m => m.JobBoardId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>   
+    <div class="clearfix"></div>
     <div class="row">           
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="form-group">
                 @Html.LabelFor(model => model.SchedulingPod)
                 <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.SchedulingPod, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
                 @Html.ValidationMessageFor(model => model.SchedulingPod, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(model => model.OfficeId)
-                <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.OfficeId, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.OfficeId, "", new { @class = "text-danger" })
-            </div>
-        </div>
     </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OfficeId)
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.OfficeId, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                    @Html.ValidationMessageFor(model => model.OfficeId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>    
     <div class="clearfix"></div>
     <div class="row">           
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="form-group">
                 @Html.LabelFor(model => model.Division)
                 <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.Division, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
                 @Html.ValidationMessageFor(model => model.Division, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(model => model.EmailTo)
-                @Html.EditorFor(model => model.EmailTo, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                @Html.ValidationMessageFor(model => model.EmailTo, "", new { @class = "text-danger" })
-            </div>
-        </div>
     </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EmailTo)
+                    @Html.EditorFor(model => model.EmailTo, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                    @Html.ValidationMessageFor(model => model.EmailTo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>   
     <div class="clearfix"></div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="form-group">
                 @Html.LabelFor(model => model.IsOnlineApply, htmlAttributes: new { @class = "" })
                 @Html.CheckBoxFor(model => model.IsOnlineApply, new { @class = "customecheckbox" })
