@@ -15,7 +15,7 @@ namespace JobWindowNew.Domain.ViewModels.Factories
             model.Country = jobWithCategory.Job.Country?.CountryName;
             model.State = jobWithCategory.Job.State?.StateName;
             model.City = jobWithCategory.Job.City;
-            model.PodId = jobWithCategory.Job.SchedulingPod?.ToString();
+            model.PodId = jobWithCategory.Job.SchedulingPod;
             model.ActivationDate = jobWithCategory.Job.ActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             model.ExpirationDate = jobWithCategory.Job.ExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             model.CompanyName = jobWithCategory.Job.CompanyName;

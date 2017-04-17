@@ -1,4 +1,5 @@
 ﻿using JobWindowNew.Domain;
+using JobWindowNew.Domain.ViewModels;
 using JobWindowNew.Domain.ViewModels.Factories;
 using System.IO;
 using System.Linq;
@@ -48,14 +49,36 @@ namespace JobWindowNew.Web.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Root, Admin, Internal-Employee")]
-        public void ActiveReport()
+        public ActionResult ActiveReport()
+        {
+            var viewModel = new ReportGetViewModel
+            {
+                JobBoards = _unitOfWork.JobBoardRepository.GetJobBoards(),
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
+        public void ActiveReport(ReportGetViewModel viewModel)
         {
             var factory = new EverGreenReportFactory();
 
-            var result = _unitOfWork.JobCategoryMapRepository
-                .GetJobsForActiveReport()
-                .ToList()
-                .Select(j => factory.Create(j));
+            var query = _unitOfWork.JobCategoryMapRepository
+                .GetJobsForActiveReport();
+            if (viewModel.PodId != 0)
+            {
+                query = query.Where(j => j.Job.SchedulingPod == viewModel.PodId);
+            }
+
+            if (viewModel.JobBoardId != 0)
+            {
+                query = query.Where(j => j.Job.JobBoardId == viewModel.JobBoardId);
+            }
+
+            var result = query.ToList().Select(j => factory.Create(j));
+
 
             var gv = new GridView { DataSource = result };
             gv.DataBind();

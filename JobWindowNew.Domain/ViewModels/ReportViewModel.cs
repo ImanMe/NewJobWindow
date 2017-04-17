@@ -12,7 +12,7 @@
         public string Country { get; set; }
         public string CompanyName { get; set; }
         public string Category { get; set; }
-        public string PodId { get; set; }
+        public int? PodId { get; set; }
         public string Division { get; set; }
         public string ActivationDate { get; set; }
         public string ExpirationDate { get; set; }
