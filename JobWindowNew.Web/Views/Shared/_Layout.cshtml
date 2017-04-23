@@ -26,6 +26,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("The Job Window", "Index", "Jobs", new { area = "" }, new { @class = "navbar-brand" })
+                @*<a aria-disabled="True" class="navbar-brand" href="#"><i class="glyphicon glyphicon-home"></i>  THE JOB WINDOW</a>*@
+                @*<a aria-disabled="True" class="navbar-brand" href="#"><i class="glyphicon glyphicon-home"></i></a>*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -33,10 +35,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listing Management<span class="caret"></span></a>
                         <ul class="dropdown-menu customeMenu">
                             <li class="leftitems">@Html.ActionLink("Job List", "Index", "Jobs")</li>
-                            <li role="separator" class="divider"></li>
-                            <li class="leftitems">@Html.ActionLink("Show Duplicates", "Duplicates", "Jobs")</li>
-                            <li role="separator" class="divider"></li>
-                            <li class="leftitems">@Html.ActionLink("Stats Pending", "Create", "Stats")</li>
+                            <li role="separator" class="divider"></li>                           
+                            <li class="leftitems">@Html.ActionLink("Pending Stats", "Create", "Stats")</li>
                             <li role="separator" class="divider"></li>
                             <li class="leftitems">@Html.ActionLink("Create", "Create", "Jobs")</li>
                         </ul>
