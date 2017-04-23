@@ -48,7 +48,7 @@ namespace JobWindowNew.DAL.Persistence.Repositories
         public IQueryable<Job> GetDuplicateJobs()
         {
             return _context.Jobs.AsNoTracking()
-
+                .Where(j => j.CloneFrom != null)
                 .GroupBy(j => new { j.CloneFrom, j.City })
                 .Where(x => x.Count() > 1)
                 .SelectMany(x => x.Select(r => r))
