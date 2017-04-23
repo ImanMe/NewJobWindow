@@ -3,40 +3,45 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <div class="row">
-    <label style="font-size: medium; margin-left: 25px;" class="label label-warning">Duplicate Jobs</label>
+    <label style="font-size: medium; margin-left: 25px;" class="label label-warning">Conversion Sort</label>
     <div class="pull-right">
-        <button class="btn btn-warning duplicate-btn" onclick="location.href='@Url.Action("Conversion", "Jobs")'">Conversion Sort</button>
         <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Volume", "Jobs")'">Volume Sort</button>
+        <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Duplicates", "Jobs")'">Show Duplicates</button>
         <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Index", "Jobs")'">Job List</button>
         <button class="btn btn-warning createNew-btn" onclick="location.href = '@Url.Action("Create", "Jobs")'">Create New</button>
     </div>
 </div>
+@using (Html.BeginForm("Conversion", "Jobs", FormMethod.Get))
+{
+    @*<p>
+            Find by Id: @Html.TextBox("idSearch", ViewBag.IdFilter as string)
+            Find by Title: @Html.TextBox("titleSearch", ViewBag.TitleFilter as string)
+            <input type="submit" value="Search"/>
+        </p>*@
 
-@using (Html.BeginForm("Duplicates", "Jobs", FormMethod.Get))
-{      
     <div class="tablewrap">
         <table class="table table-condensed table-hover jobtable">
             <tr>
                 <th colspan="4" class="text-center">Actions</th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.IdParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">ID<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.CloneFromParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">CloneFromID<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.EverGreenIDParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">EverGreenID<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.SchedulingPodParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">PodId<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.TitleParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Title<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.JobBoardParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Job Board<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.DivisionParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Division<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.CityParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">City<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.StateNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">State<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.CountryNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Country<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.CompanyNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Company Name<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.ApsClParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">ApsCl<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.BobParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">BOB<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.Intvs2Parm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Intvs 2nd<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.IntvsParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Intvs<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.ActivationDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Activation Date<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.ExpirationDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Expiration Date<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.CreatedByParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Created By<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="@Url.Action("Duplicates", new {sortOrder = ViewBag.CreatedDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Created Date<i class="glyphicon glyphicon-sort"></i></a></th>                              
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.IdParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">ID<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.CloneFromParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">CloneFromID<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.EverGreenIDParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">EverGreenID<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.SchedulingPodParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">PodId<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.TitleParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Title<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.JobBoardParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Job Board<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.DivisionParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Division<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.CityParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">City<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.StateNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">State<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.CountryNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Country<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.CompanyNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Company Name<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.ApsClParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">ApsCl<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.BobParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">BOB<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.Intvs2Parm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Intvs 2nd<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.IntvsParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Intvs<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.ActivationDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Activation Date<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.ExpirationDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Expiration Date<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.CreatedByParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Created By<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.CreatedDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Created Date<i class="glyphicon glyphicon-sort"></i></a></th>
             </tr>
             <tr class="inputtr">
                 <th colspan="4" class=""><button class="btn btn-primary btnsearch" type="submit"><i class="glyphicon glyphicon-search"></i> Search</button></th>
@@ -119,28 +124,19 @@
                     <td class="">@Html.DisplayFor(m => job.ActivationDate)</td>
                     <td class="">@Html.DisplayFor(m => job.ExpirationDate)</td>
                     <td class="">@Html.DisplayFor(m => job.CreatedBy)</td>
-                    <td class="">@Html.DisplayFor(m => job.CreatedDate)</td> 
+                    <td class="">@Html.DisplayFor(m => job.CreatedDate)</td>
                 </tr>
             }
         </table>
-
     </div>
 }
 <div class="customePager">
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     <div class="text-center">
-        @Html.PagedListPager(Model, page => Url.Action("Duplicates",
+        @Html.PagedListPager(Model, page => Url.Action("Conversion",
             new { page, titleFilter = ViewBag.TitleFilter, ViewBag.IdFilter, ViewBag.PodIdFilter, sortOrder = ViewBag.CurrentSort }))
     </div>
 </div>
 
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            $(".deleteButton").click(function () {
-                confirm('Are you sure?');
-            });
 
-        });
-    </script>
-}
+

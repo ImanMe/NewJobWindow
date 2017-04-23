@@ -50,7 +50,7 @@ namespace JobWindowNew.Web.Controllers
 
             var results = result.Select(j => applicantFactory.Create(j));
 
-            var pageSize = 20;
+            var pageSize = 200;
 
             var pageNumber = (page ?? 1);
 

@@ -8,6 +8,7 @@ namespace JobWindowNew.Domain.ViewModels
         public long? CloneFrom { get; set; }
         public long? EverGreenId { get; set; }
         public string Title { get; set; }
+        public string TitleTruncated { get; set; }
         public string City { get; set; }
         public string StateName { get; set; }
         public string CountryName { get; set; }

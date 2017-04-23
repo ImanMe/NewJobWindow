@@ -738,6 +738,8 @@
     <Content Include="Views\Account\AssignRole.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Reports\ActiveReport.cshtml" />
+    <Content Include="Views\Jobs\Volume.cshtml" />
+    <Content Include="Views\Jobs\Conversion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

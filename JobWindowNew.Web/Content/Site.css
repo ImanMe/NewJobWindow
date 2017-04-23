@@ -1,8 +1,10 @@
 ﻿body {
 	padding-top: 90px;
 	padding-bottom: 5px;
-	font-family: 'Libre Franklin', sans-serif;
+	/*font-family: 'Libre Franklin', sans-serif;*/
 	/*font-family: 'Montserrat', sans-serif;*/
+    /*font-family: 'Roboto', sans-serif;*/
+    font-family: 'Open Sans', sans-serif;
 	
 	
 }
@@ -372,17 +374,26 @@ th,td {
 .jobtable > tbody > tr > th {
 	padding-bottom: 10px;
 	padding-top: 10px;
+    padding-left: 3px;
 	color: #737373;
-	font-size: 12px;
+	font-size: small;
 	font-weight: bold;
 	border: none;
-	padding-right: 30px;
+	
 	
 	
 	
 }
 .jobtable > tbody > tr > th > a {
 	color: #737373;
+}
+
+#titleTag:hover {
+    text-decoration: none;
+}
+
+#titleTag:focus {
+    text-decoration: none;
 }
 
 .jobtable > tbody > tr > th > a:hover {
@@ -393,15 +404,19 @@ th,td {
 .jobtable > tbody > tr > td {
 	/*padding-bottom: 10px;
 	padding-top: 10px;*/
-   padding-right: 50px;
-    font-size: small; 	
+    
+   
+    padding-left: 3px;
+    font-size: smaller; 	
 }
 
 
 
 .jobtable >tbody >.inputtr > th{
-	padding:0;
+	
 	padding-left: 2px;
+    padding-bottom: 0;
+    padding-top: 0;
 	
    
 }
@@ -435,21 +450,40 @@ th,td {
     min-width: 100px;
 }
 
-.btnactions {
-	padding-right: 10px!important;
+.btnactions >a  {
+    padding: 1px 6px 2px 6px;
+    
+
+}
+
+.btnactions >a>i  {
+    
+    font-size: smaller;
+
+}
+
+.btnactionslast >a>i  {
+   
+    font-size: smaller;
+
+}
+
+.btnactionslast > a {
+     padding: 1px 6px 2px 6px;
+    
 }
 
 .btnactionslast {
-	padding-right: 30px!important;
+	padding-right: 10px!important;
 }
 
 .btnsearch {
-	width: 85%;	
+	
 	border-radius: 2px;
-	color: #11283c;   
-	font-size: 14px;
+	color: #11283c;
+    width: 100%;
 	background-color: white;
-	border:2px solid #11283c;
+	border:1px solid #11283c;
 	/*background-color: white;
 	color: #EF6C00;
 	border: 2px solid #EF6C00;*/
@@ -533,4 +567,11 @@ a:hover{
 	text-decoration: none;
 	background-color: #163550;
    
+}
+
+
+@media (min-width: 1200px) {
+    .container{
+        max-width: 1900px;
+    }
 }
