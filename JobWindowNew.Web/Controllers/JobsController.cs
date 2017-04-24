@@ -753,7 +753,7 @@ namespace JobWindowNew.Web.Controllers
 
             _unitOfWork.JobRepository.Delete(id);
             _unitOfWork.Complete();
-
+            if (Request.UrlReferrer != null) return Redirect(Request.UrlReferrer.PathAndQuery);
             return RedirectToAction("Index");
         }
 
@@ -775,7 +775,7 @@ namespace JobWindowNew.Web.Controllers
 
             _unitOfWork.JobRepository.Update(job);
             _unitOfWork.Complete();
-
+            if (Request.UrlReferrer != null) return Redirect(Request.UrlReferrer.PathAndQuery);
             return RedirectToAction("Index");
         }
 

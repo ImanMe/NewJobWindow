@@ -69,31 +69,31 @@
             {
                 <tr class="">
                     <td class="btnactions">
-                        <a class="btn btn-default" href="@Url.Action("Edit", new {@id = job.Id})">
+                        <a class="btn btn-default action1" href="@Url.Action("Edit", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </a>
                     </td>
                     <td class="btnactions">
-                        <a class="btn btn-default" href="@Url.Action("Clone", new {@id = job.Id})">
+                        <a class="btn btn-default action2" href="@Url.Action("Clone", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-repeat"></i>
                         </a>
                     </td>
                     <td class="btnactions">
                         @if (job.IsExpired)
                         {
-                            <a title="Expire" disabled="disabled" onclick="return alert('This job is already expired!');" class="btn btn-default deleteButton" , href="#">
+                            <a title="Expire" disabled="disabled" onclick="return alert('This job is already expired!');" class="btn btn-default action3" , href="#">
                                 <i class="glyphicon glyphicon-remove"></i>
                             </a>
                         }
                         else
                         {
-                            <a title="Expire" onclick="return confirm('Are sure wants to expire this job?');" class="btn btn-default deleteButton" , href="@Url.Action("Expire", new {@id = job.Id})">
+                            <a title="Expire" onclick="return confirm('Are sure wants to expire this job?');" class="btn btn-default action3" , href="@Url.Action("Expire", new {@id = job.Id})">
                                 <i class="glyphicon glyphicon-remove"></i>
                             </a>
                         }                        
                     </td>
                     <td class="btnactionslast">
-                        <a onclick = "return confirm('Are sure wants to delete?');" class="btn btn-default deleteButton" , href="@Url.Action("Delete", new {@id = job.Id})">
+                        <a onclick = "return confirm('Are sure wants to delete?');" class="btn btn-default action4" , href="@Url.Action("Delete", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>

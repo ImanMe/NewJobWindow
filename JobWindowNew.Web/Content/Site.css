@@ -141,8 +141,7 @@ input[type=checkbox]
 	/*background-color: #00897B;*/
 	color: #2E7D32;
     background-color: white;
-	padding: 6px 30px;
-	font-size: 17px;
+	padding: 4px 30px;font-size: 17px;
 	margin-right: 90px;
 	border: 2px solid #2E7D32;
 
@@ -169,8 +168,8 @@ input[type=checkbox]
 .cancel-btn {
 	/*background-color: #F9A825;*/
 	color: #EF6C00;
-	padding: 6px 16px;
-	font-size: 17px;
+	
+	
 	background-color: white;
 	border:2px solid #EF6C00
 	
@@ -184,6 +183,8 @@ input[type=checkbox]
 	border:2px solid #EF6C00
 	
 }
+
+
 
 .create-btn:hover {
 	/*background-color: #00796B;*/
@@ -202,8 +203,8 @@ input[type=checkbox]
 .backtolist-btn {
 	/*background-color: #3F51B5;*/
 	color: #546E7A;
-	padding: 6px 16px;
-	font-size: 17px;
+	
+	
 	background-color: white;
 	border:2px solid #546E7A;
 }
@@ -263,7 +264,7 @@ th,td {
 	padding-top: 10px;
     padding-left: 3px;
 	color: #737373;
-	font-size: small;
+	font-size: smaller;
 	font-weight: bold;
 	border: none;
 	
@@ -401,6 +402,27 @@ th,td {
 
 .actiontd{
 	text-align:center!important;
+}
+
+.action1:hover {
+    border-color: green;
+    color: green!important;
+    background-color: white;
+}
+.action2:hover {
+    border-color: orange;
+    color: orange!important;
+    background-color: white;
+}
+.action3:hover {
+    border-color: yellow;
+    color: yellow!important;
+    background-color: white;
+}
+.action4:hover {
+    border-color: red;
+    color: red!important;
+    background-color: white;
 }
  
 /*Custome Pagination*/ 
