@@ -58,7 +58,7 @@ label {
 	border-color: #B0BEC5;
 	font-size: 15px;
 	height: 40px;
-	max-width: 480px;
+	max-width: 880px;
 	border-radius: 2px;
 	
 }
@@ -180,7 +180,8 @@ input[type=checkbox]
 	color: #EF6C00;
 	
 	background-color: white;
-	border:2px solid #EF6C00
+    border: 2px solid #EF6C00;
+
 	
 }
 
@@ -369,9 +370,10 @@ th,td {
 	
 	border-radius: 2px;
 	color: #11283c;
-    width: 100%;
+    width: 97%;
 	background-color: white;
 	border:1px solid #11283c;
+    border-radius: 2px;
 	/*background-color: white;
 	color: #EF6C00;
 	border: 2px solid #EF6C00;*/

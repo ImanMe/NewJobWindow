@@ -3,7 +3,8 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <div class="row">
-    <label style="font-size: medium; margin-left: 25px;" class="label label-warning">Volume Sort</label>
+    @*<label style="font-size: medium; margin-left: 25px;" class="label label-warning">Volume Sort</label>*@
+    <h4 style="margin-left: 20px;" class="pull-left">Volume Sort</h4>
     <div class="pull-right">
         <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Conversion", "Jobs")'">Conversion Sort</button>
         <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Duplicates", "Jobs")'">Show Duplicates</button>
