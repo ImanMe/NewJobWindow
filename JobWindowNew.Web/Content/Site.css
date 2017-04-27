@@ -210,11 +210,25 @@ input[type=checkbox]
 	border:2px solid #546E7A;
 }
 
+.backtolist-btn :active{
+    /*background-color: #3F51B5;*/
+    color: white;
+    background-color: #37474F;
+    border-color: #37474F;
+}
+
 .backtolist-btn:hover {
 	/*background-color: #303F9F;*/
 	color: white;
 	background-color: #37474F;
 	border-color: #37474F;
+}
+
+.backtolist-btn:focus {
+    /*background-color: #303F9F;*/
+    color: white;
+    background-color: #37474F;
+    border-color: #37474F;
 }
 
 .alert-required {

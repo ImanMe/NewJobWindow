@@ -3,10 +3,20 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <div class="row">
-    <h4 style="margin-left: 20px;" class="pull-left">Job List</h4>
-    <div class="pull-right">
-        <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Conversion", "Jobs")'">Conversion Sort</button>
-        <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Volume", "Jobs")'">Volume Sort</button>
+    @*<h4 style="margin-left: 20px;" class="pull-left">Job List</h4>*@
+    <div class="pull-left">
+        <div style="margin-left: 20px;" class="dropdown">
+            <button class="btn btn-default backtolist-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                Sort Order                
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="@Url.Action("Index", "Jobs")">Default</a></li>
+                <li><a href="@Url.Action("Volume", "Jobs")">Volume</a></li>
+                <li><a href="@Url.Action("Conversion", "Jobs")">Conversion</a></li>
+            </ul>
+        </div>   
+    </div>
+    <div class="pull-right">            
         <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Duplicates", "Jobs")'">Show Duplicates</button>
         <button class="btn btn-warning createNew-btn" onclick="location.href = '@Url.Action("Create", "Jobs")'">Create New</button>
     </div>
