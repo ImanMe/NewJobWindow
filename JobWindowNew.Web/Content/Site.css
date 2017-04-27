@@ -421,23 +421,19 @@ th,td {
 }
 
 .action1:hover {
-    border-color: green;
-    color: green!important;
+   
     background-color: white;
 }
 .action2:hover {
-    border-color: orange;
-    color: orange!important;
+    
     background-color: white;
 }
 .action3:hover {
-    border-color: yellow;
-    color: yellow!important;
+    
     background-color: white;
 }
 .action4:hover {
-    border-color: red;
-    color: red!important;
+    
     background-color: white;
 }
  
@@ -524,6 +520,8 @@ a:hover{
     text-decoration: none;
     background-color: white;
 }
+
+
 
 .dropdown-menu {     
      -webkit-box-shadow: none; 
