@@ -31,7 +31,6 @@ namespace JobWindowNew.DAL.Persistence.Repositories
         {
             return _context.JobCategoryMaps.Where(j => j.JobId == jobId)
                 .Select(c => c.Category.CategoryName).FirstOrDefault();
-
         }
 
         public IQueryable<JobCategoryMap> GetJobsForEverGreenReport()

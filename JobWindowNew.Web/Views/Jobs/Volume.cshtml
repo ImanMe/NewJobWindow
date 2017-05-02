@@ -4,9 +4,9 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <div class="row">
     @*<label style="font-size: medium; margin-left: 25px;" class="label label-warning">Volume Sort</label>*@
-    @*<h4 style="margin-left: 20px;" class="pull-left">Volume Sort</h4>*@
+    <h4 style="margin-left: 20px;" class="pull-left">Volume Sort</h4>
     <div class="pull-left">
-        <div style="margin-left: 20px;" class="dropdown">
+        @*<div style="margin-left: 20px;" class="dropdown">
             <button class="btn btn-default backtolist-btn dropdown-toggle" type="button" data-toggle="dropdown">
                 Sort Order
             </button>
@@ -15,10 +15,11 @@
                 <li><a href="@Url.Action("Volume", "Jobs")">Volume</a></li>
                 <li><a href="@Url.Action("Conversion", "Jobs")">Conversion</a></li>
             </ul>
-        </div>
+        </div>*@
     </div>
     <div class="pull-right">
-        
+        <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Conversion", "Jobs")'">Conversion Sort</button>
+        <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Index", "Jobs")'">Job List</button>
         <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Duplicates", "Jobs")'">Show Duplicates</button>
         
         <button class="btn btn-warning createNew-btn" onclick="location.href = '@Url.Action("Create", "Jobs")'">Create New</button>
@@ -46,6 +47,7 @@
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.CityParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">City<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.StateNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">State<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.CountryNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Country<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="#">Category</a></th>
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.CompanyNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Company Name<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.ApsClParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">ApsCl<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.BobParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">BOB<i class="glyphicon glyphicon-sort"></i></a></th>
@@ -63,12 +65,13 @@
                 <th></th>
                 <th>@Html.TextBox("podIdSearch", ViewBag.PodIdFilter as string, new { @class = "form-control" })</th>
                 <th>@Html.TextBox("titleSearch", ViewBag.TitleFilter as string, new { @class = "form-control" })</th>
+                <th>@Html.TextBox("jobBoardSearch", ViewBag.JobBoardFilter as string, new { @class = "form-control" })</th>
+                <th>@Html.TextBox("divisionSearch", ViewBag.DivisionFilter as string, new { @class = "form-control" })</th>
+                <th>@Html.TextBox("citySearch", ViewBag.CityFilter as string, new { @class = "form-control" })</th>
+                <th>@Html.TextBox("stateSearch", ViewBag.StateFilter as string, new { @class = "form-control" })</th>
+                <th>@Html.TextBox("countrySearch", ViewBag.CountryFilter as string, new { @class = "form-control" })</th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>@Html.TextBox("companySearch", ViewBag.CompanyFilter as string, new { @class = "form-control" })</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -129,6 +132,7 @@
                     <td class="">@Html.DisplayFor(m => job.City)</td>
                     <td class="">@Html.DisplayFor(m => job.StateName)</td>
                     <td class="">@Html.DisplayFor(m => job.CountryName)</td>
+                    <td class="">@Html.DisplayFor(m => job.Category)</td>
                     <td class="">@Html.DisplayFor(m => job.CompanyName)</td>
                     <td class="">@Html.DisplayFor(m => job.ApsCl)</td>
                     <td class="">@Html.DisplayFor(m => job.Bob)</td>
@@ -147,7 +151,20 @@
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     <div class="text-center">
         @Html.PagedListPager(Model, page => Url.Action("Volume",
-            new { page, titleFilter = ViewBag.TitleFilter, ViewBag.IdFilter, ViewBag.PodIdFilter, sortOrder = ViewBag.CurrentSort }))
+            new
+            {
+                page,
+                titleFilter = ViewBag.TitleFilter,
+                ViewBag.IdFilter,
+                ViewBag.PodIdFilter,
+                ViewBag.CityFilter,
+                ViewBag.StateFilter,
+                ViewBag.CountryFilter,
+                ViewBag.DivisionFilter,
+                ViewBag.JobBoardFilter,
+                ViewBag.CompanyFilter,
+                sortOrder = ViewBag.CurrentSort
+            }))
     </div>
 </div>
 

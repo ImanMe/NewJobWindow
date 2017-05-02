@@ -320,6 +320,7 @@ th,td {
 	padding-left: 2px;
     padding-bottom: 0;
     padding-top: 0;
+    font-size: smaller;
 	
    
 }
@@ -346,6 +347,22 @@ th,td {
 	-webkit-box-shadow: none;
 	box-shadow: none;
    
+}
+
+
+
+.titleClass {
+    
+    max-width: 150px;
+    overflow:hidden;
+    
+}
+
+.titleClassExpanded {
+
+
+    white-space: nowrap;
+    
 }
 
 .stattable >tbody >.inputtr >.inputtd {
@@ -443,7 +460,22 @@ a {
 }
 
 a:hover{
-	color: gray!important;
+	color: gray;
+    text-decoration: none !important;
+}
+
+a:focus{
+    
+    text-decoration: none !important;
+}
+
+#titleLink {
+    color: #333333;
+}
+
+#titleLink :hover{
+    color: #333333;
+    text-decoration: none!important;
 }
 .customePager {
 	margin-top: 20px;

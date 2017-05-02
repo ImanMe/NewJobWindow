@@ -24,7 +24,7 @@ namespace JobWindowNew.Domain.ViewModels
         public int? Intvs2 { get; set; }
         public int? ApsCl { get; set; }
         public string JobBoard { get; set; }
-
+        public string Category { get; set; }
         public DateTime ActiveDate { get; set; }
         public DateTime ExpDate { get; set; }
         public DateTime CreDate { get; set; }

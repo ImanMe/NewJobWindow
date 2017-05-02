@@ -26,7 +26,14 @@ namespace JobWindowNew.Web.Controllers
 
         [Authorize(Roles = "Root, Admin, Internal-Employee")]
         //[HttpGet]
-        public ActionResult Index(string sortOrder, string idFilter, string titleFilter, string podIdFilter, string idSearch, string titleSearch, string podIdSearch, int? page)
+        public ActionResult Index(string sortOrder, string idFilter, string titleFilter, string podIdFilter,
+            string idSearch, string titleSearch,
+            string cityFilter, string countryFilter, string stateFilter,
+            string jobBoardFilter, string divisionFilter,
+            string companyFilter,
+            string citySearch, string countrySearch, string stateSearch,
+            string companySearch, string divisionSearch, string jobBoardSearch,
+            string podIdSearch, int? page)
         {
             try
             {
@@ -56,7 +63,9 @@ namespace JobWindowNew.Web.Controllers
                 //    sortOrder = "Id";
                 //}
 
-                if (idSearch != null || titleSearch != null || podIdSearch != null)
+                if (idSearch != null || titleSearch != null || podIdSearch != null || citySearch != null ||
+                    stateSearch != null || countrySearch != null || jobBoardSearch != null || companySearch != null ||
+                    divisionSearch != null)
                 {
                     page = 1;
                 }
@@ -65,11 +74,23 @@ namespace JobWindowNew.Web.Controllers
                     idSearch = idFilter;
                     titleSearch = titleFilter;
                     podIdSearch = podIdFilter;
+                    citySearch = cityFilter;
+                    countrySearch = countryFilter;
+                    stateSearch = stateFilter;
+                    divisionSearch = divisionFilter;
+                    companySearch = companyFilter;
+                    jobBoardSearch = jobBoardFilter;
                 }
 
                 ViewBag.IdFilter = idSearch;
                 ViewBag.TitleFilter = titleSearch;
                 ViewBag.PodIdFilter = podIdSearch;
+                ViewBag.CityFilter = citySearch;
+                ViewBag.CountryFilter = countrySearch;
+                ViewBag.StateFilter = stateSearch;
+                ViewBag.DivisionFilter = divisionSearch;
+                ViewBag.CompanyFilter = companySearch;
+                ViewBag.JobBoardFilter = jobBoardSearch;
 
                 //if (string.IsNullOrEmpty(sortOrder))
                 //{
@@ -77,12 +98,15 @@ namespace JobWindowNew.Web.Controllers
                 //}
 
                 IQueryable<Job> query;
-                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch) && string.IsNullOrEmpty(podIdSearch))
+                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch) && string.IsNullOrEmpty(podIdSearch) &&
+                string.IsNullOrEmpty(citySearch) && string.IsNullOrEmpty(stateSearch) && string.IsNullOrEmpty(countrySearch)
+                        && string.IsNullOrEmpty(divisionSearch) && string.IsNullOrEmpty(jobBoardSearch) && string.IsNullOrEmpty(divisionSearch)
+                        && string.IsNullOrEmpty(companySearch))
                 {
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
-                        .OrderBy(j => j.SchedulingPod)
+                        .OrderByDescending(j => j.ExpirationDate)
+                        .ThenBy(j => j.SchedulingPod)
                         .ThenBy(j => j.JobBoard.JobBoardName)
-                        .ThenBy(j => j.ExpirationDate)
                           .ApplySort(sortOrder);
                 }
                 else
@@ -102,15 +126,52 @@ namespace JobWindowNew.Web.Controllers
                         podIdSearch = "";
                     }
 
+                    if (string.IsNullOrEmpty(citySearch))
+                    {
+                        citySearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(stateSearch))
+                    {
+                        stateSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(countrySearch))
+                    {
+                        countrySearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(divisionSearch))
+                    {
+                        divisionSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(jobBoardSearch))
+                    {
+                        jobBoardSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(companySearch))
+                    {
+                        companySearch = "";
+                    }
+
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
                          .Where(j => j.Id.ToString().Contains(idSearch))
                             .Where(j => j.Title.ToString().Contains(titleSearch))
                             .Where(j => j.SchedulingPod.ToString().Contains(podIdSearch))
+                            .Where(j => j.Division.ToString().Contains(divisionSearch))
+                        .Where(j => j.JobBoard.JobBoardName.ToString().Contains(jobBoardSearch))
+                        .Where(j => j.CompanyName.ToString().Contains(companySearch))
+                        .Where(j => j.Country.CountryName.ToString().Contains(countrySearch))
+                        .Where(j => j.State.StateName.ToString().Contains(stateSearch))
+                        .Where(j => j.City.ToString().Contains(citySearch))
                              .OrderBy(j => j.SchedulingPod)
                         .ThenBy(j => j.JobBoard.JobBoardName)
-                        .ThenBy(j => j.ExpirationDate)
                             .ApplySort(sortOrder);
                 }
+
+
 
                 var mappedResult = query.Select(j => new JobGridViewModel
                 {
@@ -133,9 +194,11 @@ namespace JobWindowNew.Web.Controllers
                     ApsCl = j.ApsCl,
                     ActiveDate = j.ActivationDate,
                     ExpDate = j.ExpirationDate,
-                    CreDate = j.CreatedDate
-                });
+                    CreDate = j.CreatedDate,
+                    IsExpired = j.ExpirationDate < DateTime.Now
 
+                });
+                mappedResult = mappedResult.OrderBy(j => j.IsExpired);
                 var pageSize = 200;
                 var pageNumber = (page ?? 1);
 
@@ -146,6 +209,7 @@ namespace JobWindowNew.Web.Controllers
                     item.ExpirationDate = item.ExpDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     item.CreatedDate = item.CreDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     item.IsExpired = DateTime.Parse(item.ExpirationDate) < DateTime.Now;
+                    item.Category = _unitOfWork.JobCategoryMapRepository.GetFirstCategoryTypeForJob(item.Id);
                 }
 
                 return View(finalResult);
@@ -159,7 +223,14 @@ namespace JobWindowNew.Web.Controllers
 
         [Authorize(Roles = "Root, Admin, Internal-Employee")]
         //[HttpGet]
-        public ActionResult Duplicates(string sortOrder, string idFilter, string titleFilter, string podIdFilter, string idSearch, string titleSearch, string podIdSearch, int? page)
+        public ActionResult Duplicates(string sortOrder, string idFilter, string titleFilter, string podIdFilter,
+            string idSearch, string titleSearch,
+            string cityFilter, string countryFilter, string stateFilter,
+            string jobBoardFilter, string divisionFilter,
+            string companyFilter,
+            string citySearch, string countrySearch, string stateSearch,
+            string companySearch, string divisionSearch, string jobBoardSearch,
+            string podIdSearch, int? page)
         {
             try
             {
@@ -185,7 +256,9 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.ApsClParm = sortOrder == "ApsCl" ? "-ApsCl" : "ApsCl";
                 sortOrder = ViewBag.CurrentSort;
 
-                if (idSearch != null || titleSearch != null || podIdSearch != null)
+                if (idSearch != null || titleSearch != null || podIdSearch != null || citySearch != null ||
+                    stateSearch != null || countrySearch != null || jobBoardSearch != null || companySearch != null ||
+                    divisionSearch != null)
                 {
                     page = 1;
                 }
@@ -194,14 +267,29 @@ namespace JobWindowNew.Web.Controllers
                     idSearch = idFilter;
                     titleSearch = titleFilter;
                     podIdSearch = podIdFilter;
+                    citySearch = cityFilter;
+                    countrySearch = countryFilter;
+                    stateSearch = stateFilter;
+                    divisionSearch = divisionFilter;
+                    companySearch = companyFilter;
+                    jobBoardSearch = jobBoardFilter;
                 }
 
                 ViewBag.IdFilter = idSearch;
                 ViewBag.TitleFilter = titleSearch;
                 ViewBag.PodIdFilter = podIdSearch;
+                ViewBag.CityFilter = citySearch;
+                ViewBag.CountryFilter = countrySearch;
+                ViewBag.StateFilter = stateSearch;
+                ViewBag.DivisionFilter = divisionSearch;
+                ViewBag.CompanyFilter = companySearch;
+                ViewBag.JobBoardFilter = jobBoardSearch;
 
                 IQueryable<Job> query;
-                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch) && string.IsNullOrEmpty(podIdSearch))
+                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch) && string.IsNullOrEmpty(podIdSearch) &&
+                    string.IsNullOrEmpty(citySearch) && string.IsNullOrEmpty(stateSearch) && string.IsNullOrEmpty(countrySearch)
+                    && string.IsNullOrEmpty(divisionSearch) && string.IsNullOrEmpty(jobBoardSearch) && string.IsNullOrEmpty(divisionSearch)
+                    && string.IsNullOrEmpty(companySearch))
                 {
                     query = _unitOfWork.JobRepository.GetDuplicateJobs()
                           .ApplySort(sortOrder);
@@ -222,11 +310,46 @@ namespace JobWindowNew.Web.Controllers
                     {
                         podIdSearch = "";
                     }
+                    if (string.IsNullOrEmpty(citySearch))
+                    {
+                        citySearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(stateSearch))
+                    {
+                        stateSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(countrySearch))
+                    {
+                        countrySearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(divisionSearch))
+                    {
+                        divisionSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(jobBoardSearch))
+                    {
+                        jobBoardSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(companySearch))
+                    {
+                        companySearch = "";
+                    }
 
                     query = _unitOfWork.JobRepository.GetDuplicateJobs()
-                         .Where(j => j.Id.ToString().Contains(idSearch))
-                            .Where(j => j.Title.ToString().Contains(titleSearch))
-                            .Where(j => j.SchedulingPod.ToString().Contains(podIdSearch))
+                        .Where(j => j.Id.ToString().Contains(idSearch))
+                        .Where(j => j.Title.ToString().Contains(titleSearch))
+                        .Where(j => j.SchedulingPod.ToString().Contains(podIdSearch))
+                        .Where(j => j.Division.ToString().Contains(divisionSearch))
+                        .Where(j => j.JobBoard.JobBoardName.ToString().Contains(jobBoardSearch))
+                        .Where(j => j.CompanyName.ToString().Contains(companySearch))
+                        .Where(j => j.Country.CountryName.ToString().Contains(countrySearch))
+                        .Where(j => j.State.StateName.ToString().Contains(stateSearch))
+                        .Where(j => j.City.ToString().Contains(citySearch))
                             .ApplySort(sortOrder);
                 }
 
@@ -265,6 +388,7 @@ namespace JobWindowNew.Web.Controllers
                     item.ExpirationDate = item.ExpDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     item.CreatedDate = item.CreDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     item.IsExpired = DateTime.Parse(item.ExpirationDate) < DateTime.Now;
+                    item.Category = _unitOfWork.JobCategoryMapRepository.GetFirstCategoryTypeForJob(item.Id);
                 }
 
                 return View(finalResult);
@@ -277,7 +401,14 @@ namespace JobWindowNew.Web.Controllers
         }
 
         [Authorize(Roles = "Root, Admin, Internal-Employee")]
-        public ActionResult Volume(string sortOrder, string idFilter, string titleFilter, string podIdFilter, string idSearch, string titleSearch, string podIdSearch, int? page)
+        public ActionResult Volume(string sortOrder, string idFilter, string titleFilter, string podIdFilter,
+            string idSearch, string titleSearch,
+            string cityFilter, string countryFilter, string stateFilter,
+            string jobBoardFilter, string divisionFilter,
+            string companyFilter,
+            string citySearch, string countrySearch, string stateSearch,
+            string companySearch, string divisionSearch, string jobBoardSearch,
+            string podIdSearch, int? page)
         {
             try
             {
@@ -307,7 +438,9 @@ namespace JobWindowNew.Web.Controllers
                 //    sortOrder = "Id";
                 //}
 
-                if (idSearch != null || titleSearch != null || podIdSearch != null)
+                if (idSearch != null || titleSearch != null || podIdSearch != null || citySearch != null ||
+                    stateSearch != null || countrySearch != null || jobBoardSearch != null || companySearch != null ||
+                    divisionSearch != null)
                 {
                     page = 1;
                 }
@@ -316,11 +449,23 @@ namespace JobWindowNew.Web.Controllers
                     idSearch = idFilter;
                     titleSearch = titleFilter;
                     podIdSearch = podIdFilter;
+                    citySearch = cityFilter;
+                    countrySearch = countryFilter;
+                    stateSearch = stateFilter;
+                    divisionSearch = divisionFilter;
+                    companySearch = companyFilter;
+                    jobBoardSearch = jobBoardFilter;
                 }
 
                 ViewBag.IdFilter = idSearch;
                 ViewBag.TitleFilter = titleSearch;
                 ViewBag.PodIdFilter = podIdSearch;
+                ViewBag.CityFilter = citySearch;
+                ViewBag.CountryFilter = countrySearch;
+                ViewBag.StateFilter = stateSearch;
+                ViewBag.DivisionFilter = divisionSearch;
+                ViewBag.CompanyFilter = companySearch;
+                ViewBag.JobBoardFilter = jobBoardSearch;
 
                 //if (string.IsNullOrEmpty(sortOrder))
                 //{
@@ -328,7 +473,10 @@ namespace JobWindowNew.Web.Controllers
                 //}
 
                 IQueryable<Job> query;
-                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch) && string.IsNullOrEmpty(podIdSearch))
+                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch) && string.IsNullOrEmpty(podIdSearch) &&
+                    string.IsNullOrEmpty(citySearch) && string.IsNullOrEmpty(stateSearch) && string.IsNullOrEmpty(countrySearch)
+                    && string.IsNullOrEmpty(divisionSearch) && string.IsNullOrEmpty(jobBoardSearch) && string.IsNullOrEmpty(divisionSearch)
+                    && string.IsNullOrEmpty(companySearch))
                 {
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
                         .OrderBy(j => j.SchedulingPod)
@@ -357,11 +505,46 @@ namespace JobWindowNew.Web.Controllers
                     {
                         podIdSearch = "";
                     }
+                    if (string.IsNullOrEmpty(citySearch))
+                    {
+                        citySearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(stateSearch))
+                    {
+                        stateSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(countrySearch))
+                    {
+                        countrySearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(divisionSearch))
+                    {
+                        divisionSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(jobBoardSearch))
+                    {
+                        jobBoardSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(companySearch))
+                    {
+                        companySearch = "";
+                    }
 
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
-                         .Where(j => j.Id.ToString().Contains(idSearch))
-                            .Where(j => j.Title.ToString().Contains(titleSearch))
-                            .Where(j => j.SchedulingPod.ToString().Contains(podIdSearch))
+                        .Where(j => j.Id.ToString().Contains(idSearch))
+                        .Where(j => j.Title.ToString().Contains(titleSearch))
+                        .Where(j => j.SchedulingPod.ToString().Contains(podIdSearch))
+                        .Where(j => j.Division.ToString().Contains(divisionSearch))
+                        .Where(j => j.JobBoard.JobBoardName.ToString().Contains(jobBoardSearch))
+                        .Where(j => j.CompanyName.ToString().Contains(companySearch))
+                        .Where(j => j.Country.CountryName.ToString().Contains(countrySearch))
+                        .Where(j => j.State.StateName.ToString().Contains(stateSearch))
+                        .Where(j => j.City.ToString().Contains(citySearch))
                             .OrderBy(j => j.SchedulingPod)
                         .ThenBy(j => j.JobBoard.JobBoardName)
                         .ThenBy(j => j.City)
@@ -407,6 +590,7 @@ namespace JobWindowNew.Web.Controllers
                     item.ExpirationDate = item.ExpDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     item.CreatedDate = item.CreDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     item.IsExpired = DateTime.Parse(item.ExpirationDate) < DateTime.Now;
+                    item.Category = _unitOfWork.JobCategoryMapRepository.GetFirstCategoryTypeForJob(item.Id);
                 }
 
                 return View(finalResult);
@@ -419,7 +603,14 @@ namespace JobWindowNew.Web.Controllers
         }
 
         [Authorize(Roles = "Root, Admin, Internal-Employee")]
-        public ActionResult Conversion(string sortOrder, string idFilter, string titleFilter, string podIdFilter, string idSearch, string titleSearch, string podIdSearch, int? page)
+        public ActionResult Conversion(string sortOrder, string idFilter, string titleFilter, string podIdFilter,
+            string idSearch, string titleSearch,
+            string cityFilter, string countryFilter, string stateFilter,
+            string jobBoardFilter, string divisionFilter,
+            string companyFilter,
+            string citySearch, string countrySearch, string stateSearch,
+            string companySearch, string divisionSearch, string jobBoardSearch,
+            string podIdSearch, int? page)
         {
             try
             {
@@ -449,7 +640,9 @@ namespace JobWindowNew.Web.Controllers
                 //    sortOrder = "Id";
                 //}
 
-                if (idSearch != null || titleSearch != null || podIdSearch != null)
+                if (idSearch != null || titleSearch != null || podIdSearch != null || citySearch != null ||
+                    stateSearch != null || countrySearch != null || jobBoardSearch != null || companySearch != null ||
+                    divisionSearch != null)
                 {
                     page = 1;
                 }
@@ -458,11 +651,23 @@ namespace JobWindowNew.Web.Controllers
                     idSearch = idFilter;
                     titleSearch = titleFilter;
                     podIdSearch = podIdFilter;
+                    citySearch = cityFilter;
+                    countrySearch = countryFilter;
+                    stateSearch = stateFilter;
+                    divisionSearch = divisionFilter;
+                    companySearch = companyFilter;
+                    jobBoardSearch = jobBoardFilter;
                 }
 
                 ViewBag.IdFilter = idSearch;
                 ViewBag.TitleFilter = titleSearch;
                 ViewBag.PodIdFilter = podIdSearch;
+                ViewBag.CityFilter = citySearch;
+                ViewBag.CountryFilter = countrySearch;
+                ViewBag.StateFilter = stateSearch;
+                ViewBag.DivisionFilter = divisionSearch;
+                ViewBag.CompanyFilter = companySearch;
+                ViewBag.JobBoardFilter = jobBoardSearch;
 
                 //if (string.IsNullOrEmpty(sortOrder))
                 //{
@@ -470,7 +675,10 @@ namespace JobWindowNew.Web.Controllers
                 //}
 
                 IQueryable<Job> query;
-                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch) && string.IsNullOrEmpty(podIdSearch))
+                if (string.IsNullOrEmpty(idSearch) && string.IsNullOrEmpty(titleSearch) && string.IsNullOrEmpty(podIdSearch) &&
+                    string.IsNullOrEmpty(citySearch) && string.IsNullOrEmpty(stateSearch) && string.IsNullOrEmpty(countrySearch)
+                    && string.IsNullOrEmpty(divisionSearch) && string.IsNullOrEmpty(jobBoardSearch) && string.IsNullOrEmpty(divisionSearch)
+                    && string.IsNullOrEmpty(companySearch))
                 {
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
                         .OrderBy(j => j.SchedulingPod)
@@ -499,11 +707,46 @@ namespace JobWindowNew.Web.Controllers
                     {
                         podIdSearch = "";
                     }
+                    if (string.IsNullOrEmpty(citySearch))
+                    {
+                        citySearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(stateSearch))
+                    {
+                        stateSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(countrySearch))
+                    {
+                        countrySearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(divisionSearch))
+                    {
+                        divisionSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(jobBoardSearch))
+                    {
+                        jobBoardSearch = "";
+                    }
+
+                    if (string.IsNullOrEmpty(companySearch))
+                    {
+                        companySearch = "";
+                    }
 
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
-                         .Where(j => j.Id.ToString().Contains(idSearch))
-                            .Where(j => j.Title.ToString().Contains(titleSearch))
-                            .Where(j => j.SchedulingPod.ToString().Contains(podIdSearch))
+                        .Where(j => j.Id.ToString().Contains(idSearch))
+                        .Where(j => j.Title.ToString().Contains(titleSearch))
+                        .Where(j => j.SchedulingPod.ToString().Contains(podIdSearch))
+                        .Where(j => j.Division.ToString().Contains(divisionSearch))
+                        .Where(j => j.JobBoard.JobBoardName.ToString().Contains(jobBoardSearch))
+                        .Where(j => j.CompanyName.ToString().Contains(companySearch))
+                        .Where(j => j.Country.CountryName.ToString().Contains(countrySearch))
+                        .Where(j => j.State.StateName.ToString().Contains(stateSearch))
+                        .Where(j => j.City.ToString().Contains(citySearch))
                            .OrderBy(j => j.SchedulingPod)
                         .ThenBy(j => j.JobBoard.JobBoardName)
                         .ThenBy(j => j.City)
@@ -549,6 +792,7 @@ namespace JobWindowNew.Web.Controllers
                     item.ExpirationDate = item.ExpDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     item.CreatedDate = item.CreDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     item.IsExpired = DateTime.Parse(item.ExpirationDate) < DateTime.Now;
+                    item.Category = _unitOfWork.JobCategoryMapRepository.GetFirstCategoryTypeForJob(item.Id);
                 }
 
                 return View(finalResult);
@@ -559,6 +803,13 @@ namespace JobWindowNew.Web.Controllers
                 throw;
             }
         }
+
+        //[Authorize(Roles = "Root, Admin, Internal-Employee")]
+        //[HttpPost]
+        //public ActionResult Excel(object viewModel)
+        //{
+        //    return null;
+        //}
 
         [Authorize]
         [HttpGet]
