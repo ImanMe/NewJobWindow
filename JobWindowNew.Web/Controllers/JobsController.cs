@@ -9,8 +9,6 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.Expressions;
 
 namespace JobWindowNew.Web.Controllers
 {
