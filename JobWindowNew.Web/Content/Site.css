@@ -185,6 +185,16 @@ input[type=checkbox]
 	
 }
 
+.duplicate-btn:hover{
+    /*background-color: #F9A825;*/
+    color: white;
+	
+    background-color: #EF6C00;
+    border: 2px solid #EF6C00;
+
+	
+}
+
 
 
 .create-btn:hover {
@@ -403,8 +413,8 @@ th,td {
 	color: #11283c;
     width: 97%;
 	background-color: white;
-	border:1px solid #11283c;
-    border-radius: 2px;
+	border:2px solid #11283c;
+    border-radius: 4px;
 	/*background-color: white;
 	color: #EF6C00;
 	border: 2px solid #EF6C00;*/
@@ -559,6 +569,15 @@ a:focus{
      -webkit-box-shadow: none; 
      box-shadow: none;     
 }
+
+
+
+.displayNone {
+    display: none;
+}
+
+
+
 @media (min-width: 1200px) {
     .container{
         max-width: 1900px;

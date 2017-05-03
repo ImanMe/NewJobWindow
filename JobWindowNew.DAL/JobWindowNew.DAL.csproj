@@ -58,6 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\201705030218125_CategoryActive.cs" />
+    <Compile Include="Migrations\201705030218125_CategoryActive.Designer.cs">
+      <DependentUpon>201705030218125_CategoryActive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Repositories\ApplicantRepository.cs" />
     <Compile Include="Persistence\Repositories\CategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\CountryRepository.cs" />
@@ -82,6 +87,11 @@
       <Project>{8E3E8B4D-A720-422F-B59F-11BB3F73EBF9}</Project>
       <Name>JobWindowNew.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705030218125_CategoryActive.resx">
+      <DependentUpon>201705030218125_CategoryActive.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

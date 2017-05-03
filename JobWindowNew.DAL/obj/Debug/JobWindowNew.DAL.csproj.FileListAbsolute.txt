@@ -71,3 +71,5 @@ C:\NewJobWindow\JobWindowNew.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFrame
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.csprojResolveAssemblyReference.cache
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.dll
 C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.pdb
+C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.CategoryActive.resources
+C:\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.csproj.GenerateResource.Cache

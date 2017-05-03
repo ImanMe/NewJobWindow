@@ -117,5 +117,9 @@ namespace JobWindowNew.Domain.Model
         public int? ApsCl { get; set; }
 
         public bool HasStats { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public string Category { get; set; }
     }
 }

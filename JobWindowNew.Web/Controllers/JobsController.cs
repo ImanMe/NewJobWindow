@@ -7,8 +7,12 @@ using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.Expressions;
 
 namespace JobWindowNew.Web.Controllers
 {
@@ -102,9 +106,11 @@ namespace JobWindowNew.Web.Controllers
                         && string.IsNullOrEmpty(companySearch))
                 {
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
-                        .OrderByDescending(j => j.ExpirationDate)
+                        .OrderByDescending(j => j.ExpirationDate >= DateTime.Now)
                         .ThenBy(j => j.SchedulingPod)
                         .ThenBy(j => j.JobBoard.JobBoardName)
+                        .ThenBy(j => j.ExpirationDate)
+                        .ThenBy(j => j.Id)
                           .ApplySort(sortOrder);
                 }
                 else
@@ -164,8 +170,12 @@ namespace JobWindowNew.Web.Controllers
                         .Where(j => j.Country.CountryName.ToString().Contains(countrySearch))
                         .Where(j => j.State.StateName.ToString().Contains(stateSearch))
                         .Where(j => j.City.ToString().Contains(citySearch))
-                             .OrderBy(j => j.SchedulingPod)
+                        .OrderByDescending(j => j.ExpirationDate >= DateTime.Now)
+                             .ThenBy(j => j.SchedulingPod)
                         .ThenBy(j => j.JobBoard.JobBoardName)
+                        .ThenBy(j => j.ExpirationDate)
+                        .ThenBy(j => j.Id)
+
                             .ApplySort(sortOrder);
                 }
 
@@ -196,7 +206,7 @@ namespace JobWindowNew.Web.Controllers
                     IsExpired = j.ExpirationDate < DateTime.Now
 
                 });
-                mappedResult = mappedResult.OrderBy(j => j.IsExpired);
+
                 var pageSize = 200;
                 var pageNumber = (page ?? 1);
 
@@ -802,12 +812,140 @@ namespace JobWindowNew.Web.Controllers
             }
         }
 
-        //[Authorize(Roles = "Root, Admin, Internal-Employee")]
-        //[HttpPost]
-        //public ActionResult Excel(object viewModel)
-        //{
-        //    return null;
-        //}
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
+        [HttpGet]
+        public void Excel(string sortOrder, string idFilter, string titleFilter, string podIdFilter,
+            string idSearch, string titleSearch,
+            string cityFilter, string countryFilter, string stateFilter,
+            string jobBoardFilter, string divisionFilter,
+            string companyFilter,
+            string citySearch, string countrySearch, string stateSearch,
+            string companySearch, string divisionSearch, string jobBoardSearch,
+            string podIdSearch, int? page)
+        {
+            string id, title, podId, country, state, city, jobBoard, division, company;
+            if (!string.IsNullOrEmpty(sortOrder))
+            {
+                id = idSearch ?? string.Empty; ;
+                title = titleSearch ?? string.Empty; ;
+                podId = podIdSearch ?? string.Empty; ;
+                country = countrySearch ?? string.Empty; ;
+                state = stateSearch ?? string.Empty; ;
+                city = citySearch ?? string.Empty; ;
+                jobBoard = jobBoardSearch ?? string.Empty; ;
+                division = divisionSearch ?? string.Empty; ;
+                company = companySearch ?? string.Empty; ;
+            }
+            else
+            {
+                id = idFilter ?? string.Empty;
+                title = titleFilter ?? string.Empty; ;
+                podId = podIdFilter ?? string.Empty; ;
+                country = countryFilter ?? string.Empty; ;
+                state = stateFilter ?? string.Empty; ;
+                city = cityFilter ?? string.Empty; ;
+                jobBoard = jobBoardFilter ?? string.Empty; ;
+                division = divisionFilter ?? string.Empty; ;
+                company = companyFilter ?? string.Empty; ;
+            }
+
+            var sort = sortOrder;
+            IQueryable<Job> query;
+            if (string.IsNullOrEmpty(id) && string.IsNullOrEmpty(title) && string.IsNullOrEmpty(podId)
+            && string.IsNullOrEmpty(division) && string.IsNullOrEmpty(jobBoard) && string.IsNullOrEmpty(company)
+            && string.IsNullOrEmpty(country) && string.IsNullOrEmpty(state) && string.IsNullOrEmpty(city))
+            {
+                query = _unitOfWork.JobRepository.GetJobsForGrid()
+                    .OrderByDescending(j => j.ExpirationDate >= DateTime.Now)
+                    .ThenBy(j => j.SchedulingPod)
+                    .ThenBy(j => j.JobBoard.JobBoardName)
+                    .ThenBy(j => j.ExpirationDate)
+                    .ThenBy(j => j.Id)
+                    .ApplySort(sort);
+            }
+            else
+            {
+                query = _unitOfWork.JobRepository.GetJobsForGrid()
+                    .Where(j => j.Id.ToString().Contains(id))
+                    .Where(j => j.Title.ToString().Contains(title))
+                    .Where(j => j.SchedulingPod.ToString().Contains(podId))
+                    .Where(j => j.Division.ToString().Contains(division))
+                    .Where(j => j.JobBoard.JobBoardName.ToString().Contains(jobBoard))
+                    .Where(j => j.CompanyName.ToString().Contains(company))
+                    .Where(j => j.Country.CountryName.ToString().Contains(country))
+                    .Where(j => j.State.StateName.ToString().Contains(state))
+                    .Where(j => j.City.ToString().Contains(city))
+                    .OrderByDescending(j => j.ExpirationDate >= DateTime.Now)
+                    .ThenBy(j => j.SchedulingPod)
+                    .ThenBy(j => j.JobBoard.JobBoardName)
+                    .ThenBy(j => j.ExpirationDate)
+                    .ThenBy(j => j.Id)
+                    .ApplySort(sort);
+            }
+
+            var pageNo = page ?? 1;
+
+            var mappedResult = query.Select(j => new JobListExportViewModel
+            {
+                Id = j.Id,
+                CloneFrom = j.CloneFrom,
+                EverGreenId = j.EverGreenId,
+                Title = j.Title,
+                JobBoard = j.JobBoard.JobBoardName,
+                City = j.City,
+                StateName = j.State.StateName,
+                CountryName = j.Country.CountryName,
+                CompanyName = j.CompanyName,
+                SchedulingPod = j.SchedulingPod,
+                Division = j.Division,
+                ActivationDate = j.ActivationDate,
+                ExpirationDate = j.ExpirationDate,
+                CreatedBy = j.CreatedBy,
+                CreatedDate = j.CreatedDate,
+                Bob = j.Bob,
+                Intvs = j.Intvs,
+                Intvs2 = j.Intvs2,
+                ApsCl = j.ApsCl,
+                IsExpired = j.ExpirationDate < DateTime.Now,
+            });
+
+            var pageSize = 200;
+            int skipped;
+            if (pageNo == 1)
+            {
+                skipped = 0;
+            }
+            else
+            {
+                skipped = (pageNo - 1) * pageSize;
+            }
+
+            var finalResult = mappedResult.Skip(skipped).Take(pageSize).ToList();
+
+            foreach (var item in finalResult)
+            {
+                item.Category = _unitOfWork.JobCategoryMapRepository.GetFirstCategoryTypeForJob(item.Id);
+            }
+
+            var result = finalResult;
+            var gv = new GridView { DataSource = result };
+            gv.DataBind();
+
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=JobList.xls");
+            Response.ContentType = "application/ms-excel";
+
+            Response.Charset = "";
+            var objStringWriter = new StringWriter();
+            var objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+
+            gv.RenderControl(objHtmlTextWriter);
+
+            Response.Output.Write(objStringWriter.ToString());
+            Response.Flush();
+            Response.End();
+        }
 
         [Authorize]
         [HttpGet]
