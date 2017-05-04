@@ -906,7 +906,6 @@ namespace JobWindowNew.Web.Controllers
                 Intvs = j.Intvs,
                 Intvs2 = j.Intvs2,
                 ApsCl = j.ApsCl,
-                IsExpired = j.ExpirationDate < DateTime.Now,
             });
 
             var pageSize = 200;
