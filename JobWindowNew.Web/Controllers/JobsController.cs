@@ -495,6 +495,7 @@ namespace JobWindowNew.Web.Controllers
                         .ThenBy(j => j.Bob)
                         .ThenBy(j => j.Intvs2)
                         .ThenBy(j => j.Intvs)
+                        .ThenBy(j => j.Id)
                           .ApplySort(sortOrder);
                 }
                 else
@@ -561,6 +562,7 @@ namespace JobWindowNew.Web.Controllers
                         .ThenBy(j => j.Bob)
                         .ThenBy(j => j.Intvs2)
                         .ThenBy(j => j.Intvs)
+                        .ThenBy(j => j.Id)
                             .ApplySort(sortOrder);
                 }
 
@@ -697,6 +699,7 @@ namespace JobWindowNew.Web.Controllers
                         .ThenBy(j => j.Intvs2)
                         .ThenBy(j => j.Intvs)
                         .ThenBy(j => j.ApsCl)
+                        .ThenBy(j => j.Id)
                           .ApplySort(sortOrder);
                 }
                 else
@@ -763,6 +766,7 @@ namespace JobWindowNew.Web.Controllers
                         .ThenBy(j => j.Intvs2)
                         .ThenBy(j => j.Intvs)
                         .ThenBy(j => j.ApsCl)
+                        .ThenBy(j => j.Id)
                             .ApplySort(sortOrder);
                 }
 
@@ -919,7 +923,7 @@ namespace JobWindowNew.Web.Controllers
                 skipped = (pageNo - 1) * pageSize;
             }
 
-            var finalResult = mappedResult.Skip(skipped).Take(pageSize).ToList();
+            var finalResult = mappedResult.Skip(skipped).Take(2000).ToList();
 
             foreach (var item in finalResult)
             {

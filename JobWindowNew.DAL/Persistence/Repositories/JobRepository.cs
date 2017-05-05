@@ -55,7 +55,8 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .Include(j => j.State)
                 .Include(j => j.Country)
                 .Include(j => j.JobBoard)
-                .OrderBy(j => j.CloneFrom);
+                .OrderBy(j => j.CloneFrom)
+                .ThenBy(j => j.Id);
         }
 
         public Job GetJobForOnlineApply(long jobId)
@@ -75,9 +76,12 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .Include(j => j.State)
                 .Include(j => j.Country)
                 .Include(j => j.JobBoard)
-                .OrderBy(j => j.SchedulingPod)
-                .ThenBy(j => j.JobBoard)
-                .ThenBy(j => j.Title);
+                .OrderByDescending(j => j.ExpirationDate)
+                .ThenBy(j => j.JobBoard.JobBoardName)
+                .ThenBy(j => j.SchedulingPod)
+                .ThenBy(j => j.Title)
+                .ThenBy(j => j.Id);
+
 
             return result;
         }
