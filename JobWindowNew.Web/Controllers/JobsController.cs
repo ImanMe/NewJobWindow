@@ -1108,6 +1108,8 @@ namespace JobWindowNew.Web.Controllers
             var currentDate = DateTime.Now;
 
             PopulateJobFromViewModel(viewModel, job, currentUser, currentDate);
+            job.CreatedDate = currentDate;
+            job.CreatedBy = currentUser;
 
             job.CloneFrom = job.Id;
 
