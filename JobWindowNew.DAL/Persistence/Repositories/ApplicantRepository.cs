@@ -21,7 +21,7 @@ namespace JobWindowNew.DAL.Persistence.Repositories
 
         public IQueryable<Applicant> GetApplicants()
         {
-            return _context.Applicants;
+            return _context.Applicants.OrderByDescending(a => a.Date);
         }
 
         public void Update(Applicant applicant)
