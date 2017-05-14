@@ -77,6 +77,7 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .Include(j => j.Country)
                 .Include(j => j.JobBoard)
                 .OrderByDescending(j => j.ExpirationDate)
+                .ThenByDescending(j => j.ActivationDate)
                 .ThenBy(j => j.JobBoard.JobBoardName)
                 .ThenBy(j => j.SchedulingPod)
                 .ThenBy(j => j.Title)
