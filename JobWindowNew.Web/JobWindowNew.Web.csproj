@@ -740,6 +740,7 @@
     <Content Include="Views\Reports\ActiveReport.cshtml" />
     <Content Include="Views\Jobs\Volume.cshtml" />
     <Content Include="Views\Jobs\Conversion.cshtml" />
+    <Content Include="Views\Jobs\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,14 +36,14 @@ namespace JobWindowNew.DAL.Persistence.Repositories
             return _context.Jobs.SingleOrDefault(j => j.Id == jobId);
         }
 
-        public IQueryable<Job> GetJobsForGrid()
-        {
-            var result = _context.Jobs.AsNoTracking()
-                .Include(j => j.State)
-                .Include(j => j.Country)
-                .Include(j => j.JobBoard);
-            return result;
-        }
+        //public IQueryable<Job> GetJobsForGrid()
+        //{
+        //    var result = _context.Jobs.AsNoTracking()
+        //        .Include(j => j.State)
+        //        .Include(j => j.Country)
+        //        .Include(j => j.JobBoard);
+        //    return result;
+        //}
 
         public IQueryable<Job> GetDuplicateJobs()
         {
@@ -85,6 +85,17 @@ namespace JobWindowNew.DAL.Persistence.Repositories
 
 
             return result;
+        }
+
+        public IQueryable<JobCategoryMap> GetJobsForGrid()
+        {
+            return _context.JobCategoryMaps
+                .GroupBy(m => m.Job.Id).SelectMany(gr => gr.Take(1))
+                .Include(m => m.Job)
+                .Include(m => m.Job.Country)
+                .Include(m => m.Job.State)
+                .Include(m => m.Job.JobBoard)
+                .Include(m => m.Category);
         }
 
         public void Delete(long id)

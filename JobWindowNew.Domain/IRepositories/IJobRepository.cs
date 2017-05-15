@@ -10,10 +10,12 @@ namespace JobWindowNew.Domain.IRepositories
         Job GetJob(long jobId);
         void Add(Job job);
         void Update(Job job);
-        IQueryable<Job> GetJobsForGrid();
+        //IQueryable<Job> GetJobsForGrid();
+        IQueryable<JobCategoryMap> GetJobsForGrid();
         IQueryable<Job> GetDuplicateJobs();
         IQueryable<Job> GetJobsWithStats();
         Job GetJobForOnlineApply(long jobId);
+        //IQueryable<JobCategoryMap> GetJobsForIndexTest();
         void Delete(long id);
     }
 }

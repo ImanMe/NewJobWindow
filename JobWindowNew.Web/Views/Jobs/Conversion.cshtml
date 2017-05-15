@@ -47,7 +47,7 @@
                 <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.CityParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">City<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.StateNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">State<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.CountryNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Country<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="#">Category</a></th>
+                <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.CategoryNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Category<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.CompanyNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Company Name<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.ApsClParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">ApsCl<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Conversion", new {sortOrder = ViewBag.BobParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">BOB<i class="glyphicon glyphicon-sort"></i></a></th>
@@ -70,7 +70,7 @@
                 <th>@Html.TextBox("citySearch", ViewBag.CityFilter as string, new { @class = "form-control" })</th>
                 <th>@Html.TextBox("stateSearch", ViewBag.StateFilter as string, new { @class = "form-control" })</th>
                 <th>@Html.TextBox("countrySearch", ViewBag.CountryFilter as string, new { @class = "form-control" })</th>
-                <th></th>
+                <th>@Html.TextBox("categorySearch", ViewBag.CategoryFilter as string, new { @class = "form-control" })</th>
                 <th>@Html.TextBox("companySearch", ViewBag.CompanyFilter as string, new { @class = "form-control" })</th>
                 <th></th>
                 <th></th>
@@ -161,6 +161,7 @@
                 ViewBag.CityFilter,
                 ViewBag.StateFilter,
                 ViewBag.CountryFilter,
+                ViewBag.CategoryFilter,
                 ViewBag.DivisionFilter,
                 ViewBag.JobBoardFilter,
                 ViewBag.CompanyFilter,

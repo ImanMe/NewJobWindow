@@ -3,25 +3,47 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <div class="row">
-    @*<label style="font-size: medium; margin-left: 25px;" class="label label-warning">Volume Sort</label>*@
     <h4 style="margin-left: 20px;" class="pull-left">Volume Sort</h4>
     <div class="pull-left">
         @*<div style="margin-left: 20px;" class="dropdown">
-            <button class="btn btn-default backtolist-btn dropdown-toggle" type="button" data-toggle="dropdown">
-                Sort Order
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="@Url.Action("Index", "Jobs")">Default</a></li>
-                <li><a href="@Url.Action("Volume", "Jobs")">Volume</a></li>
-                <li><a href="@Url.Action("Conversion", "Jobs")">Conversion</a></li>
-            </ul>
-        </div>*@
+                <button class="btn btn-default backtolist-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                    Sort Order
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="@Url.Action("Volume", "Jobs")">Default</a></li>
+                    <li><a href="@Url.Action("Volume", "Jobs")">Volume</a></li>
+                    <li><a href="@Url.Action("Conversion", "Jobs")">Conversion</a></li>
+                </ul>
+            </div>*@
     </div>
     <div class="pull-right">
-        <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Conversion", "Jobs")'">Conversion Sort</button>
         <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Index", "Jobs")'">Job List</button>
+        <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Conversion", "Jobs")'">Conversion Sort</button>
         <button class="btn btn-warning duplicate-btn" onclick="location.href = '@Url.Action("Duplicates", "Jobs")'">Show Duplicates</button>
-        
+
+        <a title="Export to Excel" style="margin-left: 10px;" class="btn btn-primary backtolist-btn" href="@Url.Action("Excel", new
+                                                                                                           {
+                                                                                                               sortOrder = Request["sortOrder"],
+                                                                                                               titleSearch = Request["titleSearch"],
+                                                                                                               titleFilter = Request["titleFilter"],
+                                                                                                               idSearch = Request["idSearch"],
+                                                                                                               idFilter = Request["idFilter"],
+                                                                                                               podIdSearch = Request["podIdSearch"],
+                                                                                                               podIdFilter = Request["podIdFilter"],
+                                                                                                               divisionSearch = Request["divisionSearch"],
+                                                                                                               divisionFilter = Request["divisionFilter"],
+                                                                                                               jobBoardSearch = Request["jobBoardSearch"],
+                                                                                                               jobBoardFilter = Request["jobBoardFilter"],
+                                                                                                               citySearch = Request["citySearch"],
+                                                                                                               cityFilter = Request["cityFilter"],
+                                                                                                               stateSearch = Request["stateSearch"],
+                                                                                                               stateFilter = Request["stateFilter"],
+                                                                                                               countrySearch = Request["countrySearch"],
+                                                                                                               countryFilter = Request["countryFilter"],
+                                                                                                               page = Request["page"]
+                                                                                                           })">
+            <i class="glyphicon glyphicon-file"></i>
+        </a>
         <button class="btn btn-warning createNew-btn" onclick="location.href = '@Url.Action("Create", "Jobs")'">Create New</button>
     </div>
 </div>
@@ -47,7 +69,7 @@
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.CityParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">City<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.StateNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">State<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.CountryNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Country<i class="glyphicon glyphicon-sort"></i></a></th>
-                <th><a href="#">Category</a></th>
+                <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.CategoryNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Category<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.CompanyNameParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">Company Name<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.ApsClParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">ApsCl<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th><a href="@Url.Action("Volume", new {sortOrder = ViewBag.BobParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter})">BOB<i class="glyphicon glyphicon-sort"></i></a></th>
@@ -70,7 +92,7 @@
                 <th>@Html.TextBox("citySearch", ViewBag.CityFilter as string, new { @class = "form-control" })</th>
                 <th>@Html.TextBox("stateSearch", ViewBag.StateFilter as string, new { @class = "form-control" })</th>
                 <th>@Html.TextBox("countrySearch", ViewBag.CountryFilter as string, new { @class = "form-control" })</th>
-                <th></th>
+                <th>@Html.TextBox("categorySearch", ViewBag.CategoryFilter as string, new { @class = "form-control" })</th>
                 <th>@Html.TextBox("companySearch", ViewBag.CompanyFilter as string, new { @class = "form-control" })</th>
                 <th></th>
                 <th></th>
@@ -84,44 +106,45 @@
             @foreach (var job in Model)
             {
                 <tr class="">
-                    <td class="btnactions text-center">
-                        <a title="Edit" class="btn btn-default" href="@Url.Action("Edit", new {@id = job.Id})">
+                    <td class="btnactions">
+                        <a title="Edit" class="btn btn-default action1" href="@Url.Action("Edit", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </a>
                     </td>
-                    <td class="btnactions text-center">
-                        <a title="Clone" class="btn btn-default" href="@Url.Action("Clone", new {@id = job.Id})">
+                    <td class="btnactions">
+                        <a title="Clone" class="btn btn-default action2" href="@Url.Action("Clone", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-repeat"></i>
                         </a>
                     </td>
                     <td class="btnactions">
                         @if (job.IsExpired)
                         {
-                            <a title="Expire" disabled="disabled" onclick="return alert('This job is already expired!');" class="btn btn-default deleteButton" , href="#">
+                            <a title="Expire" disabled="disabled" onclick="return alert('This job is already expired!');" class="btn btn-default action3" , href="#">
                                 <i class="glyphicon glyphicon-remove"></i>
                             </a>
                         }
                         else
                         {
-                            <a title="Expire" onclick="return confirm('Are sure wants to expire this job?');" class="btn btn-default deleteButton" , href="@Url.Action("Expire", new {@id = job.Id})">
+                            <a title="Expire" onclick="return confirm('Are sure wants to expire this job?');" class="btn btn-default action3" , href="@Url.Action("Expire", new {@id = job.Id})">
                                 <i class="glyphicon glyphicon-remove"></i>
                             </a>
                         }
                     </td>
-                    <td class="btnactionslast text-center">
-                        <a title="Delete" onclick="return confirm('Are sure wants to delete?');" class="btn btn-default deleteButton" , href="@Url.Action("Delete", new {@id = job.Id})">
+                    <td class="btnactionslast">
+                        <a title="Delete" onclick="return confirm('Are sure wants to delete?');" class="btn btn-default action4" , href="@Url.Action("Delete", new {@id = job.Id})">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>
+
                     <td class="">
                         @Html.DisplayFor(m => job.Id) @if (job.IsExpired)
-                        {
-                            <span class="label label-danger">Expired</span>
-                        }
-                        else
-                        {
-                            <span class="label label-success">Active</span>
-                        }
+                                                      {
+                                                          <span class="label label-danger">Expired</span>
+                                                      }
+                                                      else
+                                                      {
+                                                          <span class="label label-success text-right">Active</span>
+                                                      }
                     </td>
                     <td class="">@Html.DisplayFor(m => job.CloneFrom)</td>
                     <td class="">@Html.DisplayFor(m => job.EverGreenId)</td>
@@ -161,6 +184,7 @@
                 ViewBag.CityFilter,
                 ViewBag.StateFilter,
                 ViewBag.CountryFilter,
+                ViewBag.CategoryFilter,
                 ViewBag.DivisionFilter,
                 ViewBag.JobBoardFilter,
                 ViewBag.CompanyFilter,
@@ -180,4 +204,5 @@
         });
     </script>
 }
+
 
