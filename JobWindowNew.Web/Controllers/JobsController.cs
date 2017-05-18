@@ -363,7 +363,7 @@ namespace JobWindowNew.Web.Controllers
 
                     if (string.IsNullOrEmpty(categorySearch))
                     {
-                        countrySearch = "";
+                        categorySearch = "";
                     }
 
                     if (string.IsNullOrEmpty(divisionSearch))
@@ -714,10 +714,10 @@ namespace JobWindowNew.Web.Controllers
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
                         .OrderBy(j => j.Job.SchedulingPod)
                         .ThenBy(j => j.Job.JobBoard.JobBoardName)
-                        .ThenBy(j => j.Job.ApsCl)
-                        .ThenBy(j => j.Job.Bob)
-                        .ThenBy(j => j.Job.Intvs2)
-                        .ThenBy(j => j.Job.Intvs)
+                        .ThenByDescending(j => j.Job.ApsCl)
+                        .ThenByDescending(j => j.Job.Bob)
+                        .ThenByDescending(j => j.Job.Intvs2)
+                        .ThenByDescending(j => j.Job.Intvs)
                         .ThenBy(j => j.Job.Id)
                           .ApplySort(sortOrder);
                 }
@@ -783,10 +783,10 @@ namespace JobWindowNew.Web.Controllers
                         .Where(j => j.Job.City.ToString().Contains(citySearch))
                             .OrderBy(j => j.Job.SchedulingPod)
                         .ThenBy(j => j.Job.JobBoard.JobBoardName)
-                        .ThenBy(j => j.Job.ApsCl)
-                        .ThenBy(j => j.Job.Bob)
-                        .ThenBy(j => j.Job.Intvs2)
-                        .ThenBy(j => j.Job.Intvs)
+                        .ThenByDescending(j => j.Job.ApsCl)
+                        .ThenByDescending(j => j.Job.Bob)
+                        .ThenByDescending(j => j.Job.Intvs2)
+                        .ThenByDescending(j => j.Job.Intvs)
                         .ThenBy(j => j.Job.Id)
                             .ApplySort(sortOrder);
                 }
@@ -921,10 +921,10 @@ namespace JobWindowNew.Web.Controllers
                     query = _unitOfWork.JobRepository.GetJobsForGrid()
                         .OrderBy(j => j.Job.SchedulingPod)
                         .ThenBy(j => j.Job.JobBoard.JobBoardName)
-                        .ThenBy(j => j.Job.Bob)
-                        .ThenBy(j => j.Job.Intvs2)
-                        .ThenBy(j => j.Job.Intvs)
-                        .ThenBy(j => j.Job.ApsCl)
+                        .ThenByDescending(j => j.Job.Bob)
+                        .ThenByDescending(j => j.Job.Intvs2)
+                        .ThenByDescending(j => j.Job.Intvs)
+                        .ThenByDescending(j => j.Job.ApsCl)
                         .ThenBy(j => j.Job.Id)
                           .ApplySort(sortOrder);
                 }
@@ -992,11 +992,11 @@ namespace JobWindowNew.Web.Controllers
                         .Where(j => j.Job.City.ToString().Contains(citySearch))
                            .OrderBy(j => j.Job.SchedulingPod)
                         .ThenBy(j => j.Job.JobBoard.JobBoardName)
-                        .ThenBy(j => j.Job.Bob)
-                        .ThenBy(j => j.Job.Intvs2)
-                        .ThenBy(j => j.Job.Intvs)
-                        .ThenBy(j => j.Job.ApsCl)
-                        .ThenBy(j => j.Job.Id)
+                        .ThenByDescending(j => j.Job.Bob)
+                        .ThenByDescending(j => j.Job.Intvs2)
+                        .ThenByDescending(j => j.Job.Intvs)
+                        .ThenByDescending(j => j.Job.ApsCl)
+                        .ThenByDescending(j => j.Job.Id)
                             .ApplySort(sortOrder);
                 }
 
