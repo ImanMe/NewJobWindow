@@ -19,12 +19,17 @@ namespace JobWindowNew.Domain.ViewModels
         public string ExpirationDate { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
+        public string OnlineUrl { get; set; }
+        public string EmailTo { get; set; }
+        public string EmailToTruncated { get; set; }
+        public int? OfficeId { get; set; }
         public int? Bob { get; set; }
         public int? Intvs { get; set; }
         public int? Intvs2 { get; set; }
         public int? ApsCl { get; set; }
         public string JobBoard { get; set; }
         public string Category { get; set; }
+        public bool IsOnlineApply { get; set; }
         public DateTime ActiveDate { get; set; }
         public DateTime ExpDate { get; set; }
         public DateTime CreDate { get; set; }

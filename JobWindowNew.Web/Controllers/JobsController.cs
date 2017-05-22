@@ -269,6 +269,8 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.ExpirationDateParm = sortOrder == "Job.ExpirationDate" ? "-Job.ExpirationDate" : "Job.ExpirationDate";
                 ViewBag.CreatedByParm = sortOrder == "Job.CreatedBy" ? "-Job.CreatedBy" : "Job.CreatedBy";
                 ViewBag.CreatedDateParm = sortOrder == "Job.CreatedDate" ? "-Job.CreatedDate" : "Job.CreatedDate";
+                ViewBag.EmailParm = sortOrder == "Job.EmailTo" ? "-Job.EmailTo" : "Job.EmailTo";
+                ViewBag.OfficeParm = sortOrder == "Job.OfficeId" ? "-Job.OfficeId" : "Job.OfficeId";
                 ViewBag.BobParm = sortOrder == "Job.Bob" ? "-Job.Bob" : "Job.Bob";
                 ViewBag.IntvsParm = sortOrder == "Job.Intvs" ? "-Job.Intvs" : "Job.Intvs";
                 ViewBag.Intvs2Parm = sortOrder == "Job.Intvs2" ? "-Job.Intvs2" : "Job.Intvs2";
@@ -418,6 +420,9 @@ namespace JobWindowNew.Web.Controllers
                     SchedulingPod = j.Job.SchedulingPod,
                     Division = j.Job.Division,
                     CreatedBy = j.Job.CreatedBy,
+                    EmailTo = j.Job.EmailTo,
+                    EmailToTruncated = j.Job.EmailTo.Substring(0, 10),
+                    OfficeId = j.Job.OfficeId,
                     Bob = j.Job.Bob,
                     Intvs = j.Job.Intvs,
                     Intvs2 = j.Job.Intvs2,
@@ -426,7 +431,8 @@ namespace JobWindowNew.Web.Controllers
                     ExpDate = j.Job.ExpirationDate,
                     CreDate = j.Job.CreatedDate,
                     IsExpired = j.Job.ExpirationDate < DateTime.Now,
-                    Category = j.Category.CategoryName
+                    Category = j.Category.CategoryName,
+                    IsOnlineApply = j.Job.IsOnlineApply
 
                 });
 
@@ -484,6 +490,8 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.IntvsParm = sortOrder == "Intvs" ? "-Intvs" : "Intvs";
                 ViewBag.Intvs2Parm = sortOrder == "Intvs2" ? "-Intvs2" : "Intvs2";
                 ViewBag.ApsClParm = sortOrder == "ApsCl" ? "-ApsCl" : "ApsCl";
+                ViewBag.EmailParm = sortOrder == "Job.EmailTo" ? "-Job.EmailTo" : "Job.EmailTo";
+                ViewBag.OfficeParm = sortOrder == "Job.OfficeId" ? "-Job.OfficeId" : "Job.OfficeId";
                 sortOrder = ViewBag.CurrentSort;
 
                 if (idSearch != null || titleSearch != null || podIdSearch != null || citySearch != null ||
@@ -598,13 +606,17 @@ namespace JobWindowNew.Web.Controllers
                     SchedulingPod = j.SchedulingPod,
                     Division = j.Division,
                     CreatedBy = j.CreatedBy,
+                    OfficeId = j.OfficeId,
+                    EmailTo = j.EmailTo,
+                    EmailToTruncated = j.EmailTo.Substring(0, 10),
                     Bob = j.Bob,
                     Intvs = j.Intvs,
                     Intvs2 = j.Intvs2,
                     ApsCl = j.ApsCl,
                     ActiveDate = j.ActivationDate,
                     ExpDate = j.ExpirationDate,
-                    CreDate = j.CreatedDate
+                    CreDate = j.CreatedDate,
+                    IsOnlineApply = j.IsOnlineApply
                 });
 
                 var pageSize = 200;
@@ -663,6 +675,8 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.IntvsParm = sortOrder == "Job.Intvs" ? "-Job.Intvs" : "Job.Intvs";
                 ViewBag.Intvs2Parm = sortOrder == "Job.Intvs2" ? "-Job.Intvs2" : "Job.Intvs2";
                 ViewBag.ApsClParm = sortOrder == "Job.ApsCl" ? "-Job.ApsCl" : "Job.ApsCl";
+                ViewBag.EmailParm = sortOrder == "Job.EmailTo" ? "-Job.EmailTo" : "Job.EmailTo";
+                ViewBag.OfficeParm = sortOrder == "Job.OfficeId" ? "-Job.OfficeId" : "Job.OfficeId";
                 sortOrder = ViewBag.CurrentSort;
                 //if (string.IsNullOrEmpty(sortOrder))
                 //{
@@ -806,6 +820,9 @@ namespace JobWindowNew.Web.Controllers
                     SchedulingPod = j.Job.SchedulingPod,
                     Division = j.Job.Division,
                     CreatedBy = j.Job.CreatedBy,
+                    EmailTo = j.Job.EmailTo,
+                    EmailToTruncated = j.Job.EmailTo.Substring(0, 10),
+                    OfficeId = j.Job.OfficeId,
                     Bob = j.Job.Bob,
                     Intvs = j.Job.Intvs,
                     Intvs2 = j.Job.Intvs2,
@@ -813,7 +830,8 @@ namespace JobWindowNew.Web.Controllers
                     ActiveDate = j.Job.ActivationDate,
                     ExpDate = j.Job.ExpirationDate,
                     CreDate = j.Job.CreatedDate,
-                    Category = j.Category.CategoryName
+                    Category = j.Category.CategoryName,
+                    IsOnlineApply = j.Job.IsOnlineApply
                 });
 
                 var pageSize = 200;
@@ -870,6 +888,8 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.IntvsParm = sortOrder == "Job.Intvs" ? "-Job.Intvs" : "Job.Intvs";
                 ViewBag.Intvs2Parm = sortOrder == "Job.Intvs2" ? "-Job.Intvs2" : "Job.Intvs2";
                 ViewBag.ApsClParm = sortOrder == "Job.ApsCl" ? "-Job.ApsCl" : "Job.ApsCl";
+                ViewBag.EmailParm = sortOrder == "Job.EmailTo" ? "-Job.EmailTo" : "Job.EmailTo";
+                ViewBag.OfficeParm = sortOrder == "Job.OfficeId" ? "-Job.OfficeId" : "Job.OfficeId";
                 sortOrder = ViewBag.CurrentSort;
                 //if (string.IsNullOrEmpty(sortOrder))
                 //{
@@ -1022,7 +1042,11 @@ namespace JobWindowNew.Web.Controllers
                     ActiveDate = j.Job.ActivationDate,
                     ExpDate = j.Job.ExpirationDate,
                     CreDate = j.Job.CreatedDate,
-                    Category = j.Category.CategoryName
+                    OfficeId = j.Job.OfficeId,
+                    EmailTo = j.Job.EmailTo,
+                    EmailToTruncated = j.Job.EmailTo.Substring(0, 10),
+                    Category = j.Category.CategoryName,
+                    IsOnlineApply = j.Job.IsOnlineApply
                 });
 
                 var pageSize = 200;
