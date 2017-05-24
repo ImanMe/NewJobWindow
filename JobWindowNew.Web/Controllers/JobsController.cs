@@ -1343,6 +1343,11 @@ namespace JobWindowNew.Web.Controllers
 
             PopulateViewModelForClone(viewModel, job, currentUser);
 
+            viewModel.ApsCl = null;
+            viewModel.Bob = null;
+            viewModel.Intvs = null;
+            viewModel.Intvs2 = null;
+
             return View("JobForm", viewModel);
         }
 
