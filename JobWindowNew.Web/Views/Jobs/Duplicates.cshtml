@@ -127,7 +127,7 @@
                     <td class="">@Html.DisplayFor(m => job.EverGreenId)</td>
                     <td class="">@Html.DisplayFor(m => job.SchedulingPod)</td>
                     <td class="">@Html.DisplayFor(m => job.OfficeId)</td>
-                    <td id="fullTitle" class="displayNone">@Html.DisplayFor(m => job.Title)</td>
+                    <td id="fullTitle" class="titlec displayNone">@Html.DisplayFor(m => job.Title)</td>
                     <td class="halfTitle"><a id="titleLink" href="#" title="@Html.DisplayFor(m => job.Title)">@Html.DisplayFor(m => job.TitleTruncated)</a></td>
                     <td class="">@Html.DisplayFor(m => job.JobBoard)</td>
                     <td class="">@Html.DisplayFor(m => job.Division)</td>
@@ -186,7 +186,7 @@
 
         $(document).ready(function() {
             $("#titleButton").click(function () {
-                $(".displayNone").toggle();
+                $(".titlec.displayNone").toggle();
                 $(".halfTitle").toggle();
             });
         });
