@@ -77,6 +77,18 @@ namespace JobWindowNew.Web.Controllers
                 query = query.Where(j => j.Job.JobBoardId == viewModel.JobBoardId);
             }
 
+            query = query
+                .OrderBy(j => j.Job.SchedulingPod)
+                .ThenBy(j => j.Job.JobBoard.JobBoardName)
+                .ThenBy(j => j.Job.City)
+                .ThenBy(j => j.Category.CategoryName)
+                .ThenByDescending(j => j.Job.ExpirationDate)
+                .ThenByDescending(j => j.Job.ApsCl)
+                .ThenByDescending(j => j.Job.Bob)
+                .ThenByDescending(j => j.Job.Intvs2)
+                .ThenByDescending(j => j.Job.Intvs);
+
+
             var result = query.ToList().Select(j => factory.Create(j));
 
 

@@ -87,7 +87,16 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .Include(m => m.Job.EmploymentType)
                 .Include(m => m.Job.JobBoard)
                 .Include(m => m.Job.SalaryType)
-                .Include(m => m.Category);
+                .Include(m => m.Category)
+                .OrderBy(m => m.Job.SchedulingPod)
+                .ThenBy(m => m.Job.JobBoard.JobBoardName)
+                .ThenBy(m => m.Job.City)
+                .ThenBy(m => m.Category.CategoryName)
+                .ThenBy(m => m.Job.ExpirationDate)
+                .ThenByDescending(j => j.Job.ApsCl)
+                .ThenByDescending(j => j.Job.Bob)
+                .ThenByDescending(j => j.Job.Intvs2)
+                .ThenByDescending(j => j.Job.Intvs);
         }
     }
 }
