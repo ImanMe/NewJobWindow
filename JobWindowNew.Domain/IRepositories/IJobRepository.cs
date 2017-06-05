@@ -17,5 +17,16 @@ namespace JobWindowNew.Domain.IRepositories
         Job GetJobForOnlineApply(long jobId);
         //IQueryable<JobCategoryMap> GetJobsForIndexTest();
         void Delete(long id);
+        void MassDelete(int id);
+        void MassExpire(int id);
+        IQueryable<JobCategoryMap> GetJobSForJobListxx(string idSearch,
+            string titleSearch, string podIdSearch, string citySearch,
+            string stateSearch, string countrySearch, string categorySearch,
+            string jobBoardSearch, string divisionSearch, string companySearch, string statusSearch);
+
+        IQueryable<JobCategoryMap> GetJobSForConversionListxx(string idSearch,
+            string titleSearch, string podIdSearch, string citySearch,
+            string stateSearch, string countrySearch, string categorySearch,
+            string jobBoardSearch, string divisionSearch, string companySearch, string statusSearch);
     }
 }

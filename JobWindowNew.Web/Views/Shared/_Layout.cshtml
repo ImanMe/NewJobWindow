@@ -39,6 +39,10 @@
                             <li class="leftitems">@Html.ActionLink("Pending Stats", "Create", "Stats")</li>
                             <li role="separator" class="divider"></li>
                             <li class="leftitems">@Html.ActionLink("Create", "Create", "Jobs")</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="leftitems">@Html.ActionLink("Mass Delete", "MassDelete", "Jobs")</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="leftitems">@Html.ActionLink("Mass Expire", "MassExpire", "Jobs")</li>
                         </ul>
                     </li>
                     <li class="dropdown leftitems">
@@ -79,6 +83,7 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/bootbox")
     @RenderSection("scripts", required: false)
 </body>
 </html>

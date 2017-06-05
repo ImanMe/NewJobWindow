@@ -122,6 +122,13 @@ namespace JobWindowNew.Web.Controllers
         [Authorize(Roles = "Root, Admin, Internal-Employee")]
         public ActionResult InActiveReport(string podId)
         {
+            int n;
+
+            if (podId.Length == 0 || !int.TryParse(podId, out n))
+            {
+                return View();
+            }
+
             var pId = int.Parse(podId);
 
             var factory = new EverGreenReportFactory();

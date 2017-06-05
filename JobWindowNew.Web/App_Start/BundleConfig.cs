@@ -26,6 +26,10 @@ namespace JobWindowNew.Web
                       "~/Scripts/bootstrap-datepicker.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/bootbox").Include(
+                "~/Scripts/bootbox.min.js"));
+
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-datepicker.css",

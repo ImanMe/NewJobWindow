@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "MassDelete";
+}
+
+<h4>Mass Delete</h4>
+
+<div style="padding-left: 50px; padding-right: 50px;">
+    @using (Html.BeginForm("MassDelete", "Jobs", FormMethod.Post))
+    {
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-md-3 col-lg-2">
+                <label>Scheduling Pod Id</label>
+                <div class="input-group">
+                    @Html.TextBox("podId", ViewBag.podId as string, new { @class = "form-control", @type = "number" })
+                    <span class="input-group-btn">
+                        <button type="submit" style="width: 100%" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
