@@ -474,12 +474,12 @@ namespace JobWindowNew.Web.Controllers
             string idSearch, string titleSearch,
             string cityFilter, string countryFilter, string categoryFilter, string stateFilter,
             string jobBoardFilter, string divisionFilter,
-            string companyFilter,
+            string companyFilter, string statusSearch, string statusFilter,
             string citySearch, string countrySearch, string categorySearch, string stateSearch,
             string companySearch, string divisionSearch, string jobBoardSearch,
             string podIdSearch, int? page)
         {
-            string id, title, podId, country, category, state, city, jobBoard, division, company;
+            string id, title, podId, country, category, state, city, jobBoard, division, company, status;
             if (!string.IsNullOrEmpty(sortOrder))
             {
                 id = idSearch ?? string.Empty;
@@ -492,6 +492,7 @@ namespace JobWindowNew.Web.Controllers
                 division = divisionSearch ?? string.Empty;
                 company = companySearch ?? string.Empty;
                 category = categorySearch ?? string.Empty;
+                status = statusSearch ?? string.Empty;
             }
             else
             {
@@ -505,42 +506,12 @@ namespace JobWindowNew.Web.Controllers
                 jobBoard = jobBoardFilter ?? string.Empty;
                 division = divisionFilter ?? string.Empty;
                 company = companyFilter ?? string.Empty;
+                status = statusFilter ?? string.Empty;
             }
 
             var sort = sortOrder;
-            IQueryable<JobCategoryMap> query;
-            if (string.IsNullOrEmpty(id) && string.IsNullOrEmpty(title) && string.IsNullOrEmpty(podId)
-            && string.IsNullOrEmpty(division) && string.IsNullOrEmpty(jobBoard) && string.IsNullOrEmpty(company)
-            && string.IsNullOrEmpty(country) && string.IsNullOrEmpty(category) && string.IsNullOrEmpty(state) && string.IsNullOrEmpty(city))
-            {
-                query = _unitOfWork.JobRepository.GetJobsForGrid()
-                    .OrderByDescending(j => j.Job.ExpirationDate >= DateTime.Now)
-                    .ThenBy(j => j.Job.SchedulingPod)
-                    .ThenBy(j => j.Job.JobBoard.JobBoardName)
-                    .ThenBy(j => j.Job.ExpirationDate)
-                    .ThenBy(j => j.Job.Id)
-                    .ApplySort(sort);
-            }
-            else
-            {
-                query = _unitOfWork.JobRepository.GetJobsForGrid()
-                    .Where(j => j.Job.Id.ToString().Contains(id))
-                    .Where(j => j.Job.Title.ToString().Contains(title))
-                    .Where(j => j.Job.SchedulingPod.ToString().Contains(podId))
-                    .Where(j => j.Job.Division.ToString().Contains(division))
-                    .Where(j => j.Job.JobBoard.JobBoardName.ToString().Contains(jobBoard))
-                    .Where(j => j.Job.CompanyName.ToString().Contains(company))
-                    .Where(j => j.Job.Country.CountryName.ToString().Contains(country))
-                    .Where(j => j.Category.CategoryName.ToString().Contains(category))
-                    .Where(j => j.Job.State.StateName.ToString().Contains(state))
-                    .Where(j => j.Job.City.ToString().Contains(city))
-                    .OrderByDescending(j => j.Job.ExpirationDate >= DateTime.Now)
-                    .ThenBy(j => j.Job.SchedulingPod)
-                    .ThenBy(j => j.Job.JobBoard.JobBoardName)
-                    .ThenBy(j => j.Job.ExpirationDate)
-                    .ThenBy(j => j.Job.Id)
-                    .ApplySort(sort);
-            }
+            var query = _unitOfWork.JobRepository.GetJobSForJobListxx(id, title, podId, city, state, country, category, jobBoard, division, company, status)
+                .ApplySort(sort);
 
             var pageNo = page ?? 1;
 
