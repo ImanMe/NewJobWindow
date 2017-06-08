@@ -18,6 +18,7 @@ namespace JobWindowNew.Domain.ViewModels
         public string ActivationDate { get; set; }
         public string ExpirationDate { get; set; }
         public string CreatedBy { get; set; }
+        public string CreatedByTruncated { get; set; }
         public string CreatedDate { get; set; }
         public string OnlineUrl { get; set; }
         public string EmailTo { get; set; }

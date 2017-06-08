@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using JobWindowNew.DAL.Persistence.Helpers;
 using JobWindowNew.Domain;
 using JobWindowNew.Domain.Model;
 using JobWindowNew.Domain.ViewModels;
@@ -63,10 +64,6 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.Intvs2Parm = sortOrder == "Job.Intvs2" ? "-Job.Intvs2" : "Job.Intvs2";
                 ViewBag.ApsClParm = sortOrder == "Job.ApsCl" ? "-Job.ApsCl" : "Job.ApsCl";
                 sortOrder = ViewBag.CurrentSort;
-                //if (string.IsNullOrEmpty(sortOrder))
-                //{
-                //    sortOrder = "Id";
-                //}
 
                 if (idSearch != null || titleSearch != null || podIdSearch != null || citySearch != null ||
                     stateSearch != null || countrySearch != null || categorySearch != null || jobBoardSearch != null || companySearch != null ||
@@ -101,8 +98,15 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.JobBoardFilter = jobBoardSearch;
                 ViewBag.StatusFilter = statusSearch;
 
-                var query = _unitOfWork.JobRepository.GetJobSForJobListxx(idSearch, titleSearch, podIdSearch, citySearch, stateSearch, countrySearch, categorySearch, jobBoardSearch, divisionSearch, companySearch, statusSearch)
-                    .ApplySort(sortOrder);
+                var query = _unitOfWork.JobRepository.GetJobsForJobList();
+
+                query = PersistenceHelper.FilterByInput(idSearch, titleSearch, podIdSearch,
+                    citySearch, stateSearch, countrySearch, categorySearch, jobBoardSearch,
+                    divisionSearch, companySearch, statusSearch, query);
+
+                query = PersistenceHelper.SortForJobList(query);
+
+                query = query.ApplySort(sortOrder);
 
                 var mappedResult = query.Select(j => new JobGridViewModel
                 {
@@ -114,11 +118,12 @@ namespace JobWindowNew.Web.Controllers
                     JobBoard = j.Job.JobBoard.JobBoardName,
                     City = j.Job.City,
                     StateName = j.Job.State.StateName,
-                    CountryName = j.Job.Country.CountryName,
+                    CountryName = j.Job.Country.CountryCode,
                     CompanyName = j.Job.CompanyName,
                     SchedulingPod = j.Job.SchedulingPod,
                     Division = j.Job.Division,
                     CreatedBy = j.Job.CreatedBy,
+                    CreatedByTruncated = j.Job.CreatedBy.Substring(0, 10),
                     EmailTo = j.Job.EmailTo,
                     EmailToTruncated = j.Job.EmailTo.Substring(0, 10),
                     OfficeId = j.Job.OfficeId,
@@ -377,10 +382,6 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.EmailParm = sortOrder == "Job.EmailTo" ? "-Job.EmailTo" : "Job.EmailTo";
                 ViewBag.OfficeParm = sortOrder == "Job.OfficeId" ? "-Job.OfficeId" : "Job.OfficeId";
                 sortOrder = ViewBag.CurrentSort;
-                //if (string.IsNullOrEmpty(sortOrder))
-                //{
-                //    sortOrder = "Id";
-                //}
 
                 if (idSearch != null || titleSearch != null || podIdSearch != null || citySearch != null ||
                     stateSearch != null || countrySearch != null || categorySearch != null || jobBoardSearch != null || companySearch != null ||
@@ -415,8 +416,15 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.JobBoardFilter = jobBoardSearch;
                 ViewBag.StatusFilter = statusSearch;
 
-                var query = _unitOfWork.JobRepository.GetJobSForConversionListxx(idSearch, titleSearch, podIdSearch, citySearch, stateSearch, countrySearch, categorySearch, jobBoardSearch, divisionSearch, companySearch, statusSearch)
-                    .ApplySort(sortOrder);
+                var query = _unitOfWork.JobRepository.GetJobsForJobList();
+
+                query = PersistenceHelper.FilterByInput(idSearch, titleSearch, podIdSearch,
+                    citySearch, stateSearch, countrySearch, categorySearch, jobBoardSearch,
+                    divisionSearch, companySearch, statusSearch, query);
+
+                query = PersistenceHelper.SortForConversionList(query);
+
+                query = query.ApplySort(sortOrder);
 
                 var mappedResult = query.Select(j => new JobGridViewModel
                 {
@@ -510,8 +518,16 @@ namespace JobWindowNew.Web.Controllers
             }
 
             var sort = sortOrder;
-            var query = _unitOfWork.JobRepository.GetJobSForJobListxx(id, title, podId, city, state, country, category, jobBoard, division, company, status)
-                .ApplySort(sort);
+
+
+            var query = _unitOfWork.JobRepository.GetJobsForJobList();
+
+            query = PersistenceHelper.FilterByInput(id, title, podId, city, state,
+                country, category, jobBoard, division, company, status, query);
+
+            query = PersistenceHelper.SortForJobList(query);
+
+            query = query.ApplySort(sort);
 
             var pageNo = page ?? 1;
 

@@ -63,6 +63,7 @@
       <DependentUpon>201705030218125_CategoryActive.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Persistence\Helpers\PersistenceHelper.cs" />
     <Compile Include="Persistence\Repositories\ApplicantRepository.cs" />
     <Compile Include="Persistence\Repositories\CategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\CountryRepository.cs" />

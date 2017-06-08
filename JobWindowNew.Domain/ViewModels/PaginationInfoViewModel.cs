@@ -8,5 +8,7 @@
         public int TotalPages { get; set; }
         public string SortDirection { get; set; }
         public string SortField { get; set; }
+        public string IdFilter { get; set; }
+        public string TitleFilter { get; set; }
     }
 }
