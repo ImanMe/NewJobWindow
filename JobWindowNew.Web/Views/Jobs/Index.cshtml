@@ -150,7 +150,7 @@
                     <td class="">
                         @Html.DisplayFor(m => job.Id) 
                     </td>
-                    <td class="">@if (job.IsExpired)
+                    <td class="labelClass">@if (job.IsExpired)
                     {
                         <span class="label label-danger">Expired</span>
                     }
@@ -271,9 +271,8 @@
                                         async: true
                                     })
                                     .done(function() {
-                                        link.closest("a").fadeOut(function() {
-                                            $(this).attr('disabled', 'disabled');
-                                        });
+                                        link.closest("a").attr('disabled', 'disabled');                                                                                
+                                        
                                     })
                                     .fail(function() {
                                         alert("Try again!");
