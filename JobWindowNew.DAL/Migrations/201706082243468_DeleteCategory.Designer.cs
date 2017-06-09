@@ -7,13 +7,13 @@ namespace JobWindowNew.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CategoryActive : IMigrationMetadata
+    public sealed partial class DeleteCategory : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CategoryActive));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DeleteCategory));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705030218125_CategoryActive"; }
+            get { return "201706082243468_DeleteCategory"; }
         }
         
         string IMigrationMetadata.Source

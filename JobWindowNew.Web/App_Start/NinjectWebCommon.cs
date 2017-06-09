@@ -74,7 +74,6 @@ namespace JobWindowNew.Web.App_Start
             kernel.Bind<ICountryRepository>().To<CountryRepository>();
             kernel.Bind<IStateRepository>().To<StateRepository>();
             kernel.Bind<IJobOccupationMapRepository>().To<JobOccupationMapRepository>();
-            kernel.Bind<IJobCategoryMapRepository>().To<JobCategoryMapRepository>();
             kernel.Bind<IApplicantRepository>().To<ApplicantRepository>();
         }
     }

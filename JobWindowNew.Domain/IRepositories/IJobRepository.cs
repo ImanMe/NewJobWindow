@@ -8,23 +8,15 @@ namespace JobWindowNew.Domain.IRepositories
         Job GetJob(long jobId);
         void Add(Job job);
         void Update(Job job);
-        //IQueryable<Job> GetJobsForGrid();
-        IQueryable<JobCategoryMap> GetJobsForJobList();
+        IQueryable<Job> GetJobs();
         IQueryable<Job> GetDuplicateJobs();
         IQueryable<Job> GetJobsWithStats();
         Job GetJobForOnlineApply(long jobId);
-        //IQueryable<JobCategoryMap> GetJobsForIndexTest();
         void Delete(long id);
         void MassDelete(int id);
         void MassExpire(int id);
-        IQueryable<JobCategoryMap> GetJobSForJobListxx(string idSearch,
-            string titleSearch, string podIdSearch, string citySearch,
-            string stateSearch, string countrySearch, string categorySearch,
-            string jobBoardSearch, string divisionSearch, string companySearch, string statusSearch);
-
-        IQueryable<JobCategoryMap> GetJobSForConversionListxx(string idSearch,
-            string titleSearch, string podIdSearch, string citySearch,
-            string stateSearch, string countrySearch, string categorySearch,
-            string jobBoardSearch, string divisionSearch, string companySearch, string statusSearch);
+        IQueryable<Job> GetJobsForEverGreenReport();
+        IQueryable<Job> GetJobsForInActiveReport(int podId);
+        IQueryable<Job> GetJobsForActiveReport();
     }
 }

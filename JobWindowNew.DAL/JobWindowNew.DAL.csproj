@@ -58,9 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201705030218125_CategoryActive.cs" />
-    <Compile Include="Migrations\201705030218125_CategoryActive.Designer.cs">
-      <DependentUpon>201705030218125_CategoryActive.cs</DependentUpon>
+    <Compile Include="Migrations\201706082243468_DeleteCategory.cs" />
+    <Compile Include="Migrations\201706082243468_DeleteCategory.Designer.cs">
+      <DependentUpon>201706082243468_DeleteCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706090002365_CategoryAgain.cs" />
+    <Compile Include="Migrations\201706090002365_CategoryAgain.Designer.cs">
+      <DependentUpon>201706090002365_CategoryAgain.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Helpers\PersistenceHelper.cs" />
@@ -69,7 +73,6 @@
     <Compile Include="Persistence\Repositories\CountryRepository.cs" />
     <Compile Include="Persistence\Repositories\EmploymentTypeRepository.cs" />
     <Compile Include="Persistence\Repositories\JobBoardRepository.cs" />
-    <Compile Include="Persistence\Repositories\JobCategoryMapRepository.cs" />
     <Compile Include="Persistence\Repositories\JobOccupationMapRepository.cs" />
     <Compile Include="Persistence\Repositories\JobRepository.cs" />
     <Compile Include="Persistence\Repositories\OccupationRepository.cs" />
@@ -90,8 +93,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705030218125_CategoryActive.resx">
-      <DependentUpon>201705030218125_CategoryActive.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706082243468_DeleteCategory.resx">
+      <DependentUpon>201706082243468_DeleteCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706090002365_CategoryAgain.resx">
+      <DependentUpon>201706090002365_CategoryAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

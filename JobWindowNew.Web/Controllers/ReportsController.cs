@@ -25,7 +25,7 @@ namespace JobWindowNew.Web.Controllers
         {
             var factory = new EverGreenReportFactory();
 
-            var query = _unitOfWork.JobCategoryMapRepository.GetJobsForEverGreenReport();
+            var query = _unitOfWork.JobRepository.GetJobsForEverGreenReport();
             var result = query.ToList().Select(j => factory.Create(j));
 
             var gv = new GridView { DataSource = result };
@@ -65,28 +65,28 @@ namespace JobWindowNew.Web.Controllers
         {
             var factory = new EverGreenReportFactory();
 
-            var query = _unitOfWork.JobCategoryMapRepository
+            var query = _unitOfWork.JobRepository
                 .GetJobsForActiveReport();
             if (viewModel.PodId != 0)
             {
-                query = query.Where(j => j.Job.SchedulingPod == viewModel.PodId);
+                query = query.Where(j => j.SchedulingPod == viewModel.PodId);
             }
 
             if (viewModel.JobBoardId != 0)
             {
-                query = query.Where(j => j.Job.JobBoardId == viewModel.JobBoardId);
+                query = query.Where(j => j.JobBoardId == viewModel.JobBoardId);
             }
 
             query = query
-                .OrderBy(j => j.Job.SchedulingPod)
-                .ThenBy(j => j.Job.JobBoard.JobBoardName)
-                .ThenBy(j => j.Job.City)
+                .OrderBy(j => j.SchedulingPod)
+                .ThenBy(j => j.JobBoard.JobBoardName)
+                .ThenBy(j => j.City)
                 .ThenBy(j => j.Category.CategoryName)
-                .ThenByDescending(j => j.Job.ExpirationDate)
-                .ThenByDescending(j => j.Job.ApsCl)
-                .ThenByDescending(j => j.Job.Bob)
-                .ThenByDescending(j => j.Job.Intvs2)
-                .ThenByDescending(j => j.Job.Intvs);
+                .ThenByDescending(j => j.ExpirationDate)
+                .ThenByDescending(j => j.ApsCl)
+                .ThenByDescending(j => j.Bob)
+                .ThenByDescending(j => j.Intvs2)
+                .ThenByDescending(j => j.Intvs);
 
 
             var result = query.ToList().Select(j => factory.Create(j));
@@ -133,7 +133,7 @@ namespace JobWindowNew.Web.Controllers
 
             var factory = new EverGreenReportFactory();
 
-            var result = _unitOfWork.JobCategoryMapRepository
+            var result = _unitOfWork.JobRepository
                 .GetJobsForInActiveReport(pId)
                 .ToList()
                 .Select(j => factory.Create(j));

@@ -5,31 +5,31 @@ namespace JobWindowNew.Domain.ViewModels.Factories
 {
     public class EverGreenReportFactory
     {
-        public ReportViewModel Create(JobCategoryMap jobWithCategory)
+        public ReportViewModel Create(Job job)
         {
             var model = new ReportViewModel();
-            model.Id = jobWithCategory.JobId;
-            model.Title = jobWithCategory.Job.Title;
-            model.EverGreenId = jobWithCategory.Job.EverGreenId;
-            model.CloneFrom = jobWithCategory.Job.CloneFrom;
-            model.Country = jobWithCategory.Job.Country?.CountryName;
-            model.State = jobWithCategory.Job.State?.StateName;
-            model.City = jobWithCategory.Job.City;
-            model.PodId = jobWithCategory.Job.SchedulingPod;
-            model.ActivationDate = jobWithCategory.Job.ActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            model.ExpirationDate = jobWithCategory.Job.ExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            model.CompanyName = jobWithCategory.Job.CompanyName;
-            model.CreatedBy = jobWithCategory.Job.CreatedBy;
-            model.CreatedDate = jobWithCategory.Job.CreatedDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            model.Division = jobWithCategory.Job.Division;
-            model.JobBoard = jobWithCategory.Job.JobBoard?.JobBoardName;
-            model.Category = jobWithCategory.Category.CategoryName;
-            model.IsEverGreen = jobWithCategory.Job.IsEverGreen ? "Yes" : "No";
-            model.IsBestPerforming = jobWithCategory.Job.IsBestPerforming ? "Yes" : "No";
-            model.BOB = jobWithCategory.Job.Bob;
-            model.ApsCl = jobWithCategory.Job.ApsCl;
-            model.Intvs = jobWithCategory.Job.Intvs;
-            model.Intvs2 = jobWithCategory.Job.Intvs2;
+            model.Id = job.Id;
+            model.Title = job.Title;
+            model.EverGreenId = job.EverGreenId;
+            model.CloneFrom = job.CloneFrom;
+            model.Country = job.Country?.CountryName;
+            model.State = job.State?.StateName;
+            model.City = job.City;
+            model.PodId = job.SchedulingPod;
+            model.ActivationDate = job.ActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            model.ExpirationDate = job.ExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            model.CompanyName = job.CompanyName;
+            model.CreatedBy = job.CreatedBy;
+            model.CreatedDate = job.CreatedDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            model.Division = job.Division;
+            model.JobBoard = job.JobBoard?.JobBoardName;
+            model.Category = job.Category.CategoryName;
+            model.IsEverGreen = job.IsEverGreen ? "Yes" : "No";
+            model.IsBestPerforming = job.IsBestPerforming ? "Yes" : "No";
+            model.BOB = job.Bob;
+            model.ApsCl = job.ApsCl;
+            model.Intvs = job.Intvs;
+            model.Intvs2 = job.Intvs2;
 
             return model;
         }

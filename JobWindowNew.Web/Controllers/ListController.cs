@@ -27,30 +27,30 @@ namespace JobWindowNew.Web.Controllers
                 CurrentPage = 0,
             };
 
-            info.TotalCount = Convert.ToInt32(Math.Ceiling((double)(_unitOfWork.JobRepository.GetJobsForJobList().Count() / info.PageSize)));
+            info.TotalCount = Convert.ToInt32(Math.Ceiling((double)(_unitOfWork.JobRepository.GetJobs().Count() / info.PageSize)));
             info.TotalCount += 1;
             ViewBag.SortingPagingInfo = info;
 
-            var query = _unitOfWork.JobRepository.GetJobsForJobList()
-                .OrderBy(j => j.Job.Id).Take(info.PageSize).ToList();
+            var query = _unitOfWork.JobRepository.GetJobs()
+                .OrderBy(j => j.Id).Take(info.PageSize).ToList();
 
             var mappedResult = query.Select(j => new JobGridViewModel
             {
-                Id = j.Job.Id,
-                CloneFrom = j.Job.CloneFrom,
-                EverGreenId = j.Job.EverGreenId,
-                Title = j.Job.Title,
-                JobBoard = j.Job.JobBoard.JobBoardName,
-                City = j.Job.City,
-                StateName = j.Job.State.StateName,
-                CountryName = j.Job.Country.CountryCode,
-                CompanyName = j.Job.CompanyName,
-                SchedulingPod = j.Job.SchedulingPod,
-                Division = j.Job.Division,
-                CreatedBy = j.Job.CreatedBy,
-                IsExpired = j.Job.ExpirationDate < DateTime.Now,
+                Id = j.Id,
+                CloneFrom = j.CloneFrom,
+                EverGreenId = j.EverGreenId,
+                Title = j.Title,
+                JobBoard = j.JobBoard.JobBoardName,
+                City = j.City,
+                StateName = j.State.StateName,
+                CountryName = j.Country.CountryCode,
+                CompanyName = j.CompanyName,
+                SchedulingPod = j.SchedulingPod,
+                Division = j.Division,
+                CreatedBy = j.CreatedBy,
+                IsExpired = j.ExpirationDate < DateTime.Now,
                 Category = j.Category.CategoryName,
-                IsOnlineApply = j.Job.IsOnlineApply,
+                IsOnlineApply = j.IsOnlineApply,
             });
             return View(mappedResult);
         }
@@ -58,18 +58,18 @@ namespace JobWindowNew.Web.Controllers
         [HttpPost]
         public ActionResult Index(PaginationInfoViewModel info)
         {
-            IQueryable<JobCategoryMap> query = null;
+            IQueryable<Job> query = null;
 
-            query = _unitOfWork.JobRepository.GetJobsForJobList().OrderBy(j => j.Job.ExpirationDate);
+            query = _unitOfWork.JobRepository.GetJobs().OrderBy(j => j.ExpirationDate);
 
             if (!string.IsNullOrEmpty(info.IdFilter))
             {
-                query = query.Where(j => j.Job.Id.ToString().Contains(info.IdFilter));
+                query = query.Where(j => j.Id.ToString().Contains(info.IdFilter));
             }
 
             if (!string.IsNullOrEmpty(info.TitleFilter))
             {
-                query = query.Where(j => j.Job.Title.ToString().Contains(info.TitleFilter));
+                query = query.Where(j => j.Title.ToString().Contains(info.TitleFilter));
             }
 
             query = info.SortDirection == "ascending" ?
@@ -84,21 +84,21 @@ namespace JobWindowNew.Web.Controllers
 
             var mappedResult = result?.Select(j => new JobGridViewModel
             {
-                Id = j.Job.Id,
-                CloneFrom = j.Job.CloneFrom,
-                EverGreenId = j.Job.EverGreenId,
-                Title = j.Job.Title,
-                JobBoard = j.Job.JobBoard.JobBoardName,
-                City = j.Job.City,
-                StateName = j.Job.State.StateName,
-                CountryName = j.Job.Country.CountryCode,
-                CompanyName = j.Job.CompanyName,
-                SchedulingPod = j.Job.SchedulingPod,
-                Division = j.Job.Division,
-                CreatedBy = j.Job.CreatedBy,
-                IsExpired = j.Job.ExpirationDate < DateTime.Now,
+                Id = j.Id,
+                CloneFrom = j.CloneFrom,
+                EverGreenId = j.EverGreenId,
+                Title = j.Title,
+                JobBoard = j.JobBoard.JobBoardName,
+                City = j.City,
+                StateName = j.State.StateName,
+                CountryName = j.Country.CountryCode,
+                CompanyName = j.CompanyName,
+                SchedulingPod = j.SchedulingPod,
+                Division = j.Division,
+                CreatedBy = j.CreatedBy,
+                IsExpired = j.ExpirationDate < DateTime.Now,
                 Category = j.Category.CategoryName,
-                IsOnlineApply = j.Job.IsOnlineApply,
+                IsOnlineApply = j.IsOnlineApply,
             });
 
             return View(mappedResult);

@@ -56,9 +56,9 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.CategoriesSelected)
-                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.ListBoxFor(m => m.CategoriesSelected, new SelectList(Model.Categories, "Id", "CategoryName"), new { @class = "form-control custom-list-box fcoontrolform" })
-                        @Html.ValidationMessageFor(m => m.CategoriesSelected, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.CategoryId)
+                        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Id", "CategoryName"), "", new { @class = "form-control fcoontrolform" })
+                        @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -223,11 +223,22 @@
             <div class="clearfix"></div>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.JobBoardId)
-                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.JobBoardId, new SelectList(Model.JobBoards, "Id", "JobBoardName"), "", new { @class = "form-control fcoontrolform" })
-                        @Html.ValidationMessageFor(m => m.JobBoardId, "", new { @class = "text-danger" })
-                    </div>
+                    @if (Model.IsCloneAndEverGreen)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.JobBoardId)
+                            <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.JobBoardId, new SelectList(Model.JobBoards, "Id", "JobBoardName"), "", new {@class = "form-control fcoontrolform", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(m => m.JobBoardId, "", new {@class = "text-danger"})
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.JobBoardId)
+                            <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.DropDownListFor(m => m.JobBoardId, new SelectList(Model.JobBoards, "Id", "JobBoardName"), "", new { @class = "form-control fcoontrolform" })
+                            @Html.ValidationMessageFor(m => m.JobBoardId, "", new { @class = "text-danger" })
+                        </div>
+                    }
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -252,11 +263,22 @@
             <div class="clearfix"></div>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Division)
-                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.Division, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                        @Html.ValidationMessageFor(model => model.Division, "", new { @class = "text-danger" })
-                    </div>
+                    @if (Model.IsCloneAndEverGreen)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Division)
+                            <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.Division, new {htmlAttributes = new {@class = "form-control fcoontrolform", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Division, "", new {@class = "text-danger"})
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Division)
+                            <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.Division, new {htmlAttributes = new {@class = "form-control fcoontrolform"}})
+                            @Html.ValidationMessageFor(model => model.Division, "", new {@class = "text-danger"})
+                        </div>
+                    }
                 </div>
             </div>
             <div class="row">
@@ -284,13 +306,27 @@
                 <h3>Admin Section</h3>
                 <hr />
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Author)
-                            @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
-                            @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+                    @if (Model.IsCloneAndEverGreen)
+                    {
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Author)
+                                @Html.EditorFor(model => model.Author, new {htmlAttributes = new {@class = "form-control fcoontrolform", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Author, "", new {@class = "text-danger"})
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Author)
+                                @Html.EditorFor(model => model.Author, new {htmlAttributes = new {@class = "form-control fcoontrolform"}})
+                                @Html.ValidationMessageFor(model => model.Author, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+                    }
+                    
                     <div class="col-md-4">
 
                     </div>

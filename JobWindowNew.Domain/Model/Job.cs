@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JobWindowNew.Domain.Model
 {
@@ -120,6 +121,10 @@ namespace JobWindowNew.Domain.Model
 
         public bool IsActive { get; set; }
 
-        public string Category { get; set; }
+        public int? CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public Category Category { get; set; }
+
     }
 }

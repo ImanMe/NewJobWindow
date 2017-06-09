@@ -110,6 +110,12 @@ namespace JobWindowNew.Domain.ViewModels
 
         public IEnumerable<JobBoard> JobBoards { get; set; }
 
+        [DisplayName("Category")]
+        [Required]
+        public int CategoryId { get; set; }
+
+        public IEnumerable<Category> Categories { get; set; }
+
         [Display(Name = "Employment Type")]
         public int EmploymentTypeId { get; set; }
 
@@ -132,12 +138,6 @@ namespace JobWindowNew.Domain.ViewModels
 
         public IEnumerable<State> States { get; set; }
 
-        [Required]
-        [Display(Name = "Categories")]
-        public int[] CategoriesSelected { get; set; }
-
-        public IEnumerable<Category> Categories { get; set; }
-
         [Display(Name = "Occupations")]
         public int[] OccupationsSelected { get; set; }
 
@@ -159,5 +159,7 @@ namespace JobWindowNew.Domain.ViewModels
 
         [Range(0, 999999)]
         public int? ApsCl { get; set; }
+
+        public bool IsCloneAndEverGreen { get; set; }
     }
 }

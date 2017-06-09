@@ -1,5 +1,4 @@
-﻿using JobWindowNew.DAL.Persistence.Helpers;
-using JobWindowNew.Domain.IRepositories;
+﻿using JobWindowNew.Domain.IRepositories;
 using JobWindowNew.Domain.Model;
 using System;
 using System.Data.Entity;
@@ -16,14 +15,20 @@ namespace JobWindowNew.DAL.Persistence.Repositories
             _context = context;
         }
 
+        public void Add(Job job)
+        {
+            _context.Jobs.Add(job);
+        }
+
         public void Update(Job job)
         {
             _context.Entry(job).State = EntityState.Modified;
         }
 
-        public void Add(Job job)
+        public void Delete(long id)
         {
-            _context.Jobs.Add(job);
+            var job = _context.Jobs.Find(id);
+            if (job != null) _context.Jobs.Remove(job);
         }
 
         public Job GetJob(long jobId)
@@ -69,25 +74,65 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .ThenBy(j => j.SchedulingPod)
                 .ThenBy(j => j.Title)
                 .ThenBy(j => j.Id);
-
             return result;
         }
 
-        public IQueryable<JobCategoryMap> GetJobsForJobList()
+        public IQueryable<Job> GetJobsForEverGreenReport()
         {
-            return _context.JobCategoryMaps
-                .GroupBy(m => m.Job.Id).SelectMany(gr => gr.Take(1))
-                .Include(m => m.Job)
-                .Include(m => m.Job.Country)
-                .Include(m => m.Job.State)
-                .Include(m => m.Job.JobBoard)
-                .Include(m => m.Category);
+            return _context.Jobs
+                .Where(j => j.IsEverGreen)
+                    .Include(j => j.Country)
+                    .Include(j => j.State)
+                    .Include(j => j.EmploymentType)
+                    .Include(j => j.JobBoard)
+                    .Include(j => j.SalaryType)
+                    .Include(j => j.Category);
         }
 
-        public void Delete(long id)
+        public IQueryable<Job> GetJobsForActiveReport()
         {
-            var job = _context.Jobs.Find(id);
-            if (job != null) _context.Jobs.Remove(job);
+            return _context.Jobs
+                .Where(j => j.ExpirationDate > DateTime.Now)
+                .Include(j => j.Country)
+                .Include(j => j.State)
+                .Include(j => j.EmploymentType)
+                .Include(j => j.JobBoard)
+                .Include(j => j.SalaryType)
+                .Include(j => j.Category)
+                .Where(j => j.IsEverGreen == false);
+        }
+
+
+        public IQueryable<Job> GetJobsForInActiveReport(int podId)
+        {
+            return _context.Jobs
+                .Where(j => j.SchedulingPod == podId)
+                .Where(j => j.IsEverGreen == false)
+                .Where(j => j.ExpirationDate < DateTime.Now)
+                .Include(m => m.Country)
+                .Include(m => m.State)
+                .Include(m => m.EmploymentType)
+                .Include(m => m.JobBoard)
+                .Include(m => m.SalaryType)
+                .Include(m => m.Category)
+                .OrderBy(m => m.SchedulingPod)
+                .ThenBy(m => m.JobBoard.JobBoardName)
+                .ThenBy(m => m.City)
+                .ThenBy(m => m.Category.CategoryName)
+                .ThenBy(m => m.ExpirationDate)
+                .ThenByDescending(j => j.ApsCl)
+                .ThenByDescending(j => j.Bob)
+                .ThenByDescending(j => j.Intvs2)
+                .ThenByDescending(j => j.Intvs);
+        }
+
+        public IQueryable<Job> GetJobs()
+        {
+            return _context.Jobs
+                .Include(m => m.Country)
+                .Include(m => m.State)
+                .Include(m => m.JobBoard)
+                .Include(m => m.Category);
         }
 
         public void MassDelete(int id)
@@ -109,42 +154,5 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 });
 
         }
-
-        public IQueryable<JobCategoryMap> GetJobSForJobListxx(string idSearch = "", string titleSearch = "", string podIdSearch = "", string citySearch = "", string stateSearch = "", string countrySearch = "", string categorySearch = "", string jobBoardSearch = "", string divisionSearch = "", string companySearch = "", string statusSearch = "")
-        {
-            var result = _context.JobCategoryMaps
-                .GroupBy(m => m.Job.Id).SelectMany(gr => gr.Take(1))
-                .Include(m => m.Job)
-                .Include(m => m.Job.Country)
-                .Include(m => m.Job.State)
-                .Include(m => m.Job.JobBoard)
-                .Include(m => m.Category);
-
-            result = PersistenceHelper.FilterByInput(idSearch, titleSearch, podIdSearch, citySearch, stateSearch, countrySearch, categorySearch, jobBoardSearch, divisionSearch, companySearch, statusSearch, result);
-            result = PersistenceHelper.SortForJobList(result);
-
-
-            return result;
-        }
-
-
-        public IQueryable<JobCategoryMap> GetJobSForConversionListxx(string idSearch = "", string titleSearch = "", string podIdSearch = "", string citySearch = "", string stateSearch = "", string countrySearch = "", string categorySearch = "", string jobBoardSearch = "", string divisionSearch = "", string companySearch = "", string statusSearch = "")
-        {
-            var result = _context.JobCategoryMaps
-                .GroupBy(m => m.Job.Id).SelectMany(gr => gr.Take(1))
-                .Include(m => m.Job)
-                .Include(m => m.Job.Country)
-                .Include(m => m.Job.State)
-                .Include(m => m.Job.JobBoard)
-                .Include(m => m.Category);
-
-            result = PersistenceHelper.FilterByInput(idSearch, titleSearch, podIdSearch, citySearch, stateSearch, countrySearch, categorySearch, jobBoardSearch, divisionSearch, companySearch, statusSearch, result);
-            result = PersistenceHelper.SortForConversionList(result);
-            return result;
-        }
-
-
-
-
     }
 }

@@ -62,7 +62,6 @@
     <Compile Include="IRepositories\ICountryRepository.cs" />
     <Compile Include="IRepositories\IEmploymentTypeRepository.cs" />
     <Compile Include="IRepositories\IJobBoardRepository.cs" />
-    <Compile Include="IRepositories\IJobCategoryMapRepository.cs" />
     <Compile Include="IRepositories\IJobRepository.cs" />
     <Compile Include="IRepositories\IOccupationRepository.cs" />
     <Compile Include="IRepositories\ISalaryTypeRepository.cs" />
