@@ -82,7 +82,7 @@ namespace JobWindowNew.Web.Controllers
                 .ThenBy(j => j.JobBoard.JobBoardName)
                 .ThenBy(j => j.City)
                 .ThenBy(j => j.Category.CategoryName)
-                .ThenByDescending(j => j.ExpirationDate)
+                .ThenBy(j => j.ExpirationDate)
                 .ThenByDescending(j => j.ApsCl)
                 .ThenByDescending(j => j.Bob)
                 .ThenByDescending(j => j.Intvs2)

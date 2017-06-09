@@ -92,13 +92,13 @@ namespace JobWindowNew.DAL.Persistence.Repositories
         public IQueryable<Job> GetJobsForActiveReport()
         {
             return _context.Jobs
-                .Where(j => j.ExpirationDate > DateTime.Now)
                 .Include(j => j.Country)
                 .Include(j => j.State)
                 .Include(j => j.EmploymentType)
                 .Include(j => j.JobBoard)
                 .Include(j => j.SalaryType)
                 .Include(j => j.Category)
+                .Where(j => j.ExpirationDate > DateTime.Now)
                 .Where(j => j.IsEverGreen == false);
         }
 
