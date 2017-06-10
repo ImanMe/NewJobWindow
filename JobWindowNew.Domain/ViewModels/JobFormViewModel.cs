@@ -43,10 +43,12 @@ namespace JobWindowNew.Domain.ViewModels
         public bool IsEverGreen { get; set; }
 
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Insert a valid number")]
         [Display(Name = "Scheduling Pod")]
         public int? SchedulingPod { get; set; }
 
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Insert a valid number")]
         [Display(Name = "Office Id")]
         public int? OfficeId { get; set; }
 
@@ -56,7 +58,8 @@ namespace JobWindowNew.Domain.ViewModels
         [Display(Name = "Maximum Experience")]
         public short? MaximumExperience { get; set; }
 
-        [StringLength(255, MinimumLength = 0)]
+        [Required]
+        [StringLength(255)]
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
 

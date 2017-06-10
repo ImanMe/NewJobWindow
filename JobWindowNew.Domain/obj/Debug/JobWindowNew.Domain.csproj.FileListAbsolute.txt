@@ -54,3 +54,17 @@ C:\NewJobWindow\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Iden
 C:\NewJobWindow\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.csprojResolveAssemblyReference.cache
 C:\NewJobWindow\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.dll
 C:\NewJobWindow\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.pdb
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.dll.config
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.pdb
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.xml
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\V1\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.csprojResolveAssemblyReference.cache
+C:\V1\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.pdb
