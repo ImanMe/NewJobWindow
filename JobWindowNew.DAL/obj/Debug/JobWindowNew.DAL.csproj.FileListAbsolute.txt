@@ -111,3 +111,4 @@ C:\V1\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.Catego
 C:\V1\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.csproj.GenerateResource.Cache
 C:\V1\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.dll
 C:\V1\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.pdb
+C:\V1\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.CategoryMandatory.resources

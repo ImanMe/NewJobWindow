@@ -287,7 +287,7 @@ th,td {
 	vertical-align:middle!important;
 	
 }
-.jobtable > tbody > tr > th {
+.jobtable > thead > tr > th {
 	padding-bottom: 10px;
 	padding-top: 10px;
     padding-left: 3px;
@@ -300,7 +300,7 @@ th,td {
 	
 	
 }
-.jobtable > tbody > tr > th > a {
+.jobtable > thead > tr > th > a {
 	color: #737373;
 }
 
@@ -312,7 +312,7 @@ th,td {
     text-decoration: none;
 }
 
-.jobtable > tbody > tr > th > a:hover {
+.jobtable > thead > tr > th > a:hover {
 	color: #737373;
 	text-decoration: none;
 }
@@ -328,7 +328,7 @@ th,td {
 
 
 
-.jobtable >tbody >.inputtr > th{
+.jobtable >thead >.inputtr > th{
 	
 	padding-left: 2px;
     padding-bottom: 0;
@@ -340,7 +340,7 @@ th,td {
 
 
 
-.jobtable >tbody >.inputtr > th > input{
+.jobtable >thead >.inputtr > th > input{
 	/*border: 1px solid #EF6C00;*/
 	border-radius: 0;
 	border: none;
@@ -352,7 +352,7 @@ th,td {
 	border-top: none;
 }
 
-.jobtable >tbody >.inputtr > th > input:focus{
+.jobtable >thead >.inputtr > th > input:focus{
 	/*border: 1px solid #EF6C00;*/
 	border-radius: 2px;
 	border-color: gray;

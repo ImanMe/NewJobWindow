@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201706090002365_CategoryAgain.Designer.cs">
       <DependentUpon>201706090002365_CategoryAgain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706100056440_CategoryMandatory.cs" />
+    <Compile Include="Migrations\201706100056440_CategoryMandatory.Designer.cs">
+      <DependentUpon>201706100056440_CategoryMandatory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Helpers\PersistenceHelper.cs" />
     <Compile Include="Persistence\Repositories\ApplicantRepository.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706090002365_CategoryAgain.resx">
       <DependentUpon>201706090002365_CategoryAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706100056440_CategoryMandatory.resx">
+      <DependentUpon>201706100056440_CategoryMandatory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
