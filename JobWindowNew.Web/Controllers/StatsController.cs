@@ -61,10 +61,6 @@ namespace JobWindowNew.Web.Controllers
             {
                 Id = j.Id,
                 Title = j.Title,
-                CompanyName = j.CompanyName,
-                CountryName = j.Country.CountryName,
-                StateName = j.State.StateName,
-                City = j.City,
                 SchedulingPod = j.SchedulingPod,
                 JobBoard = j.JobBoard.JobBoardName,
                 ApsCl = j.ApsCl,

@@ -33,24 +33,13 @@
    {
        <div class="tablewrap">
            <table style="font-size: 12px;" class="table table-striped table-condensed stattable">
+               <thead>
                <tr>
                    <th>
                        Id
                    </th>
                    <th>
                        Title
-                   </th>
-                   <th>
-                       City
-                   </th>
-                   <th>
-                       State
-                   </th>
-                   <th>
-                       Country
-                   </th>
-                   <th>
-                       Company
                    </th>
                    <th>
                        Pod Id
@@ -66,8 +55,8 @@
                    </th>
                    <th>
                        #ApsCL
-                   </th> 
-                   
+                   </th>
+
                    <th>
                        #Intvs
                    </th>
@@ -76,57 +65,47 @@
                    </th>
                    <th>
                        #BOB
-                   </th>              
+                   </th>
 
                </tr>
-
+               </thead>
+               <tbody>
                @for (var i = 0; i < Model.Count; i++)
                {
-                <tr class="inputtr">
-                    @Html.HiddenFor(model => model[i].Id)
-                    <td>
-                        @Html.DisplayFor(model => model[i].Id, new { @id = "jobid" })
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model[i].Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model[i].City)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model[i].StateName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model[i].CountryName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model[i].CompanyName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model[i].SchedulingPod)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model[i].ActivationDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model[i].ExpirationDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model[i].JobBoard)
-                    </td>
-                    <td class="inputtd">
-                        @Html.TextBoxFor(model => model[i].ApsCl, new { id = "apsclid", @class = "form-control" })
-                    </td>
-                    <td class="inputtd">
-                        @Html.TextBoxFor(model => model[i].Intvs, new { id = "intvsid", @class = "form-control" })
-                    </td>
-                    <td class="inputtd">
-                        @Html.TextBoxFor(model => model[i].Intvs2, new { id = "intvs2id", @class = "form-control" })
-                    </td>                    
-                    <td class="inputtd">
-                        @Html.TextBoxFor(model => model[i].Bob, new { id = "bobid", @class = "form-control" })
-                    </td></tr>
+                   <tr class="inputtr">
+                       @Html.HiddenFor(model => model[i].Id)
+                       <td>
+                           @Html.DisplayFor(model => model[i].Id, new {@id = "jobid"})
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].Title)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].SchedulingPod)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].ActivationDate)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].ExpirationDate)
+                       </td>
+                       <td>
+                           @Html.DisplayFor(model => model[i].JobBoard)
+                       </td>
+                       <td class="inputtd">
+                           @Html.TextBoxFor(model => model[i].ApsCl, new {id = "apsclid", @class = "form-control"})
+                       </td>
+                       <td class="inputtd">
+                           @Html.TextBoxFor(model => model[i].Intvs, new {id = "intvsid", @class = "form-control"})
+                       </td>
+                       <td class="inputtd">
+                           @Html.TextBoxFor(model => model[i].Intvs2, new {id = "intvs2id", @class = "form-control"})
+                       </td>
+                       <td class="inputtd">
+                           @Html.TextBoxFor(model => model[i].Bob, new {id = "bobid", @class = "form-control"})
+                       </td></tr>
                }
+               </tbody>
            </table>
        </div>
         <input style="display: none;" type="submit" name="submitButton" value="Save" class="btn btn-primary" id="" />

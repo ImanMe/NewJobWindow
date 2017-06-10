@@ -11,10 +11,6 @@ namespace JobWindowNew.Domain.ViewModels.Factories
             {
                 Id = job.Id,
                 Title = job.Title,
-                CompanyName = job.CompanyName,
-                CountryName = job.Country.CountryName,
-                StateName = job.State.StateName,
-                City = job.City,
                 SchedulingPod = job.SchedulingPod,
                 JobBoard = job.JobBoard.JobBoardName,
                 ActivationDate = job.ActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
