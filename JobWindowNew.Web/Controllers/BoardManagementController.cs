@@ -1,8 +1,7 @@
 ﻿using JobWindowNew.Domain;
-using JobWindowNew.Domain.Model;
 using JobWindowNew.Domain.ViewModels;
+using JobWindowNew.Domain.ViewModels.Factories;
 using System.Linq;
-using System.Linq.Dynamic;
 using System.Web.Mvc;
 
 namespace JobWindowNew.Web.Controllers
@@ -15,19 +14,16 @@ namespace JobWindowNew.Web.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        // GET: BoardManagement
+
         [HttpGet]
         [Authorize(Roles = "Root, Admin")]
         public ActionResult Index()
         {
-            var query = _unitOfWork.JobBoardRepository.GetJobBoards().AsQueryable();
-            var result = query.Select(j => new JobBoardViewModel
-            {
-                Id = j.Id,
-                JobBoardName = j.JobBoardName,
-                IsEmailApply = j.IsEmailApply,
-                IsOnlineApply = j.IsOnlineApply
-            });
+            var query = _unitOfWork.JobBoardRepository
+                .GetJobBoards().AsQueryable();
+
+            var result = query.ToList()
+                .Select(j => JobBoardFactory.Create(j, ""));
 
             return View(result);
         }
@@ -36,8 +32,9 @@ namespace JobWindowNew.Web.Controllers
         [Authorize(Roles = "Root, Admin")]
         public ActionResult Create()
         {
-            var viewModel = new JobBoardViewModel { Action = "Create" };
-            return View("BoardManagementForm", viewModel);
+            ;
+            return View("BoardManagementForm",
+                new JobBoardViewModel { Action = "Create" });
         }
 
         [HttpPost]
@@ -45,18 +42,12 @@ namespace JobWindowNew.Web.Controllers
         public ActionResult Create(JobBoardViewModel viewModel)
         {
             if (!ModelState.IsValid)
-            {
                 return View("BoardManagementForm", viewModel);
-            }
 
-            var jobBoard = new JobBoard
-            {
-                JobBoardName = viewModel.JobBoardName,
-                IsEmailApply = viewModel.IsEmailApply,
-                IsOnlineApply = viewModel.IsOnlineApply
-            };
+            var jobBoard = JobBoardFactory.Create(viewModel);
 
             _unitOfWork.JobBoardRepository.Add(jobBoard);
+
             _unitOfWork.Complete();
 
             return RedirectToAction("Index");
@@ -67,15 +58,9 @@ namespace JobWindowNew.Web.Controllers
         public ActionResult Edit(int id)
         {
             var jobBoard = _unitOfWork.JobBoardRepository.GetJobBoard(id);
-            var viewModel = new JobBoardViewModel
-            {
-                Action = "Edit",
-                JobBoardName = jobBoard.JobBoardName,
-                IsOnlineApply = jobBoard.IsOnlineApply,
-                IsEmailApply = jobBoard.IsEmailApply
-            };
 
-            return View("BoardManagementForm", viewModel);
+            return View("BoardManagementForm",
+                JobBoardFactory.Create(jobBoard, "Edit"));
         }
 
         [HttpPost]
@@ -83,19 +68,12 @@ namespace JobWindowNew.Web.Controllers
         public ActionResult Edit(JobBoardViewModel viewModel)
         {
             if (!ModelState.IsValid)
-            {
                 return View("BoardManagementForm", viewModel);
-            }
 
-            var jobBoard = new JobBoard
-            {
-                Id = viewModel.Id,
-                JobBoardName = viewModel.JobBoardName,
-                IsOnlineApply = viewModel.IsOnlineApply,
-                IsEmailApply = viewModel.IsEmailApply
-            };
+            var jobBoard = JobBoardFactory.Create(viewModel);
 
             _unitOfWork.JobBoardRepository.Update(jobBoard);
+
             _unitOfWork.Complete();
 
             return RedirectToAction("Index");
@@ -106,6 +84,7 @@ namespace JobWindowNew.Web.Controllers
         public ActionResult Delete(int id)
         {
             _unitOfWork.JobBoardRepository.Delete(id);
+
             _unitOfWork.Complete();
 
             return RedirectToAction("Index");
