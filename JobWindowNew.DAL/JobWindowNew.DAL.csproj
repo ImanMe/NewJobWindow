@@ -66,9 +66,9 @@
     <Compile Include="Migrations\201706090002365_CategoryAgain.Designer.cs">
       <DependentUpon>201706090002365_CategoryAgain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706100056440_CategoryMandatory.cs" />
-    <Compile Include="Migrations\201706100056440_CategoryMandatory.Designer.cs">
-      <DependentUpon>201706100056440_CategoryMandatory.cs</DependentUpon>
+    <Compile Include="Migrations\201706101549228_JobBoardChange.cs" />
+    <Compile Include="Migrations\201706101549228_JobBoardChange.Designer.cs">
+      <DependentUpon>201706101549228_JobBoardChange.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Helpers\PersistenceHelper.cs" />
@@ -103,8 +103,8 @@
     <EmbeddedResource Include="Migrations\201706090002365_CategoryAgain.resx">
       <DependentUpon>201706090002365_CategoryAgain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706100056440_CategoryMandatory.resx">
-      <DependentUpon>201706100056440_CategoryMandatory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706101549228_JobBoardChange.resx">
+      <DependentUpon>201706101549228_JobBoardChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

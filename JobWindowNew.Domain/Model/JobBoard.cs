@@ -13,5 +13,9 @@ namespace JobWindowNew.Domain.Model
         public int? SId { get; set; }
 
         public int EstreamJBsID { get; set; }
+
+        public bool IsOnlineApply { get; set; }
+
+        public bool IsEmailApply { get; set; }
     }
 }

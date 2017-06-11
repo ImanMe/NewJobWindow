@@ -68,3 +68,14 @@ C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.Entit
 C:\V1\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.csprojResolveAssemblyReference.cache
 C:\V1\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.dll
 C:\V1\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.pdb
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.Helpers.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.Razor.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.Razor.dll
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.Helpers.xml
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.Razor.xml
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.xml
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\V1\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.Razor.xml

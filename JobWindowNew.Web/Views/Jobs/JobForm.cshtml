@@ -13,8 +13,11 @@
 
     @using (Html.BeginForm(@Model.Action, "Jobs"))
     {
+        
         @Html.AntiForgeryToken()
         @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.IsOnlineApply)
+        
         <div class="">
             @*<hr />*@
             <div style="margin-top: 20px;" class="alert alert-warning alert-dismissable">
@@ -291,7 +294,7 @@
                     </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
+            @*<div class="clearfix"></div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -300,7 +303,7 @@
                         @Html.ValidationMessageFor(model => model.IsOnlineApply, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            </div>
+            </div>*@
             <div class="clearfix"></div>
             @if (User.IsInRole("Root") || User.IsInRole("Admin"))
             {

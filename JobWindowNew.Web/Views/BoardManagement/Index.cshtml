@@ -1,0 +1,79 @@
+﻿@model IEnumerable<JobWindowNew.Domain.ViewModels.JobBoardViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <h4 style="margin-left: 20px;" class="pull-left">Job Boards Management</h4>
+    <div class="pull-right">
+        <a style="margin-right: 40px;" title="Create New" class="btn btn-warning createNew-btn" , href="@Url.Action("Create")">
+            Create New
+        </a>
+    </div>
+</div>
+
+
+
+
+
+<div class="tablewrap">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.JobBoardName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsOnlineApply)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsEmailApply)
+                </th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                //@Html.HiddenFor(modelItem => item.Id)
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobBoardName)
+                    </td>
+                    <td>
+                        @if (item.IsOnlineApply)
+                        {
+                            <span style="font-size: large"><i class="glyphicon glyphicon-ok"></i></span>
+                        }
+                        else
+                        {
+                            <span style="font-size: large"><i class="glyphicon glyphicon-remove"></i></span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.IsEmailApply)
+                        {
+                            <span style="font-size: large"><i class="glyphicon glyphicon-ok"></i></span>
+                        }
+                        else
+                        {
+                            <span style="font-size: large"><i class="glyphicon glyphicon-remove"></i></span>
+                        }
+                    </td>
+                    <td>
+                        <a title="Edit" class="btn btn-default btn-sm" , href="@Url.Action("Edit", new {@id = item.Id})">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a title="Delete" onclick="return confirm('Are sure wants to Delete this JobBoard?');" class="btn btn-danger btn-sm" , href="@Url.Action("Delete", new {@id = item.Id})">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

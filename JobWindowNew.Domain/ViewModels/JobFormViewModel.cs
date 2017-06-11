@@ -1,4 +1,5 @@
-﻿using JobWindowNew.Domain.Model;
+﻿using JobWindowNew.Domain.Helpers;
+using JobWindowNew.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JobWindowNew.Domain.ViewModels
 {
-    public class JobFormViewModel
+    public class JobFormViewModel : IValidatableObject
     {
         public string Action { get; set; }
 
@@ -76,7 +77,6 @@ namespace JobWindowNew.Domain.ViewModels
         [Display(Name = "Email To")]
         public string EmailTo { get; set; }
 
-
         [Display(Name = "Created By")]
         public string CreatedBy { get; set; }
 
@@ -103,7 +103,6 @@ namespace JobWindowNew.Domain.ViewModels
         [Display(Name = "Is Best Performing")]
         public bool IsBestPerforming { get; set; }
 
-        [Display(Name = "Is Online Apply")]
         public bool IsOnlineApply { get; set; }
 
         public string Author { get; set; }
@@ -112,6 +111,8 @@ namespace JobWindowNew.Domain.ViewModels
         public int JobBoardId { get; set; }
 
         public IEnumerable<JobBoard> JobBoards { get; set; }
+
+        public bool IsEmailApply { get; set; }
 
         [DisplayName("Category")]
         [Required]
@@ -164,5 +165,18 @@ namespace JobWindowNew.Domain.ViewModels
         public int? ApsCl { get; set; }
 
         public bool IsCloneAndEverGreen { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (IsEmailApply && string.IsNullOrEmpty(EmailTo))
+            {
+                yield return new ValidationResult("Email Field is Required", new[] { "EmailTo" });
+            }
+
+            if (IsEmailApply && !string.IsNullOrEmpty(EmailTo) && !ValidationCheck.ValidateEmail(EmailTo))
+            {
+                yield return new ValidationResult("Email is not in valid format", new[] { "EmailTo" });
+            }
+        }
     }
 }

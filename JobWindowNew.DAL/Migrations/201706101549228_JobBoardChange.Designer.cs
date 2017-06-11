@@ -7,13 +7,13 @@ namespace JobWindowNew.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CategoryMandatory : IMigrationMetadata
+    public sealed partial class JobBoardChange : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CategoryMandatory));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(JobBoardChange));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706100056440_CategoryMandatory"; }
+            get { return "201706101549228_JobBoardChange"; }
         }
         
         string IMigrationMetadata.Source

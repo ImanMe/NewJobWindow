@@ -613,6 +613,11 @@ namespace JobWindowNew.Web.Controllers
         [ValidateInput(false)]
         public ActionResult Create(JobFormViewModel viewModel)
         {
+            ModelState.Clear();
+            var jobBoard = _unitOfWork.JobBoardRepository.GetJobBoard(viewModel.JobBoardId);
+            viewModel.IsEmailApply = jobBoard.IsEmailApply;
+            viewModel.IsOnlineApply = jobBoard.IsOnlineApply;
+            this.TryValidateModel(viewModel);
             if (!ModelState.IsValid)
             {
                 viewModel = InitializeJobViewModel(viewModel);
@@ -666,6 +671,11 @@ namespace JobWindowNew.Web.Controllers
         [ValidateInput(false)]
         public ActionResult Edit(JobFormViewModel viewModel)
         {
+            ModelState.Clear();
+            var jobBoard = _unitOfWork.JobBoardRepository.GetJobBoard(viewModel.JobBoardId);
+            viewModel.IsEmailApply = jobBoard.IsEmailApply;
+            viewModel.IsOnlineApply = jobBoard.IsOnlineApply;
+            this.TryValidateModel(viewModel);
             if (!ModelState.IsValid)
             {
                 viewModel = InitializeJobViewModel(viewModel);
@@ -730,6 +740,11 @@ namespace JobWindowNew.Web.Controllers
         [ValidateInput(false)]
         public ActionResult Clone(JobFormViewModel viewModel)
         {
+            ModelState.Clear();
+            var jobBoard = _unitOfWork.JobBoardRepository.GetJobBoard(viewModel.JobBoardId);
+            viewModel.IsEmailApply = jobBoard.IsEmailApply;
+            viewModel.IsOnlineApply = jobBoard.IsOnlineApply;
+            this.TryValidateModel(viewModel);
             if (!ModelState.IsValid)
             {
                 viewModel = InitializeJobViewModel(viewModel);
