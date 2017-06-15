@@ -39,7 +39,7 @@
                        Id
                    </th>
                    <th>
-                       Title
+                   Title<span title="Expand" style="padding: 0 3px; font-size: smaller; float: right" class="btn btn-primary" id="titleButton"><i class="glyphicon glyphicon-resize-horizontal"></i></span>
                    </th>
                    <th>
                        Pod Id
@@ -77,9 +77,8 @@
                        <td>
                            @Html.DisplayFor(model => model[i].Id, new {@id = "jobid"})
                        </td>
-                       <td>
-                           @Html.DisplayFor(model => model[i].Title)
-                       </td>
+                       <td id="fullTitle" class="titlec displayNone">@Html.DisplayFor(model => model[i].Title)</td>
+                       <td class="halfTitle"><a id="titleLink" href="#" title="@Html.DisplayFor(model => model[i].Title)">@Html.DisplayFor(model => model[i].TitleTruncated)</a></td>
                        <td>
                            @Html.DisplayFor(model => model[i].SchedulingPod)
                        </td>
@@ -121,6 +120,13 @@
 
         @section Scripts{
             <script>
+                $(document).ready(function () {
+                    $("#titleButton").click(function () {
+                        $(".titlec.displayNone").toggle();
+                        $(".halfTitle").toggle();
+                    });
+                });
+
                 $(".BookName").click(function (event) {
                     event.preventDefault();
                     var url = '@Url.Action("Create", "Stats", new {podIdSearch = "PARENT_ID"})';

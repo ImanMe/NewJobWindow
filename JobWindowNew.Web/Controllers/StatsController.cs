@@ -61,6 +61,7 @@ namespace JobWindowNew.Web.Controllers
             {
                 Id = j.Id,
                 Title = j.Title,
+                TitleTruncated = j.Title.Substring(0, 20),
                 SchedulingPod = j.SchedulingPod,
                 JobBoard = j.JobBoard.JobBoardName,
                 ApsCl = j.ApsCl,

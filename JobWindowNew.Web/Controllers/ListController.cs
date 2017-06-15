@@ -21,13 +21,14 @@ namespace JobWindowNew.Web.Controllers
         {
             var info = new PaginationInfoViewModel
             {
-                SortField = "job.Id",
+                SortField = "Id",
                 SortDirection = "ascending",
                 PageSize = 10,
                 CurrentPage = 0,
             };
 
-            info.TotalCount = Convert.ToInt32(Math.Ceiling((double)(_unitOfWork.JobRepository.GetJobs().Count() / info.PageSize)));
+            var totalNumberOfPages = _unitOfWork.JobRepository.GetJobs().Count();
+            info.TotalCount = Convert.ToInt32(Math.Ceiling((double)(totalNumberOfPages / info.PageSize)));
             info.TotalCount += 1;
             ViewBag.SortingPagingInfo = info;
 
@@ -103,5 +104,7 @@ namespace JobWindowNew.Web.Controllers
 
             return View(mappedResult);
         }
+
     }
+
 }

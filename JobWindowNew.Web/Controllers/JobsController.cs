@@ -988,6 +988,7 @@ namespace JobWindowNew.Web.Controllers
                 viewModel.City = null;
                 viewModel.StateId = 0;
                 viewModel.ZipCode = null;
+                viewModel.EmailTo = null;
                 viewModel.SchedulingPod = 0;
                 viewModel.OfficeId = 0;
             }

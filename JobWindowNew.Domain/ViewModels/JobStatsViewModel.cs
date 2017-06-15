@@ -7,6 +7,7 @@ namespace JobWindowNew.Domain.ViewModels
     {
         public long Id { get; set; }
         public string Title { get; set; }
+        public string TitleTruncated { get; set; }
         public int? SchedulingPod { get; set; }
         public string ActivationDate { get; set; }
         public string ExpirationDate { get; set; }

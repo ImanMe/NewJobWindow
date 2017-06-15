@@ -110,6 +110,7 @@
     <Compile Include="ViewModels\ApplicantViewModel.cs" />
     <Compile Include="ViewModels\AssignRoleViewModel.cs" />
     <Compile Include="ViewModels\Factories\JobBoardFactory.cs" />
+    <Compile Include="ViewModels\Factories\JobFormFactory.cs" />
     <Compile Include="ViewModels\JobBoardViewModel.cs" />
     <Compile Include="ViewModels\Factories\JobListFactory.cs" />
     <Compile Include="ViewModels\JobListExportViewModel.cs" />
