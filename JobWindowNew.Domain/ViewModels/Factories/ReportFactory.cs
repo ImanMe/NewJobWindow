@@ -16,6 +16,9 @@ namespace JobWindowNew.Domain.ViewModels.Factories
             model.State = job.State?.StateName;
             model.City = job.City;
             model.PodId = job.SchedulingPod;
+            model.OfficeId = job.OfficeId;
+            model.EmailApply = job.EmailTo;
+            model.OnlineUrl = @"http://board.thejobwindow.com/home/onlineapply/" + job.Id;
             model.ActivationDate = job.ActivationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             model.ExpirationDate = job.ExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             model.CompanyName = job.CompanyName;

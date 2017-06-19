@@ -226,7 +226,7 @@
             <div class="clearfix"></div>
             <div class="row">
                 <div class="col-md-4">
-                    @if (Model.IsCloneAndEverGreen)
+                    @if (Model.IsClone)
                     {
                         <div class="form-group">
                             @Html.LabelFor(m => m.JobBoardId)
@@ -267,7 +267,7 @@
             <div class="clearfix"></div>
             <div class="row">
                 <div class="col-md-4">
-                    @if (Model.IsCloneAndEverGreen)
+                    @if (Model.IsClone)
                     {
                         <div class="form-group">
                             @Html.LabelFor(model => model.Division)
@@ -289,7 +289,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         @Html.LabelFor(model => model.EmailTo)
-                        @Html.EditorFor(model => model.EmailTo, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
+                        <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.EmailTo, new { htmlAttributes = new { @class = "form-control fcoontrolform" } })
                         @Html.ValidationMessageFor(model => model.EmailTo, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -310,7 +310,7 @@
                 <h3>Admin Section</h3>
                 <hr />
                 <div class="row">
-                    @if (Model.IsCloneAndEverGreen)
+                    @if (Model.IsClone)
                     {
                         <div class="col-md-4">
                             <div class="form-group">

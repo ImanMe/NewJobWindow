@@ -13,6 +13,7 @@
         public string CompanyName { get; set; }
         public string Category { get; set; }
         public int? PodId { get; set; }
+        public int? OfficeId { get; set; }
         public string Division { get; set; }
         public string ActivationDate { get; set; }
         public string ExpirationDate { get; set; }
@@ -24,6 +25,7 @@
         public int? ApsCl { get; set; }
         public string IsEverGreen { get; set; }
         public string IsBestPerforming { get; set; }
-
+        public string EmailApply { get; set; }
+        public string OnlineUrl { get; set; }
     }
 }

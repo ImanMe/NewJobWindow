@@ -8,6 +8,7 @@ namespace JobWindowNew.Domain.ViewModels
         public long? CloneFrom { get; set; }
         public long? EverGreenId { get; set; }
         public int? SchedulingPod { get; set; }
+        public int? OfficeId { get; set; }
         public string Title { get; set; }
         public string JobBoard { get; set; }
         public string Division { get; set; }
@@ -24,6 +25,8 @@ namespace JobWindowNew.Domain.ViewModels
         public DateTime ExpirationDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string EmailApply { get; set; }
+        public string OnlineUrl { get; set; }
 
         //public bool IsExpired => DateTime.Parse(ExpirationDate) < DateTime.Now;
 

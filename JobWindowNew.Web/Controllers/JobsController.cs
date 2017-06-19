@@ -544,6 +544,7 @@ namespace JobWindowNew.Web.Controllers
                 CountryName = j.Country.CountryName,
                 CompanyName = j.CompanyName,
                 SchedulingPod = j.SchedulingPod,
+                OfficeId = j.OfficeId,
                 Division = j.Division,
                 ActivationDate = j.ActivationDate,
                 ExpirationDate = j.ExpirationDate,
@@ -553,7 +554,9 @@ namespace JobWindowNew.Web.Controllers
                 Intvs = j.Intvs,
                 Intvs2 = j.Intvs2,
                 ApsCl = j.ApsCl,
-                Category = j.Category.CategoryName
+                Category = j.Category.CategoryName,
+                EmailApply = j.EmailTo,
+                OnlineUrl = @"http://board.thejobwindow.com/home/onlineapply/" + j.Id
             });
 
             var pageSize = 200;
@@ -978,11 +981,10 @@ namespace JobWindowNew.Web.Controllers
             viewModel.Author = job.Author;
             viewModel.JobBoardId = job.JobBoardId;
             viewModel.Division = job.Division;
-            viewModel.IsCloneAndEverGreen = false;
+            viewModel.IsClone = true;
 
             if (job.IsEverGreen)
             {
-                viewModel.IsCloneAndEverGreen = true;
                 viewModel.IsEverGreen = false;
                 viewModel.CountryId = 0;
                 viewModel.City = null;

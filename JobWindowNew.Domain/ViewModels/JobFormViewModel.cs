@@ -164,7 +164,7 @@ namespace JobWindowNew.Domain.ViewModels
         [Range(0, 999999)]
         public int? ApsCl { get; set; }
 
-        public bool IsCloneAndEverGreen { get; set; }
+        public bool IsClone { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
