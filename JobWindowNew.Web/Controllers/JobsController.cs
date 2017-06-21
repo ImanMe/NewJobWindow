@@ -993,6 +993,7 @@ namespace JobWindowNew.Web.Controllers
                 viewModel.EmailTo = null;
                 viewModel.SchedulingPod = 0;
                 viewModel.OfficeId = 0;
+                viewModel.CompanyName = null;
             }
         }
         private static void PopulateJobFromViewModel(JobFormViewModel viewModel, Job job, string currentUser,
