@@ -19,6 +19,7 @@
         public string ExpirationDate { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
+        public int? ActiveFor { get; set; }
         public int? BOB { get; set; }
         public int? Intvs { get; set; }
         public int? Intvs2 { get; set; }

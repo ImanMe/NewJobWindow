@@ -1,4 +1,5 @@
 ﻿using JobWindowNew.Domain.Model;
+using System;
 using System.Globalization;
 
 namespace JobWindowNew.Domain.ViewModels.Factories
@@ -24,6 +25,9 @@ namespace JobWindowNew.Domain.ViewModels.Factories
             model.CompanyName = job.CompanyName;
             model.CreatedBy = job.CreatedBy;
             model.CreatedDate = job.CreatedDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            model.ActiveFor = DateTime.Now < job.ExpirationDate
+                ? (DateTime.Now - job.ActivationDate).Days
+                : (job.ExpirationDate - job.ActivationDate).Days;
             model.Division = job.Division;
             model.JobBoard = job.JobBoard?.JobBoardName;
             model.Category = job.Category.CategoryName;

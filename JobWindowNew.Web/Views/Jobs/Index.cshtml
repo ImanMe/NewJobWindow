@@ -83,6 +83,7 @@
                 <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.ExpirationDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter, jobBoardFilter = ViewBag.JobBoardFilter, cityFilter = ViewBag.CityFilter, countryFilter = ViewBag.CountryFilter, stateFilter = ViewBag.StateFilter, companyFilter = ViewBag.CompanyFilter, categoryFilter = ViewBag.CategoryFilter, divisionFilter = ViewBag.DivisionFilter, statusFilter = ViewBag.StatusFilter})">Expiration<i class="glyphicon glyphicon-sort"></i></a></th>
                 <th style="min-width: 100px;"><a href="@Url.Action("Index", new {sortOrder = ViewBag.CreatedByParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter, jobBoardFilter = ViewBag.JobBoardFilter, cityFilter = ViewBag.CityFilter, countryFilter = ViewBag.CountryFilter, stateFilter = ViewBag.StateFilter, companyFilter = ViewBag.CompanyFilter, categoryFilter = ViewBag.CategoryFilter, divisionFilter = ViewBag.DivisionFilter, statusFilter = ViewBag.StatusFilter})">CreatedBy<i class="glyphicon glyphicon-sort"></i></a><span title="Expand" style="padding: 0 3px; font-size: smaller; float: right" class="btn btn-primary" id="createdButton"><i class="glyphicon glyphicon-resize-horizontal"></i></span></th>
                 <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.CreatedDateParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter, jobBoardFilter = ViewBag.JobBoardFilter, cityFilter = ViewBag.CityFilter, countryFilter = ViewBag.CountryFilter, stateFilter = ViewBag.StateFilter, companyFilter = ViewBag.CompanyFilter, categoryFilter = ViewBag.CategoryFilter, divisionFilter = ViewBag.DivisionFilter, statusFilter = ViewBag.StatusFilter})">Created<i class="glyphicon glyphicon-sort"></i></a></th>
+                <th><a href="#">ActiveFor</a></th>
                 <th><a href="@Url.Action("Index", new {sortOrder = ViewBag.EmailParm, idFilter = ViewBag.IdFilter, titleFilter = ViewBag.TitleFilter, podIdFilter = ViewBag.PodIdFilter, jobBoardFilter = ViewBag.JobBoardFilter, cityFilter = ViewBag.CityFilter, countryFilter = ViewBag.CountryFilter, stateFilter = ViewBag.StateFilter, companyFilter = ViewBag.CompanyFilter, categoryFilter = ViewBag.CategoryFilter, divisionFilter = ViewBag.DivisionFilter, statusFilter = ViewBag.StatusFilter})">Email<i class="glyphicon glyphicon-sort"></i></a><span title="Expand" style="padding: 0 3px; font-size: smaller; float: right" class="btn btn-primary" id="emailButton"><i class="glyphicon glyphicon-resize-horizontal"></i></span></th>
                 <th><a href="#">OnlineUrl</a><span title="Expand" style="padding: 0 3px; font-size: smaller; float: right" class="btn btn-primary" id="urlButton"><i class="glyphicon glyphicon-resize-horizontal"></i></span></th>
             </tr>
@@ -102,6 +103,7 @@
                 <th>@Html.TextBox("countrySearch", ViewBag.CountryFilter as string, new {@class = "form-control"})</th>
                 <th>@Html.TextBox("categorySearch", ViewBag.CategoryFilter as string, new {@class = "form-control"})</th>
                 <th>@Html.TextBox("companySearch", ViewBag.CompanyFilter as string, new {@class = "form-control"})</th>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -180,6 +182,7 @@
                     <td id="fullCreatedBy" class="createdc displayNone">@Html.DisplayFor(m => job.CreatedBy)</td>
                     <td class="halfCreatedBy"><a id="createdByLink" href="#" title="@Html.DisplayFor(m => job.CreatedBy)">@Html.DisplayFor(m => job.CreatedByTruncated)</a></td>
                     <td class="">@Html.DisplayFor(m => job.CreatedDate)</td>
+                    <td class="">@Html.DisplayFor(m => job.NumberOfActiveDays)</td>
                     <td id="fullEmail" class="emailt displayNone">@Html.DisplayFor(m => job.EmailTo)</td>
                     <td class="halfEmail">@Html.DisplayFor(m => job.EmailToTruncated)</td>
                     @if (!job.IsOnlineApply)

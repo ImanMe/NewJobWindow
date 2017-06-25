@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace JobWindowNew.Domain.ViewModels
 {
@@ -25,6 +26,11 @@ namespace JobWindowNew.Domain.ViewModels
         public DateTime ExpirationDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        [DisplayName("ActiveFor")]
+        public int? NumberOfActiveDays =>
+            DateTime.Now < ExpirationDate
+                ? (DateTime.Now - ActivationDate).Days
+                : (ExpirationDate - ActivationDate).Days;
         public string EmailApply { get; set; }
         public string OnlineUrl { get; set; }
 
