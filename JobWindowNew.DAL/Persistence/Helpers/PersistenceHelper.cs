@@ -38,7 +38,7 @@ namespace JobWindowNew.DAL.Persistence.Helpers
 
         public static IQueryable<Job> FilterByInput(string idSearch, string titleSearch, string podIdSearch, string citySearch,
             string stateSearch, string countrySearch, string categorySearch, string jobBoardSearch, string divisionSearch,
-            string companySearch, string statusSearch, IQueryable<Job> result)
+            string companySearch, string statusSearch, string createdBySearch, IQueryable<Job> result)
         {
             if (!string.IsNullOrEmpty(idSearch))
             {
@@ -88,6 +88,11 @@ namespace JobWindowNew.DAL.Persistence.Helpers
             if (!string.IsNullOrEmpty(citySearch))
             {
                 result = result.Where(j => j.City.ToString().Contains(citySearch));
+            }
+
+            if (!string.IsNullOrEmpty(createdBySearch))
+            {
+                result = result.Where(j => j.CreatedBy.ToString().Contains(createdBySearch));
             }
 
             if (!string.IsNullOrEmpty(statusSearch))

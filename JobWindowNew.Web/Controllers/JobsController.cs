@@ -36,6 +36,7 @@ namespace JobWindowNew.Web.Controllers
             string companyFilter, string statusSearch, string statusFilter,
             string citySearch, string countrySearch, string categorySearch, string stateSearch,
             string companySearch, string divisionSearch, string jobBoardSearch,
+            string createdBySearch, string createdByFilter,
             string podIdSearch, int? page)
         {
             try
@@ -63,11 +64,12 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.IntvsParm = sortOrder == "Intvs" ? "-Intvs" : "Intvs";
                 ViewBag.Intvs2Parm = sortOrder == "Intvs2" ? "-Intvs2" : "Intvs2";
                 ViewBag.ApsClParm = sortOrder == "ApsCl" ? "-ApsCl" : "ApsCl";
+                ViewBag.CreatedByParm = sortOrder == "CreatedBy" ? "-CreatedBy" : "CreatedBy";
                 sortOrder = ViewBag.CurrentSort;
 
                 if (idSearch != null || titleSearch != null || podIdSearch != null || citySearch != null ||
                     stateSearch != null || countrySearch != null || categorySearch != null || jobBoardSearch != null || companySearch != null ||
-                    divisionSearch != null || statusSearch != null)
+                    divisionSearch != null || statusSearch != null || createdBySearch != null)
                 {
                     page = 1;
                 }
@@ -84,6 +86,7 @@ namespace JobWindowNew.Web.Controllers
                     companySearch = companyFilter;
                     jobBoardSearch = jobBoardFilter;
                     statusSearch = statusFilter;
+                    createdBySearch = createdByFilter;
                 }
 
                 ViewBag.IdFilter = idSearch;
@@ -97,12 +100,13 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.CompanyFilter = companySearch;
                 ViewBag.JobBoardFilter = jobBoardSearch;
                 ViewBag.StatusFilter = statusSearch;
+                ViewBag.CreatedByFilter = createdBySearch;
 
                 var query = _unitOfWork.JobRepository.GetJobs();
 
                 query = PersistenceHelper.FilterByInput(idSearch, titleSearch, podIdSearch,
                     citySearch, stateSearch, countrySearch, categorySearch, jobBoardSearch,
-                    divisionSearch, companySearch, statusSearch, query);
+                    divisionSearch, companySearch, statusSearch, createdBySearch, query);
 
                 query = PersistenceHelper.SortForJobList(query);
 
@@ -354,33 +358,35 @@ namespace JobWindowNew.Web.Controllers
             string companyFilter, string statusFilter, string statusSearch,
             string citySearch, string countrySearch, string categorySearch, string stateSearch,
             string companySearch, string divisionSearch, string jobBoardSearch,
+            string createdBySearch, string createdByFilter,
             string podIdSearch, int? page)
         {
             try
             {
                 ViewBag.CurrentSort = sortOrder;
-                ViewBag.IdParm = sortOrder == "Job.Id" ? "-Job.Id" : "Job.Id";
-                ViewBag.CloneFromParm = sortOrder == "Job.CloneFrom" ? "-Job.CloneFrom" : "Job.CloneFrom";
-                ViewBag.EverGreenIdParm = sortOrder == "Job.EverGreenId" ? "-Job.EverGreenId" : "Job.EverGreenId";
-                ViewBag.TitleParm = sortOrder == "Job.Title" ? "-Job.Title" : "Job.Title";
-                ViewBag.JobBoardParm = sortOrder == "Job.JobBoard.JobBoardName" ? "-Job.JobBoard.JobBoardName" : "Job.JobBoard.JobBoardName";
-                ViewBag.CityParm = sortOrder == "Job.City" ? "-Job.City" : "Job.City";
-                ViewBag.StateNameParm = sortOrder == "Job.State.StateName" ? "-Job.State.StateName" : "Job.State.StateName";
-                ViewBag.CountryNameParm = sortOrder == "Job.Country.CountryName" ? "-Job.Country.CountryName" : "Job.Country.CountryName";
+                ViewBag.IdParm = sortOrder == "Id" ? "-Id" : "Id";
+                ViewBag.CloneFromParm = sortOrder == "CloneFrom" ? "-CloneFrom" : "CloneFrom";
+                ViewBag.EverGreenIdParm = sortOrder == "EverGreenId" ? "-EverGreenId" : "EverGreenId";
+                ViewBag.TitleParm = sortOrder == "Title" ? "-Title" : "Title";
+                ViewBag.JobBoardParm = sortOrder == "JobBoard.JobBoardName" ? "-JobBoard.JobBoardName" : "JobBoard.JobBoardName";
+                ViewBag.CityParm = sortOrder == "City" ? "-City" : "City";
+                ViewBag.StateNameParm = sortOrder == "State.StateName" ? "-State.StateName" : "State.StateName";
+                ViewBag.CountryNameParm = sortOrder == "Country.CountryName" ? "-Country.CountryName" : "Country.CountryName";
                 ViewBag.CategoryNameParm = sortOrder == "Category.CategoryName" ? "-Category.CategoryName" : "Category.CategoryName";
-                ViewBag.CompanyNameParm = sortOrder == "Job.CompanyName" ? "-Job.CompanyName" : "Job.CompanyName";
-                ViewBag.SchedulingPodParm = sortOrder == "Job.SchedulingPod" ? "-Job.SchedulingPod" : "Job.SchedulingPod";
-                ViewBag.DivisionParm = sortOrder == "Job.Division" ? "-Job.Division" : "Job.Division";
-                ViewBag.ActivationDateParm = sortOrder == "Job.ActivationDate" ? "-Job.ActivationDate" : "Job.ActivationDate";
-                ViewBag.ExpirationDateParm = sortOrder == "Job.ExpirationDate" ? "-Job.ExpirationDate" : "Job.ExpirationDate";
-                ViewBag.CreatedByParm = sortOrder == "Job.CreatedBy" ? "-Job.CreatedBy" : "Job.CreatedBy";
-                ViewBag.CreatedDateParm = sortOrder == "Job.CreatedDate" ? "-Job.CreatedDate" : "Job.CreatedDate";
-                ViewBag.BobParm = sortOrder == "Job.Bob" ? "-Job.Bob" : "Job.Bob";
-                ViewBag.IntvsParm = sortOrder == "Job.Intvs" ? "-Job.Intvs" : "Job.Intvs";
-                ViewBag.Intvs2Parm = sortOrder == "Job.Intvs2" ? "-Job.Intvs2" : "Job.Intvs2";
-                ViewBag.ApsClParm = sortOrder == "Job.ApsCl" ? "-Job.ApsCl" : "Job.ApsCl";
-                ViewBag.EmailParm = sortOrder == "Job.EmailTo" ? "-Job.EmailTo" : "Job.EmailTo";
-                ViewBag.OfficeParm = sortOrder == "Job.OfficeId" ? "-Job.OfficeId" : "Job.OfficeId";
+                ViewBag.CompanyNameParm = sortOrder == "CompanyName" ? "-CompanyName" : "CompanyName";
+                ViewBag.SchedulingPodParm = sortOrder == "SchedulingPod" ? "-SchedulingPod" : "SchedulingPod";
+                ViewBag.DivisionParm = sortOrder == "Division" ? "-Division" : "Division";
+                ViewBag.ActivationDateParm = sortOrder == "ActivationDate" ? "-ActivationDate" : "ActivationDate";
+                ViewBag.ExpirationDateParm = sortOrder == "ExpirationDate" ? "-ExpirationDate" : "ExpirationDate";
+                ViewBag.CreatedByParm = sortOrder == "CreatedBy" ? "-CreatedBy" : "CreatedBy";
+                ViewBag.CreatedDateParm = sortOrder == "CreatedDate" ? "-CreatedDate" : "CreatedDate";
+                ViewBag.BobParm = sortOrder == "Bob" ? "-Bob" : "Bob";
+                ViewBag.IntvsParm = sortOrder == "Intvs" ? "-Intvs" : "Intvs";
+                ViewBag.Intvs2Parm = sortOrder == "Intvs2" ? "-Intvs2" : "Intvs2";
+                ViewBag.ApsClParm = sortOrder == "ApsCl" ? "-ApsCl" : "ApsCl";
+                ViewBag.EmailParm = sortOrder == "EmailTo" ? "-EmailTo" : "EmailTo";
+                ViewBag.OfficeParm = sortOrder == "OfficeId" ? "-OfficeId" : "OfficeId";
+                ViewBag.createdByParm = sortOrder == "CreatedBy" ? "-CreatedBy" : "CreatedBy";
                 sortOrder = ViewBag.CurrentSort;
 
                 if (idSearch != null || titleSearch != null || podIdSearch != null || citySearch != null ||
@@ -402,6 +408,7 @@ namespace JobWindowNew.Web.Controllers
                     companySearch = companyFilter;
                     jobBoardSearch = jobBoardFilter;
                     statusSearch = statusFilter;
+                    createdBySearch = createdByFilter;
                 }
 
                 ViewBag.IdFilter = idSearch;
@@ -415,16 +422,17 @@ namespace JobWindowNew.Web.Controllers
                 ViewBag.CompanyFilter = companySearch;
                 ViewBag.JobBoardFilter = jobBoardSearch;
                 ViewBag.StatusFilter = statusSearch;
+                ViewBag.CreatedByFilter = createdBySearch;
 
                 var query = _unitOfWork.JobRepository.GetJobs();
 
                 query = PersistenceHelper.FilterByInput(idSearch, titleSearch, podIdSearch,
                     citySearch, stateSearch, countrySearch, categorySearch, jobBoardSearch,
-                    divisionSearch, companySearch, statusSearch, query);
+                    divisionSearch, companySearch, statusSearch, createdBySearch, query);
 
                 query = PersistenceHelper.SortForConversionList(query);
 
-                //query = query.ApplySort(sortOrder);
+                query = query.ApplySort(sortOrder);
 
                 var mappedResult = query.Select(j => new JobGridViewModel
                 {
@@ -486,9 +494,9 @@ namespace JobWindowNew.Web.Controllers
             string companyFilter, string statusSearch, string statusFilter,
             string citySearch, string countrySearch, string categorySearch, string stateSearch,
             string companySearch, string divisionSearch, string jobBoardSearch,
-            string podIdSearch, int? page)
+            string podIdSearch, string createdBySearch, string createdByFilter, int? page)
         {
-            string id, title, podId, country, category, state, city, jobBoard, division, company, status;
+            string id, title, podId, country, category, state, city, jobBoard, division, company, status, createdBy;
             if (!string.IsNullOrEmpty(sortOrder))
             {
                 id = idSearch ?? string.Empty;
@@ -502,6 +510,7 @@ namespace JobWindowNew.Web.Controllers
                 company = companySearch ?? string.Empty;
                 category = categorySearch ?? string.Empty;
                 status = statusSearch ?? string.Empty;
+                createdBy = createdBySearch ?? string.Empty;
             }
             else
             {
@@ -516,6 +525,7 @@ namespace JobWindowNew.Web.Controllers
                 division = divisionFilter ?? string.Empty;
                 company = companyFilter ?? string.Empty;
                 status = statusFilter ?? string.Empty;
+                createdBy = createdByFilter ?? string.Empty;
             }
 
             var sort = sortOrder;
@@ -524,7 +534,7 @@ namespace JobWindowNew.Web.Controllers
             var query = _unitOfWork.JobRepository.GetJobs();
 
             query = PersistenceHelper.FilterByInput(id, title, podId, city, state,
-                country, category, jobBoard, division, company, status, query);
+                country, category, jobBoard, division, company, status, createdBy, query);
 
             query = PersistenceHelper.SortForJobList(query);
 
