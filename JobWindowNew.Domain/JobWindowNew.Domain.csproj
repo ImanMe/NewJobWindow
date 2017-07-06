@@ -111,9 +111,11 @@
     <Compile Include="ViewModels\AssignRoleViewModel.cs" />
     <Compile Include="ViewModels\Factories\JobBoardFactory.cs" />
     <Compile Include="ViewModels\Factories\JobFormFactory.cs" />
+    <Compile Include="ViewModels\Factories\JobWindowFactory.cs" />
     <Compile Include="ViewModels\JobBoardViewModel.cs" />
     <Compile Include="ViewModels\Factories\JobListFactory.cs" />
     <Compile Include="ViewModels\JobListExportViewModel.cs" />
+    <Compile Include="ViewModels\JobWindowViewModel.cs" />
     <Compile Include="ViewModels\ReportGetViewModel.cs" />
     <Compile Include="ViewModels\ReportViewModel.cs" />
     <Compile Include="ViewModels\Factories\ApplicantsFactory.cs" />

@@ -135,6 +135,30 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .Include(m => m.Category);
         }
 
+        public IQueryable<Job> GetJobWindowJobs()
+        {
+            return _context.Jobs
+                .Include(m => m.Country)
+                .Include(m => m.State)
+                .Include(m => m.JobBoard)
+                .Include(m => m.Category)
+                .Include(m => m.EmploymentType)
+                .OrderByDescending(m => m.ActivationDate)
+                .Where(j => j.JobBoardId == 30);
+            //.Where(j => j.ExpirationDate >= DateTime.Now);
+        }
+
+        public Job GetJobWindowJob(long id)
+        {
+            return _context.Jobs
+                .Include(m => m.Country)
+                .Include(m => m.State)
+                .Include(m => m.JobBoard)
+                .Include(m => m.Category)
+                .Include(m => m.EmploymentType)
+                .FirstOrDefault(j => j.Id == id);
+        }
+
         public void MassDelete(int id)
         {
             _context.Jobs.RemoveRange(_context.Jobs.Where(j => j.SchedulingPod == id));

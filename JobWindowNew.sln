@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobWindowNew.DAL", "JobWind
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobWindowNew.API", "JobWindowNew.API\JobWindowNew.API.csproj", "{80D86832-425F-4C61-8BF5-E70583D4EDD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobWindowNew.Site", "JobWindowNew.Site\JobWindowNew.Site.csproj", "{AF1C872F-612B-42D2-AA93-B5A5D0C00DCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{80D86832-425F-4C61-8BF5-E70583D4EDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80D86832-425F-4C61-8BF5-E70583D4EDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80D86832-425F-4C61-8BF5-E70583D4EDD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF1C872F-612B-42D2-AA93-B5A5D0C00DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF1C872F-612B-42D2-AA93-B5A5D0C00DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF1C872F-612B-42D2-AA93-B5A5D0C00DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF1C872F-612B-42D2-AA93-B5A5D0C00DCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

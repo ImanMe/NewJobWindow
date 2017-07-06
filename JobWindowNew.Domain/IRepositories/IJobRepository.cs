@@ -9,6 +9,8 @@ namespace JobWindowNew.Domain.IRepositories
         void Add(Job job);
         void Update(Job job);
         IQueryable<Job> GetJobs();
+        IQueryable<Job> GetJobWindowJobs();
+        Job GetJobWindowJob(long id);
         IQueryable<Job> GetDuplicateJobs();
         IQueryable<Job> GetJobsWithStats();
         Job GetJobForOnlineApply(long jobId);
