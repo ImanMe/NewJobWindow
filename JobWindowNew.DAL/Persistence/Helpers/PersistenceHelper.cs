@@ -109,5 +109,56 @@ namespace JobWindowNew.DAL.Persistence.Helpers
             }
             return result;
         }
+
+        public static IQueryable<Job> SearchByLocation(string location, IQueryable<Job> query)
+        {
+            var locationWords = location.ToLower()
+                .Split(new[] { ' ', ',', '.', '-', '_' },
+                    StringSplitOptions.RemoveEmptyEntries);
+
+            if (query.Any(j => locationWords.Any(c => j.City.Contains(c))))
+            {
+                query = query.Where(j => locationWords.Any(c => j.City.Contains(c)));
+            }
+
+            else if (query.Any(j => locationWords.Any(c => j.State.StateName.Contains(c))))
+            {
+                query = query.Where(j => locationWords.Any(c => j.State.StateName.Contains(c)));
+            }
+
+            else if (query.Any(j => locationWords.Any(c => j.Country.CountryName.Contains(c))))
+            {
+                query = query.Where(j => locationWords.Any(c => j.Country.CountryName.Contains(c)));
+            }
+
+            else if (query.Any(j => locationWords.Any(c => j.State.StateCode.Contains(c))))
+            {
+                query = query.Where(j => locationWords.Any(c => j.State.StateCode.Contains(c)));
+            }
+
+            else if (query.Any(j => locationWords.Any(c => j.Country.CountryCode.Contains(c))))
+            {
+                query = query.Where(j => locationWords.Any(c => j.Country.CountryCode.Contains(c)));
+            }
+            return query;
+        }
+
+        public static IQueryable<Job> SearchByKeywords(string search, IQueryable<Job> query)
+        {
+            var searchWords = search.ToLower().Split(new[] { ' ', ',', '.', '-', '_' }, StringSplitOptions.RemoveEmptyEntries);
+            if (query.Any(j => j.Title.Contains(search)))
+            {
+                query = query.Where(j => j.Title.Contains(search));
+            }
+            else if (query.Any(j => searchWords.All(c => j.Title.Contains(c))))
+            {
+                query = query.Where(j => searchWords.All(c => j.Title.Contains(c)));
+            }
+            else if (query.Any(j => searchWords.Any(c => j.Title.Contains(c))))
+            {
+                query = query.Where(j => searchWords.Any(c => j.Title.Contains(c)));
+            }
+            return query;
+        }
     }
 }
