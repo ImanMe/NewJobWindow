@@ -28,9 +28,13 @@ namespace JobWindowNew.DAL.Persistence.Repositories
 
         public void Delete(long jobId)
         {
+            var jobOccupations = _context.JobOccupationMaps
+                .Where(j => j.JobId == jobId);
+
+            if (!jobOccupations.Any()) return;
             _context.JobOccupationMaps
-                .RemoveRange(_context.JobOccupationMaps
-                    .Where(j => j.JobId == jobId));
+                .RemoveRange(jobOccupations);
+            _context.SaveChanges();
         }
 
         public void Update(JobOccupationMap map)

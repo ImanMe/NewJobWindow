@@ -746,6 +746,7 @@
     <Content Include="Views\List\Index.cshtml" />
     <Content Include="Views\BoardManagement\Index.cshtml" />
     <Content Include="Views\BoardManagement\BoardManagementForm.cshtml" />
+    <Content Include="Views\Reports\CreatedByReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

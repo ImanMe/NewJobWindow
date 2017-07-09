@@ -14,6 +14,7 @@ namespace JobWindowNew.Domain
         ISalaryTypeRepository SalaryTypeRepository { get; }
         IJobOccupationMapRepository JobOccupationMapRepository { get; }
         IApplicantRepository ApplicantRepository { get; }
+        IUserRepository UserRepository { get; }
         void Complete();
     }
 }

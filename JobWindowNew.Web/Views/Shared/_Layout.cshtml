@@ -52,7 +52,9 @@
                             <li role="separator" class="divider"></li>
                             <li class="leftitems">@Html.ActionLink("Active", "ActiveReport", "Reports")</li>
                             <li role="separator" class="divider"></li>
-                            <li class="leftitems">@Html.ActionLink("InActive", "InActiveReport", "Reports")</li>
+                            <li class="leftitems">@Html.ActionLink("In-Active", "InActiveReport", "Reports")</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="leftitems">@Html.ActionLink("Created By", "CreatedByReport", "Reports")</li>
                         </ul>
                     </li>
 @if (User.IsInRole("Root") || User.IsInRole("Admin"))

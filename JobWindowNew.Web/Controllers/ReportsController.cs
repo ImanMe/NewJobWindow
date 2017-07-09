@@ -1,4 +1,5 @@
-﻿using JobWindowNew.Domain;
+﻿using JobWindowNew.DAL.Persistence.Helpers;
+using JobWindowNew.Domain;
 using JobWindowNew.Domain.ViewModels;
 using JobWindowNew.Domain.ViewModels.Factories;
 using System.IO;
@@ -59,6 +60,18 @@ namespace JobWindowNew.Web.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
+        public ActionResult CreatedByReport()
+        {
+            var viewModel = new CreatedByReportViewModel
+            {
+                Users = _unitOfWork.UserRepository.GetUsers()
+            };
+
+            return View(viewModel);
+        }
+
         [HttpPost]
         [Authorize(Roles = "Root, Admin, Internal-Employee")]
         public void ActiveReport(ReportGetViewModel viewModel)
@@ -98,6 +111,46 @@ namespace JobWindowNew.Web.Controllers
             Response.ClearContent();
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment; filename=Active.xls");
+            Response.ContentType = "application/ms-excel";
+
+            Response.Charset = "";
+            var objStringWriter = new StringWriter();
+            var objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+
+            gv.RenderControl(objHtmlTextWriter);
+
+            Response.Output.Write(objStringWriter.ToString());
+            Response.Flush();
+            Response.End();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
+        public void CreatedByReport(CreatedByReportViewModel viewModel)
+        {
+            var factory = new EverGreenReportFactory();
+
+            var user = viewModel.UserName;
+            var fromDate = viewModel.GetFromDate();
+            var toDate = viewModel.GetToDate();
+
+            var query = _unitOfWork.JobRepository
+                .GetJobs()
+                .Where(j => j.CreatedBy == user)
+                .Where(j => j.CreatedDate <= toDate)
+                .Where(j => j.CreatedDate >= fromDate);
+
+            query = PersistenceHelper.SortForJobList(query);
+
+            var result = query.ToList().Select(j => factory.Create(j));
+
+            var gv = new GridView { DataSource = result };
+
+            gv.DataBind();
+
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=CreatedBy.xls");
             Response.ContentType = "application/ms-excel";
 
             Response.Charset = "";

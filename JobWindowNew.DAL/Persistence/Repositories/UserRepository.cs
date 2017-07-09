@@ -1,9 +1,10 @@
-﻿using JobWindowNew.Domain.Model;
+﻿using JobWindowNew.Domain.IRepositories;
+using JobWindowNew.Domain.Model;
 using System.Collections.Generic;
 
 namespace JobWindowNew.DAL.Persistence.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
 

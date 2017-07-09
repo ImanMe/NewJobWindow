@@ -799,8 +799,6 @@ namespace JobWindowNew.Web.Controllers
         public void Delete(long id)
         {
             _unitOfWork.JobOccupationMapRepository.Delete(id);
-            _unitOfWork.Complete();
-
             _unitOfWork.JobRepository.Delete(id);
             _unitOfWork.Complete();
         }
