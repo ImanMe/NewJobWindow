@@ -13,7 +13,8 @@ namespace JobWindowNew.Web.App_Start
     using Ninject.Web.Common;
     using System;
     using System.Web;
-
+    using System.Web.Http;
+    using WebApiContrib.IoC.Ninject;
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -47,7 +48,7 @@ namespace JobWindowNew.Web.App_Start
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
                 RegisterServices(kernel);
                 return kernel;
             }

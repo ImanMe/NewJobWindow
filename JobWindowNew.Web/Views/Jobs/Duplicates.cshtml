@@ -234,7 +234,7 @@
                             className: 'btn-danger',
                             callback: function() {
                                 $.ajax({
-                                        url: baseUrl + link.attr("data-job-id"),
+                                        url: "/api/jobs/" + link.attr("data-job-id"),
                                         method: "POST",
                                         async: true
                                     })
@@ -274,8 +274,8 @@
                             className: 'btn-danger',
                             callback: function() {
                                 $.ajax({
-                                        url: baseUrl + link.attr("data-job-id"),
-                                        method: "POST",
+                                        url: "/api/jobs/" + link.attr("data-job-id"),
+                                        method: "DELETE",
                                         async: true
                                     })
                                     .done(function() {
