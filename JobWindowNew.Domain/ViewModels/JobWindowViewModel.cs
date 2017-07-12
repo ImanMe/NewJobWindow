@@ -29,5 +29,7 @@ namespace JobWindowNew.Domain.ViewModels
         public string Category { get; set; }
 
         public int? NumberOfActiveDays => (DateTime.Now - ActivationDate).Days;
+
+        public string CompanyName { get; set; }
     }
 }

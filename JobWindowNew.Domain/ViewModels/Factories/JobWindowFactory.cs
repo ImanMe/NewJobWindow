@@ -18,7 +18,8 @@ namespace JobWindowNew.Domain.ViewModels.Factories
                 City = job.City,
                 Category = job.Category.CategoryName,
                 ActivationDate = job.ActivationDate,
-                EmploymentType = job.EmploymentType.Type
+                EmploymentType = job.EmploymentType.Type,
+                CompanyName = job.CompanyName
             };
         }
     }

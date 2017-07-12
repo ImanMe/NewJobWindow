@@ -1,6 +1,7 @@
 ﻿using JobWindowNew.DAL.Persistence.Helpers;
 using JobWindowNew.Domain;
 using JobWindowNew.Domain.ViewModels.Factories;
+using JobWindowNew.Site.Helper;
 using System;
 using System.Linq;
 using System.Web;
@@ -85,7 +86,22 @@ namespace JobWindowNew.Site.Controllers
             {
                 return InternalServerError();
             }
+        }
 
+        [HttpGet]
+        [Route("api/jobs/contact")]
+        public IHttpActionResult PostEmail(string fromAddress, string subject, string body, string name, string city)
+        {
+            try
+            {
+                body = "Name: " + name + " - " + "City/Zip: " + " - " + city + " - " + "Message: " + body;
+                LogicHelper.EmailSender(fromAddress, subject, body);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
         }
     }
 }
