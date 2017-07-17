@@ -1,6 +1,5 @@
 ﻿using JobWindowNew.Domain;
 using System;
-using System.Collections.Generic;
 using System.Web.Http;
 
 namespace JobWindowNew.Web.Controllers.api
@@ -18,11 +17,6 @@ namespace JobWindowNew.Web.Controllers.api
         public JobsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-        }
-
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
         }
 
         [HttpDelete]
