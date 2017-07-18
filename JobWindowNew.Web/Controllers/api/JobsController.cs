@@ -19,7 +19,7 @@ namespace JobWindowNew.Web.Controllers.api
             _unitOfWork = unitOfWork;
         }
 
-        [HttpDelete]
+        [HttpGet]
         public IHttpActionResult Delete(long id)
         {
             try
