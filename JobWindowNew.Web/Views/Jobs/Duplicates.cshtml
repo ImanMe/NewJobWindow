@@ -275,7 +275,7 @@
                             callback: function() {
                                 $.ajax({
                                         url: "/api/jobs/" + link.attr("data-job-id"),
-                                        method: "DELETE",
+                                        method: "GET",
                                         async: true
                                     })
                                     .done(function() {
