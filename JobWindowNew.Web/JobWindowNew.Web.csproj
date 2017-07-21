@@ -770,7 +770,6 @@
     <Content Include="Views\BoardManagement\Index.cshtml" />
     <Content Include="Views\BoardManagement\BoardManagementForm.cshtml" />
     <Content Include="Views\Reports\CreatedByReport.cshtml" />
-    <Content Include="Views\Shared\_JobsTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,5 +1,6 @@
 ﻿using JobWindowNew.DAL.Persistence.Helpers;
 using JobWindowNew.Domain;
+using JobWindowNew.Domain.Model;
 using JobWindowNew.Domain.ViewModels;
 using JobWindowNew.Domain.ViewModels.Factories;
 using System.IO;
@@ -133,12 +134,22 @@ namespace JobWindowNew.Web.Controllers
             var user = viewModel.UserName;
             var fromDate = viewModel.GetFromDate();
             var toDate = viewModel.GetToDate();
-
-            var query = _unitOfWork.JobRepository
-                .GetJobs()
-                .Where(j => j.CreatedBy == user)
-                .Where(j => j.CreatedDate <= toDate)
-                .Where(j => j.CreatedDate >= fromDate);
+            IQueryable<Job> query;
+            if (string.IsNullOrEmpty(user))
+            {
+                query = _unitOfWork.JobRepository
+                    .GetJobs()
+                    .Where(j => j.CreatedDate <= toDate)
+                    .Where(j => j.CreatedDate >= fromDate);
+            }
+            else
+            {
+                query = _unitOfWork.JobRepository
+                    .GetJobs()
+                    .Where(j => j.CreatedBy == user)
+                    .Where(j => j.CreatedDate <= toDate)
+                    .Where(j => j.CreatedDate >= fromDate);
+            }
 
             query = PersistenceHelper.SortForJobList(query);
 

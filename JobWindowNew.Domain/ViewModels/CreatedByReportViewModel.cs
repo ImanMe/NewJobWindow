@@ -9,12 +9,10 @@ namespace JobWindowNew.Domain.ViewModels
 {
     public class CreatedByReportViewModel
     {
-        [Required]
         [Display(Name = "User")]
         public IEnumerable<ApplicationUser> Users { get; set; }
 
         [DisplayName("User")]
-        [Required]
         public string UserName { get; set; }
 
         [Required]
