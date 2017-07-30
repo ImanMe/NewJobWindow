@@ -103,10 +103,9 @@ namespace JobWindowNew.DAL.Persistence.Repositories
         }
 
 
-        public IQueryable<Job> GetJobsForInActiveReport(int podId)
+        public IQueryable<Job> GetJobsForInActiveReport()
         {
             return _context.Jobs
-                .Where(j => j.SchedulingPod == podId)
                 .Where(j => j.IsEverGreen == false)
                 .Where(j => j.ExpirationDate < DateTime.Now)
                 .Include(m => m.Country)
@@ -133,6 +132,25 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .Include(m => m.State)
                 .Include(m => m.JobBoard)
                 .Include(m => m.Category);
+        }
+
+        public IQueryable<Job> GetJobsForList()
+        {
+            return _context.Jobs
+                .Include(m => m.Country)
+                .Include(m => m.State)
+                .Include(m => m.JobBoard)
+                .Include(m => m.Category)
+                .OrderBy(j => j.SchedulingPod)
+                .ThenBy(j => j.JobBoard.JobBoardName)
+                .ThenBy(j => j.City)
+                .ThenBy(j => j.Category.CategoryName)
+                .ThenByDescending(j => j.ExpirationDate >= DateTime.Now)
+                .ThenByDescending(j => j.ApsCl)
+                .ThenByDescending(j => j.Bob)
+                .ThenByDescending(j => j.Intvs2)
+                .ThenByDescending(j => j.Intvs)
+                .ThenByDescending(j => j.Id);
         }
 
         public IQueryable<Job> GetJobWindowJobs()

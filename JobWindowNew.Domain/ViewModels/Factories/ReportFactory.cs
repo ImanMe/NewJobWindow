@@ -26,7 +26,7 @@ namespace JobWindowNew.Domain.ViewModels.Factories
             model.CreatedBy = job.CreatedBy;
             model.CreatedDate = job.CreatedDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             model.ActiveFor = DateTime.Now < job.ExpirationDate
-                ? (DateTime.Now - job.ActivationDate).Days
+                ? (DateTime.Now - job.ActivationDate).Days + 1
                 : (job.ExpirationDate - job.ActivationDate).Days;
             model.Division = job.Division;
             model.JobBoard = job.JobBoard?.JobBoardName;

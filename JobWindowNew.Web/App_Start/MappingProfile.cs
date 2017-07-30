@@ -9,6 +9,8 @@ namespace JobWindowNew.Web
         public MappingProfile()
         {
             Mapper.CreateMap<Job, JobFormViewModel>();
+            Mapper.CreateMap<Job, ImanJobs>();
+            Mapper.CreateMap<ImanJobs, Job>();
             Mapper.CreateMap<JobFormViewModel, Job>();
             Mapper.CreateMap<JobOccupationMap, JobOccupationMapViewModel>();
             Mapper.CreateMap<JobOccupationMap, JobOccupationMap>();

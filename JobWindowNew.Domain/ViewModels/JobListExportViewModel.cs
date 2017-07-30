@@ -29,10 +29,25 @@ namespace JobWindowNew.Domain.ViewModels
         [DisplayName("ActiveFor")]
         public int? NumberOfActiveDays =>
             DateTime.Now < ExpirationDate
-                ? (DateTime.Now - ActivationDate).Days
+                ? (DateTime.Now - ActivationDate).Days + 1
                 : (ExpirationDate - ActivationDate).Days;
+        public int ActiveForThisWk => GetNumberOfActiveDaysInThisWeek();
         public string EmailApply { get; set; }
         public string OnlineUrl { get; set; }
+
+        public int GetNumberOfActiveDaysInThisWeek()
+        {
+            if (ExpirationDate < DateTime.Now)
+                return 0;
+
+            var monday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+            monday = monday > DateTime.Today ? monday.AddDays(-7) : monday;
+            var startingDate = monday < ActivationDate ? ActivationDate : monday;
+
+            var todayMinusMonday = (DateTime.Today - startingDate).Days + 1;
+
+            return todayMinusMonday;
+        }
 
         //public bool IsExpired => DateTime.Parse(ExpirationDate) < DateTime.Now;
 

@@ -3,10 +3,11 @@ using JobWindowNew.Domain;
 using JobWindowNew.Domain.Model;
 using JobWindowNew.Domain.ViewModels;
 using JobWindowNew.Domain.ViewModels.Factories;
-using System.IO;
+using JobWindowNew.Web.Helpers;
+using System;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace JobWindowNew.Web.Controllers
@@ -30,23 +31,7 @@ namespace JobWindowNew.Web.Controllers
             var query = _unitOfWork.JobRepository.GetJobsForEverGreenReport();
             var result = query.ToList().Select(j => factory.Create(j));
 
-            var gv = new GridView { DataSource = result };
-            gv.DataBind();
-
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=EverGreen.xls");
-            Response.ContentType = "application/ms-excel";
-
-            Response.Charset = "";
-            var objStringWriter = new StringWriter();
-            var objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
-
-            gv.RenderControl(objHtmlTextWriter);
-
-            Response.Output.Write(objStringWriter.ToString());
-            Response.Flush();
-            Response.End();
+            WebHelper.ImportToExcel(result, Response, "EverGreen");
         }
 
         [HttpGet]
@@ -67,6 +52,10 @@ namespace JobWindowNew.Web.Controllers
         {
             var viewModel = new CreatedByReportViewModel
             {
+                FromDate = DateTime.Now.AddMonths(-1)
+                    .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
+                ToDate = DateTime.Now
+                    .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                 Users = _unitOfWork.UserRepository.GetUsers()
             };
 
@@ -81,6 +70,7 @@ namespace JobWindowNew.Web.Controllers
 
             var query = _unitOfWork.JobRepository
                 .GetJobsForActiveReport();
+
             if (viewModel.PodId != 0)
             {
                 query = query.Where(j => j.SchedulingPod == viewModel.PodId);
@@ -106,23 +96,42 @@ namespace JobWindowNew.Web.Controllers
             var result = query.ToList().Select(j => factory.Create(j));
 
 
-            var gv = new GridView { DataSource = result };
-            gv.DataBind();
+            WebHelper.ImportToExcel(result, Response, "ActiveReport");
+        }
 
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=Active.xls");
-            Response.ContentType = "application/ms-excel";
+        [HttpPost]
+        [Authorize(Roles = "Root, Admin, Internal-Employee")]
+        public void InActiveReport(InactiveGetViewModel viewModel)
+        {
+            var pId = viewModel.PodId;
 
-            Response.Charset = "";
-            var objStringWriter = new StringWriter();
-            var objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+            var fromDate = DateTime.Parse($"{viewModel.FromDate}");
+            var toDate = DateTime.Parse($"{viewModel.ToDate}");
+            var jobBoardId = viewModel.JobBoardId;
 
-            gv.RenderControl(objHtmlTextWriter);
+            var factory = new EverGreenReportFactory();
 
-            Response.Output.Write(objStringWriter.ToString());
-            Response.Flush();
-            Response.End();
+            var query = _unitOfWork.JobRepository
+                .GetJobsForInActiveReport();
+
+            if (jobBoardId != 0)
+            {
+                query = query.Where(j => j.JobBoardId == jobBoardId);
+            }
+
+            if (pId != 0)
+            {
+                query = query.Where(j => j.SchedulingPod == pId);
+            }
+
+            query = query.Where(j => j.ExpirationDate >= fromDate)
+                    .Where(j => j.ExpirationDate < toDate);
+
+            var result = query.ToList()
+                    .Select(j => factory.Create(j));
+
+            WebHelper.ImportToExcel(result, Response, "InActiveReport");
+
         }
 
         [HttpPost]
@@ -132,8 +141,9 @@ namespace JobWindowNew.Web.Controllers
             var factory = new EverGreenReportFactory();
 
             var user = viewModel.UserName;
-            var fromDate = viewModel.GetFromDate();
-            var toDate = viewModel.GetToDate();
+            var fromDate = DateTime.Parse($"{viewModel.FromDate}");
+            var toDate = DateTime.Parse($"{viewModel.ToDate}");
+
             IQueryable<Job> query;
             if (string.IsNullOrEmpty(user))
             {
@@ -155,71 +165,24 @@ namespace JobWindowNew.Web.Controllers
 
             var result = query.ToList().Select(j => factory.Create(j));
 
-            var gv = new GridView { DataSource = result };
-
-            gv.DataBind();
-
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=CreatedBy.xls");
-            Response.ContentType = "application/ms-excel";
-
-            Response.Charset = "";
-            var objStringWriter = new StringWriter();
-            var objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
-
-            gv.RenderControl(objHtmlTextWriter);
-
-            Response.Output.Write(objStringWriter.ToString());
-            Response.Flush();
-            Response.End();
+            WebHelper.ImportToExcel(result, Response, "CreatedBy");
         }
 
         [HttpGet]
         [Authorize(Roles = "Root, Admin, Internal-Employee")]
         public ActionResult InActiveReport()
         {
-            return View();
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Root, Admin, Internal-Employee")]
-        public ActionResult InActiveReport(string podId)
-        {
-            int n;
-
-            if (podId.Length == 0 || !int.TryParse(podId, out n))
+            var viewModel = new InactiveGetViewModel
             {
-                return View();
-            }
-
-            var pId = int.Parse(podId);
-
-            var factory = new EverGreenReportFactory();
-
-            var result = _unitOfWork.JobRepository
-                .GetJobsForInActiveReport(pId)
-                .ToList()
-                .Select(j => factory.Create(j));
-
-            var gv = new GridView { DataSource = result };
-            gv.DataBind();
-
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=InActive.xls");
-            Response.ContentType = "application/ms-excel";
-
-            Response.Charset = "";
-            var objStringWriter = new StringWriter();
-            var objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
-
-            gv.RenderControl(objHtmlTextWriter);
-
-            Response.Output.Write(objStringWriter.ToString());
-            Response.Flush();
-            Response.End();
-            return RedirectToAction("Index", "Jobs");
+                FromDate = DateTime.Now.AddMonths(-1)
+                    .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
+                ToDate = DateTime.Now
+                .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
+                JobBoards = _unitOfWork.JobBoardRepository.GetJobBoards(),
+            };
+            return View(viewModel);
         }
+
+
     }
 }

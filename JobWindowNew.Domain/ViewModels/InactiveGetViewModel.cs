@@ -5,13 +5,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JobWindowNew.Domain.ViewModels
 {
-    public class CreatedByReportViewModel
+    public class InactiveGetViewModel
     {
-        [Display(Name = "User")]
-        public IEnumerable<ApplicationUser> Users { get; set; }
+        [DisplayName("Job Board")]
+        public int JobBoardId { get; set; }
 
-        [DisplayName("User")]
-        public string UserName { get; set; }
+        public IEnumerable<JobBoard> JobBoards { get; set; }
+
+        [DisplayName("Scheduling Pod Id")]
+        public int PodId { get; set; }
 
         [Required]
         [Display(Name = "From")]

@@ -39,15 +39,27 @@ namespace JobWindowNew.Domain.ViewModels
 
         public bool IsExpired { get; set; }
 
-        public int? GetNumberOfActiveDays()
-        {
-            return (int)Math.Ceiling((DateTime.Today - ActiveDate).TotalDays);
-        }
         public PaginationInfoViewModel PaginationInfoViewModel { get; set; }
 
         public int? NumberOfActiveDays =>
             DateTime.Now < ExpDate
-            ? (DateTime.Now - ActiveDate).Days
+            ? (DateTime.Now - ActiveDate).Days + 1
             : (ExpDate - ActiveDate).Days;
+
+        public int ActiveForThisWk => GetNumberOfActiveDaysInThisWeek();
+
+        public int GetNumberOfActiveDaysInThisWeek()
+        {
+            if (ExpDate < DateTime.Now)
+                return 0;
+
+            var monday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+            monday = monday > DateTime.Today ? monday.AddDays(-7) : monday;
+            var startingDate = monday < ActiveDate ? ActiveDate : monday;
+
+            var todayMinusMonday = (DateTime.Today - startingDate).Days + 1;
+
+            return todayMinusMonday;
+        }
     }
 }

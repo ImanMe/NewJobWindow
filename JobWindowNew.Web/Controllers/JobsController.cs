@@ -8,12 +8,8 @@ using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
 
 namespace JobWindowNew.Web.Controllers
 {
@@ -496,45 +492,16 @@ namespace JobWindowNew.Web.Controllers
             string companySearch, string divisionSearch, string jobBoardSearch,
             string podIdSearch, string createdBySearch, string createdByFilter, int? page)
         {
-            string id, title, podId, country, category, state, city, jobBoard, division, company, status, createdBy;
-            if (!string.IsNullOrEmpty(sortOrder))
-            {
-                id = idSearch ?? string.Empty;
-                title = titleSearch ?? string.Empty;
-                podId = podIdSearch ?? string.Empty;
-                country = countrySearch ?? string.Empty;
-                state = stateSearch ?? string.Empty;
-                city = citySearch ?? string.Empty;
-                jobBoard = jobBoardSearch ?? string.Empty;
-                division = divisionSearch ?? string.Empty;
-                company = companySearch ?? string.Empty;
-                category = categorySearch ?? string.Empty;
-                status = statusSearch ?? string.Empty;
-                createdBy = createdBySearch ?? string.Empty;
-            }
-            else
-            {
-                id = idFilter ?? string.Empty;
-                title = titleFilter ?? string.Empty;
-                podId = podIdFilter ?? string.Empty;
-                country = countryFilter ?? string.Empty;
-                category = categoryFilter ?? string.Empty;
-                state = stateFilter ?? string.Empty;
-                city = cityFilter ?? string.Empty;
-                jobBoard = jobBoardFilter ?? string.Empty;
-                division = divisionFilter ?? string.Empty;
-                company = companyFilter ?? string.Empty;
-                status = statusFilter ?? string.Empty;
-                createdBy = createdByFilter ?? string.Empty;
-            }
-
-            var sort = sortOrder;
-
 
             var query = _unitOfWork.JobRepository.GetJobs();
 
-            query = PersistenceHelper.FilterByInput(id, title, podId, city, state,
-                country, category, jobBoard, division, company, status, createdBy, query);
+            query = PersistenceHelper.FilterByInput(idSearch, titleSearch, podIdSearch,
+                citySearch, stateSearch, countrySearch, categorySearch, jobBoardSearch,
+                divisionSearch, companySearch, statusSearch, createdBySearch, query);
+
+            var sort = sortOrder;
+
+            query = PersistenceHelper.SortForJobList(query);
 
             query = PersistenceHelper.SortForJobList(query);
 
@@ -583,23 +550,8 @@ namespace JobWindowNew.Web.Controllers
             var finalResult = mappedResult.Skip(skipped).Take(2000).ToList();
 
             var result = finalResult;
-            var gv = new GridView { DataSource = result };
-            gv.DataBind();
 
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=JobList.xls");
-            Response.ContentType = "application/ms-excel";
-
-            Response.Charset = "";
-            var objStringWriter = new StringWriter();
-            var objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
-
-            gv.RenderControl(objHtmlTextWriter);
-
-            Response.Output.Write(objStringWriter.ToString());
-            Response.Flush();
-            Response.End();
+            WebHelper.ImportToExcelOfJobList(result, Response, "JobList");
         }
 
         [Authorize]
@@ -630,7 +582,7 @@ namespace JobWindowNew.Web.Controllers
             var jobBoard = _unitOfWork.JobBoardRepository.GetJobBoard(viewModel.JobBoardId);
             viewModel.IsEmailApply = jobBoard.IsEmailApply;
             viewModel.IsOnlineApply = jobBoard.IsOnlineApply;
-            this.TryValidateModel(viewModel);
+            TryValidateModel(viewModel);
             if (!ModelState.IsValid)
             {
                 viewModel = InitializeJobViewModel(viewModel);
@@ -688,7 +640,7 @@ namespace JobWindowNew.Web.Controllers
             var jobBoard = _unitOfWork.JobBoardRepository.GetJobBoard(viewModel.JobBoardId);
             viewModel.IsEmailApply = jobBoard.IsEmailApply;
             viewModel.IsOnlineApply = jobBoard.IsOnlineApply;
-            this.TryValidateModel(viewModel);
+            TryValidateModel(viewModel);
             if (!ModelState.IsValid)
             {
                 viewModel = InitializeJobViewModel(viewModel);
@@ -730,8 +682,6 @@ namespace JobWindowNew.Web.Controllers
                 return HttpNotFound();
             }
 
-            var currentUser = User.Identity.GetUserName();
-
             var occupations = _unitOfWork.JobOccupationMapRepository
                .GetOccupationForJob(id).ToList();
 
@@ -742,7 +692,7 @@ namespace JobWindowNew.Web.Controllers
                 OccupationsSelected = occupations.ToArray()
             };
 
-            PopulateViewModelForClone(viewModel, job, currentUser);
+            PopulateViewModelForClone(viewModel, job);
 
             return View("JobForm", viewModel);
         }
@@ -757,7 +707,7 @@ namespace JobWindowNew.Web.Controllers
             var jobBoard = _unitOfWork.JobBoardRepository.GetJobBoard(viewModel.JobBoardId);
             viewModel.IsEmailApply = jobBoard.IsEmailApply;
             viewModel.IsOnlineApply = jobBoard.IsOnlineApply;
-            this.TryValidateModel(viewModel);
+            TryValidateModel(viewModel);
             if (!ModelState.IsValid)
             {
                 viewModel = InitializeJobViewModel(viewModel);
@@ -944,7 +894,7 @@ namespace JobWindowNew.Web.Controllers
             viewModel.Intvs2 = job.Intvs2;
             viewModel.Bob = job.Bob;
         }
-        private void PopulateViewModelForClone(JobFormViewModel viewModel, Job job, string currentUser)
+        private void PopulateViewModelForClone(JobFormViewModel viewModel, Job job)
         {
             viewModel.Title = job.Title;
             viewModel.JobDescription = job.JobDescription;

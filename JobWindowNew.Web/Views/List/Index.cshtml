@@ -1,6 +1,6 @@
 ﻿@using JobWindowNew.Domain.ViewModels
 
-@model IEnumerable<JobWindowNew.Domain.ViewModels.JobGridViewModel>
+@model IEnumerable<ImanJobs>
 
 @{
     PaginationInfoViewModel info = ViewBag.SortingPagingInfo;
@@ -11,133 +11,164 @@
 }
 
 <h2>Job List</h2>
-@using (Html.BeginForm("Index", "List", FormMethod.Post))
-{
-    @Html.Hidden("SortField", info.SortField)
-    @Html.Hidden("SortDirection", info.SortDirection)
-    @Html.Hidden("TotalCount", info.TotalCount)
-    @Html.Hidden("PageSize", info.PageSize)
-    @Html.Hidden("CurrentPage", info.CurrentPage)
-    <table class="table table-hover table-condensed table-responsive" style="font-size: smaller">
-        <thead>
-        <tr>
-            <th>
-                <a href="#" data-sortfield="Job.Id"
-                   class="header">@Html.DisplayNameFor(model => model.Id)</a>
-            </th>
-            <th>
-                <a href="#" data-sortfield="Job.Title"
-                   class="header">@Html.DisplayNameFor(model => model.Title)</a>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StateName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CountryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompanyName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SchedulingPod)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Division)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.JobBoard)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsOnlineApply)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsExpired)
-            </th>
-        </tr>
-        <tr>
-            <th>@Html.TextBox("IdFilter",info.IdFilter)</th>
-            <th>@Html.TextBox("TitleFilter",info.TitleFilter)</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model)
-        {
+<div>
+   
+    @using (Html.BeginForm("Index", "List", FormMethod.Post))
+    {   
+        //@Html.Hidden("SortField", info.SortField)
+        @Html.Hidden("SortDirection", info.SortDirection)
+        @Html.Hidden("TotalPages", info.TotalPages)
+        @Html.Hidden("PageSize", info.PageSize)
+        @Html.Hidden("CurrentPage", info.CurrentPage)
 
+        <table class="table table-hover" style="font-size: smaller">
+            <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StateName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CountryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SchedulingPod)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Division)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.JobBoard)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsOnlineApply)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsExpired)
-                </td>
+                <th>
+                    <a href="#" data-sortfield="Id"
+                       class="header">@Html.DisplayNameFor(model => model.Id)</a>
+                </th>
+                <th>
+                    <a href="#" data-sortfield="Title"
+                       class="header">@Html.DisplayNameFor(model => model.Title)</a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StateName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CountryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SchedulingPod)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Division)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.JobBoard)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsOnlineApply)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsExpired)
+                </th>
             </tr>
-        }      
-        </tbody>
-    </table>
-    <input type="submit" hidden="hidden" onclick="$('#CurrentPage').val(0)"/>
-    <ul class="pagination pagination-sm">
-        @for (var i = 0; i < info.TotalCount && i < 10; i++)
-        {
-            if (i == info.CurrentPage)
+            <tr>
+                <th>@Html.TextBox("IdFilter", info.IdFilter)</th>
+                <th>@Html.TextBox("TitleFilter", info.TitleFilter)</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
             {
-                <li class="active"><a href="#">@(i + 1)</a></li>
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StateName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CountryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchedulingPod)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Division)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobBoard)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsOnlineApply)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsExpired)
+                    </td>
+                </tr>
             }
-            else
-            {
+            </tbody>
+        </table>
+        <input type="submit" hidden="hidden" onclick="$('#CurrentPage').val(0)"/>                   
+        <div class="text-center">      
+            <ul class="pagination pagination-sm">
+            
+                @{
+                    if (0 == info.CurrentPage)
+                    {
+                        <li class="active"><a href="#">First Page</a></li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="#" data-pageindex=0
+                               class="pager">First Page</a>
+                        </li>
+                    }
+
+                    var start = 1;
+                    if (info.CurrentPage - 5 > 0)
+                    {
+                        start = info.CurrentPage - 5;
+                    }
+                }
+                @for (var i = start; i < info.TotalPages - 1 && i < info.CurrentPage + 5; i++)
+                {
+                    if (i == info.CurrentPage)
+                    {
+                        <li class="active"><a href="#">@(i + 1)</a></li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="#" data-pageindex="@i"
+                               class="pager">@(i + 1)</a>
+                        </li>
+                    }
+                }
+
                 <li>
-                    <a href="#" data-pageindex="@i"
-                       class="pager">@(i + 1)</a>
+                    <a href="#" data-pageindex="@(info.TotalPages - 1)"
+                       class="pager">Last Page</a>
                 </li>
-            }
-        }               
-    </ul>
-}
+            </ul>
+        </div>      
+    }
+</div>
 
 @section scripts{
     <script>
@@ -146,8 +177,8 @@
                 $("#CurrentPage").val(0);                
                 var sortfield = $(evt.target).data("sortfield");
                 
-                if ($("#SortField").val() == sortfield) {
-                    if ($("#SortDirection").val() == "ascending") {
+                if ($("#SortField").val() === sortfield) {
+                    if ($("#SortDirection").val() === "ascending") {
                         $("#SortDirection").val("descending");
                     }
                     else {

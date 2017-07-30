@@ -1,4 +1,6 @@
-﻿namespace JobWindowNew.Domain.ViewModels
+﻿using System;
+
+namespace JobWindowNew.Domain.ViewModels
 {
     public class ReportViewModel
     {
@@ -20,6 +22,7 @@
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
         public int? ActiveFor { get; set; }
+        public int ActiveForThisWk => GetNumberOfActiveDaysInThisWeek();
         public int? BOB { get; set; }
         public int? Intvs { get; set; }
         public int? Intvs2 { get; set; }
@@ -28,5 +31,18 @@
         public string IsBestPerforming { get; set; }
         public string EmailApply { get; set; }
         public string OnlineUrl { get; set; }
+        public int GetNumberOfActiveDaysInThisWeek()
+        {
+            if (DateTime.Parse(ExpirationDate) < DateTime.Now)
+                return 0;
+
+            var monday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+            monday = monday > DateTime.Today ? monday.AddDays(-7) : monday;
+            var startingDate = monday < DateTime.Parse(ActivationDate) ? DateTime.Parse(ActivationDate) : monday;
+
+            var todayMinusMonday = (DateTime.Today - startingDate).Days + 1;
+
+            return todayMinusMonday;
+        }
     }
 }

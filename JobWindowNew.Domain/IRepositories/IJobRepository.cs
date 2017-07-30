@@ -9,6 +9,7 @@ namespace JobWindowNew.Domain.IRepositories
         void Add(Job job);
         void Update(Job job);
         IQueryable<Job> GetJobs();
+        IQueryable<Job> GetJobsForList();
         IQueryable<Job> GetJobWindowJobs();
         Job GetJobWindowJob(long id);
         IQueryable<Job> GetDuplicateJobs();
@@ -18,7 +19,7 @@ namespace JobWindowNew.Domain.IRepositories
         void MassDelete(int id);
         void MassExpire(int id);
         IQueryable<Job> GetJobsForEverGreenReport();
-        IQueryable<Job> GetJobsForInActiveReport(int podId);
+        IQueryable<Job> GetJobsForInActiveReport();
         IQueryable<Job> GetJobsForActiveReport();
     }
 }

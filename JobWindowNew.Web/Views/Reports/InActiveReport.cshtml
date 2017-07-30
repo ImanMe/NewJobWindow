@@ -1,21 +1,58 @@
-﻿
+﻿@model JobWindowNew.Domain.ViewModels.InactiveGetViewModel
 @{
     ViewBag.Title = "InActiveReport";
 }
 <div style="padding-left: 50px; padding-right: 50px;">
     @using (Html.BeginForm("InActiveReport", "Reports", FormMethod.Post))
     {
-        <div class="row" style="margin-top: 30px;">
-            <div class="col-md-3 col-lg-2">
-                <label>Scheduling Pod Id</label>
-                <div class="input-group">
-                    @Html.TextBox("podId", ViewBag.podId as string, new { @class = "form-control", @type = "number" })
-                    <span class="input-group-btn">
-                        <button type="submit" style="width: 100%" class="btn btn-primary"><i class="glyphicon glyphicon-file"></i></button>
-                    </span>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.JobBoardId)
+                    @Html.DropDownListFor(m => m.JobBoardId, new SelectList(Model.JobBoards, "Id", "JobBoardName"), "", new { @class = "form-control" })
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PodId)
+                    @Html.EditorFor(model => model.PodId, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FromDate)
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control datepicker", placeholder = "" } })
+                    @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ToDate)
+                    <span class="glyphicon glyphicon-asterisk text-danger"></span>@Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control datepicker", placeholder = "" } })
+                    @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-file"></i> Generate</button>
             </div>
         </div>
     }
 </div>
+
+@section Scripts {
+    
+    <script type="text/javascript">
+        $(function() { // will trigger when the document is ready
+            $('.datepicker').datepicker(); //Initialise any date pickers
+        });
+    </script>
+}
 
