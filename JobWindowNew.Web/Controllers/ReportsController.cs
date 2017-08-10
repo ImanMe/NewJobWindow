@@ -142,14 +142,14 @@ namespace JobWindowNew.Web.Controllers
 
             var user = viewModel.UserName;
             var fromDate = DateTime.Parse($"{viewModel.FromDate}");
-            var toDate = DateTime.Parse($"{viewModel.ToDate}");
+            var toDate = DateTime.Parse($"{viewModel.ToDate}").AddDays(1);
 
             IQueryable<Job> query;
             if (string.IsNullOrEmpty(user))
             {
                 query = _unitOfWork.JobRepository
                     .GetJobs()
-                    .Where(j => j.CreatedDate <= toDate)
+                    .Where(j => j.CreatedDate < toDate)
                     .Where(j => j.CreatedDate >= fromDate);
             }
             else
