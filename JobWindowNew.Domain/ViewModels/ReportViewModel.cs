@@ -20,6 +20,7 @@ namespace JobWindowNew.Domain.ViewModels
         public string ActivationDate { get; set; }
         public string ExpirationDate { get; set; }
         public string CreatedBy { get; set; }
+        public string Author { get; set; }
         public string CreatedDate { get; set; }
         public int? ActiveFor { get; set; }
         public int ActiveForThisWk => GetNumberOfActiveDaysInThisWeek();

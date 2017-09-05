@@ -24,6 +24,7 @@ namespace JobWindowNew.Domain.ViewModels.Factories
             model.ExpirationDate = job.ExpirationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             model.CompanyName = job.CompanyName;
             model.CreatedBy = job.CreatedBy;
+            model.Author = string.IsNullOrEmpty(job.Author) ? "N/A" : job.Author;
             model.CreatedDate = job.CreatedDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             model.ActiveFor = DateTime.Now < job.ExpirationDate
                 ? (DateTime.Now - job.ActivationDate).Days + 1
