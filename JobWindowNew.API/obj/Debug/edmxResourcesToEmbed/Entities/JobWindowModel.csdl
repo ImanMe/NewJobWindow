@@ -1,21 +1,122 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="JobWindowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ApplicantApstream">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="listingID" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="date" />
+      <PropertyRef Name="SchedulingPod" />
+      <PropertyRef Name="listingTitle" />
+      <PropertyRef Name="OfficeId" />
+      <PropertyRef Name="specificSourceName" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" />
+    <Property Name="listingID" Type="Int64" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SchedulingPod" Type="Int32" Nullable="false" />
+    <Property Name="File" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="listingTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OfficeId" Type="Int32" Nullable="false" />
+    <Property Name="specificSourceID" Type="Int32" />
+    <Property Name="specificSourceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
   <EntityContainer Name="JobWindowContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ApplicantApstreams" EntityType="Self.ApplicantApstream" />
+    <FunctionImport Name="CleanUps" ReturnType="Collection(JobWindowModel.CleanUps_Result)" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
     <FunctionImport Name="sp_BeyondFeed" ReturnType="Collection(JobWindowModel.sp_BeyondFeed_Result)" />
     <FunctionImport Name="sp_CareerBuilder" ReturnType="Collection(JobWindowModel.sp_CareerBuilder_Result)" />
     <FunctionImport Name="sp_Craigslist" ReturnType="Collection(JobWindowModel.sp_Craigslist_Result)" />
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_GlassdoorFeed" ReturnType="Collection(JobWindowModel.sp_GlassdoorFeed_Result)" />
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(JobWindowModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(JobWindowModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_IndeedFeed" ReturnType="Collection(JobWindowModel.sp_IndeedFeed_Result)" />
     <FunctionImport Name="sp_JobingFeed" ReturnType="Collection(JobWindowModel.sp_JobingFeed_Result)" />
     <FunctionImport Name="sp_Jobs2CareersFeed" ReturnType="Collection(JobWindowModel.sp_Jobs2CareersFeed_Result)" />
     <FunctionImport Name="sp_JobWindow" ReturnType="Collection(JobWindowModel.sp_JobWindow_Result)" />
     <FunctionImport Name="sp_Monster" ReturnType="Collection(JobWindowModel.sp_Monster_Result)" />
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_SnagaJobFeed" ReturnType="Collection(JobWindowModel.sp_SnagaJobFeed_Result)" />
     <FunctionImport Name="sp_TweetMyJobs" ReturnType="Collection(JobWindowModel.sp_TweetMyJobs_Result)" />
     <FunctionImport Name="sp_TweetMyJobsOA" ReturnType="Collection(JobWindowModel.sp_TweetMyJobsOA_Result)" />
+    <FunctionImport Name="sp_upgraddiagrams" />
     <FunctionImport Name="sp_ZipRecruiterFeed" ReturnType="Collection(JobWindowModel.sp_ZipRecruiterFeed_Result)" />
-    <EntitySet Name="ApplicantApstreams" EntityType="JobWindowModel.ApplicantApstream" />
   </EntityContainer>
+  <ComplexType Name="CleanUps_Result">
+    <Property Type="Int64" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="JobDescription" Nullable="false" />
+    <Property Type="String" Name="JobRequirements" Nullable="false" />
+    <Property Type="Decimal" Name="Salary" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="ZipCode" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="Boolean" Name="IsEverGreen" Nullable="false" />
+    <Property Type="Int32" Name="SchedulingPod" Nullable="false" />
+    <Property Type="Int32" Name="OfficeId" Nullable="false" />
+    <Property Type="Int16" Name="MinimumExperience" Nullable="true" />
+    <Property Type="Int16" Name="MaximumExperience" Nullable="true" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="ActivationDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ExpirationDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="EmailTo" Nullable="true" MaxLength="255" />
+    <Property Type="Int64" Name="SId" Nullable="true" />
+    <Property Type="String" Name="CreatedBy" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="EditedBy" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="EditedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Division" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="Currency" Nullable="true" MaxLength="255" />
+    <Property Type="Boolean" Name="IsBestPerforming" Nullable="false" />
+    <Property Type="Boolean" Name="IsOnlineApply" Nullable="false" />
+    <Property Type="String" Name="Author" Nullable="true" />
+    <Property Type="Int32" Name="JobBoardId" Nullable="false" />
+    <Property Type="Int32" Name="EmploymentTypeId" Nullable="false" />
+    <Property Type="Int32" Name="SalaryTypeId" Nullable="false" />
+    <Property Type="Int32" Name="CountryId" Nullable="false" />
+    <Property Type="Int32" Name="StateId" Nullable="false" />
+    <Property Type="Int64" Name="CloneFrom" Nullable="true" />
+    <Property Type="Int64" Name="EverGreenId" Nullable="true" />
+    <Property Type="Int32" Name="Bob" Nullable="true" />
+    <Property Type="Int32" Name="Intvs" Nullable="true" />
+    <Property Type="Int32" Name="Intvs2" Nullable="true" />
+    <Property Type="Int32" Name="ApsCl" Nullable="true" />
+    <Property Type="Boolean" Name="HasStats" Nullable="false" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="Int32" Name="CategoryId" Nullable="true" />
+  </ComplexType>
   <ComplexType Name="sp_BeyondFeed_Result">
     <Property Type="String" Name="Category" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
@@ -88,6 +189,17 @@
     <Property Type="String" Name="EmailTo" Nullable="true" MaxLength="255" />
     <Property Type="Int16" Name="SchedulingPod" Nullable="true" />
   </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="sp_IndeedFeed_Result">
     <Property Type="String" Name="Category" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
@@ -158,6 +270,7 @@
     <Property Type="String" Name="Country" Nullable="true" MaxLength="255" />
     <Property Type="Int16" Name="MinimumExperience" Nullable="true" />
     <Property Type="String" Name="JobDescription" Nullable="false" />
+    <Property Type="String" Name="JobRequirement" Nullable="false" />
     <Property Type="Decimal" Name="Salary" Nullable="true" Precision="18" Scale="2" />
     <Property Type="String" Name="EmploymentType" Nullable="true" MaxLength="255" />
     <Property Type="Int16" Name="MaximumExperience" Nullable="true" />
@@ -249,32 +362,9 @@
     <Property Type="String" Name="JobRequirements" Nullable="false" />
     <Property Type="String" Name="EmailTo" Nullable="true" MaxLength="255" />
     <Property Type="Int16" Name="SchedulingPod" Nullable="true" />
+    <Property Type="String" Name="JobType" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Experience" Nullable="true" MaxLength="67" />
+    <Property Type="Decimal" Name="Compensation_min" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Compensation_currency" Nullable="true" MaxLength="255" />
   </ComplexType>
-  <EntityType Name="ApplicantApstream">
-    <Key>
-      <PropertyRef Name="Id" />
-      <PropertyRef Name="listingID" />
-      <PropertyRef Name="FirstName" />
-      <PropertyRef Name="LastName" />
-      <PropertyRef Name="Email" />
-      <PropertyRef Name="date" />
-      <PropertyRef Name="SchedulingPod" />
-      <PropertyRef Name="listingTitle" />
-      <PropertyRef Name="OfficeId" />
-      <PropertyRef Name="specificSourceName" />
-    </Key>
-    <Property Name="Id" Type="Int64" Nullable="false" />
-    <Property Name="listingID" Type="Int64" Nullable="false" />
-    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="SchedulingPod" Type="Int32" Nullable="false" />
-    <Property Name="File" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="listingTitle" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="OfficeId" Type="Int32" Nullable="false" />
-    <Property Name="specificSourceID" Type="Int32" />
-    <Property Name="specificSourceName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-  </EntityType>
 </Schema>

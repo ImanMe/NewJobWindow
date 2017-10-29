@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="JobWindowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="JobWindowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ApplicantApstream">
@@ -34,18 +34,50 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
           <Property Name="specificSourceID" Type="int" />
           <Property Name="specificSourceName" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <Function Name="CleanUps" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
         <Function Name="sp_BeyondFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_CareerBuilder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Craigslist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GlassdoorFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_IndeedFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_JobingFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Jobs2CareersFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_JobWindow" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Monster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_SnagaJobFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_TweetMyJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_TweetMyJobsOA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_ZipRecruiterFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="JobWindowModelStoreContainer">
           <EntitySet Name="ApplicantApstream" EntityType="Self.ApplicantApstream" store:Type="Views" store:Schema="dbo">
@@ -66,26 +98,128 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
     FROM [dbo].[ApplicantApstream] AS [ApplicantApstream]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JobWindowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="JobWindowContext" annotation:LazyLoadingEnabled="true" >
+        <EntityType Name="ApplicantApstream">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="listingID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="date" />
+            <PropertyRef Name="SchedulingPod" />
+            <PropertyRef Name="listingTitle" />
+            <PropertyRef Name="OfficeId" />
+            <PropertyRef Name="specificSourceName" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="listingID" Type="Int64" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SchedulingPod" Type="Int32" Nullable="false" />
+          <Property Name="File" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="listingTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OfficeId" Type="Int32" Nullable="false" />
+          <Property Name="specificSourceID" Type="Int32" />
+          <Property Name="specificSourceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="JobWindowContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicantApstreams" EntityType="Self.ApplicantApstream" />
+          <FunctionImport Name="CleanUps" ReturnType="Collection(JobWindowModel.CleanUps_Result)" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
           <FunctionImport Name="sp_BeyondFeed" ReturnType="Collection(JobWindowModel.sp_BeyondFeed_Result)" />
           <FunctionImport Name="sp_CareerBuilder" ReturnType="Collection(JobWindowModel.sp_CareerBuilder_Result)" />
           <FunctionImport Name="sp_Craigslist" ReturnType="Collection(JobWindowModel.sp_Craigslist_Result)" />
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_GlassdoorFeed" ReturnType="Collection(JobWindowModel.sp_GlassdoorFeed_Result)" />
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(JobWindowModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(JobWindowModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_IndeedFeed" ReturnType="Collection(JobWindowModel.sp_IndeedFeed_Result)" />
           <FunctionImport Name="sp_JobingFeed" ReturnType="Collection(JobWindowModel.sp_JobingFeed_Result)" />
           <FunctionImport Name="sp_Jobs2CareersFeed" ReturnType="Collection(JobWindowModel.sp_Jobs2CareersFeed_Result)" />
           <FunctionImport Name="sp_JobWindow" ReturnType="Collection(JobWindowModel.sp_JobWindow_Result)" />
           <FunctionImport Name="sp_Monster" ReturnType="Collection(JobWindowModel.sp_Monster_Result)" />
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_SnagaJobFeed" ReturnType="Collection(JobWindowModel.sp_SnagaJobFeed_Result)" />
           <FunctionImport Name="sp_TweetMyJobs" ReturnType="Collection(JobWindowModel.sp_TweetMyJobs_Result)" />
           <FunctionImport Name="sp_TweetMyJobsOA" ReturnType="Collection(JobWindowModel.sp_TweetMyJobsOA_Result)" />
+          <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="sp_ZipRecruiterFeed" ReturnType="Collection(JobWindowModel.sp_ZipRecruiterFeed_Result)" />
-          <EntitySet Name="ApplicantApstreams" EntityType="JobWindowModel.ApplicantApstream" />
         </EntityContainer>
+        <ComplexType Name="CleanUps_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="JobDescription" Nullable="false" />
+          <Property Type="String" Name="JobRequirements" Nullable="false" />
+          <Property Type="Decimal" Name="Salary" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ZipCode" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Address" Nullable="true" />
+          <Property Type="Boolean" Name="IsEverGreen" Nullable="false" />
+          <Property Type="Int32" Name="SchedulingPod" Nullable="false" />
+          <Property Type="Int32" Name="OfficeId" Nullable="false" />
+          <Property Type="Int16" Name="MinimumExperience" Nullable="true" />
+          <Property Type="Int16" Name="MaximumExperience" Nullable="true" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="ActivationDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ExpirationDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="EmailTo" Nullable="true" MaxLength="255" />
+          <Property Type="Int64" Name="SId" Nullable="true" />
+          <Property Type="String" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="EditedBy" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="EditedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Division" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Currency" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsBestPerforming" Nullable="false" />
+          <Property Type="Boolean" Name="IsOnlineApply" Nullable="false" />
+          <Property Type="String" Name="Author" Nullable="true" />
+          <Property Type="Int32" Name="JobBoardId" Nullable="false" />
+          <Property Type="Int32" Name="EmploymentTypeId" Nullable="false" />
+          <Property Type="Int32" Name="SalaryTypeId" Nullable="false" />
+          <Property Type="Int32" Name="CountryId" Nullable="false" />
+          <Property Type="Int32" Name="StateId" Nullable="false" />
+          <Property Type="Int64" Name="CloneFrom" Nullable="true" />
+          <Property Type="Int64" Name="EverGreenId" Nullable="true" />
+          <Property Type="Int32" Name="Bob" Nullable="true" />
+          <Property Type="Int32" Name="Intvs" Nullable="true" />
+          <Property Type="Int32" Name="Intvs2" Nullable="true" />
+          <Property Type="Int32" Name="ApsCl" Nullable="true" />
+          <Property Type="Boolean" Name="HasStats" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Int32" Name="CategoryId" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="sp_BeyondFeed_Result">
           <Property Type="String" Name="Category" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
@@ -158,6 +292,17 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
           <Property Type="String" Name="EmailTo" Nullable="true" MaxLength="255" />
           <Property Type="Int16" Name="SchedulingPod" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="sp_IndeedFeed_Result">
           <Property Type="String" Name="Category" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
@@ -228,6 +373,7 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
           <Property Type="String" Name="Country" Nullable="true" MaxLength="255" />
           <Property Type="Int16" Name="MinimumExperience" Nullable="true" />
           <Property Type="String" Name="JobDescription" Nullable="false" />
+          <Property Type="String" Name="JobRequirement" Nullable="false" />
           <Property Type="Decimal" Name="Salary" Nullable="true" Precision="18" Scale="2" />
           <Property Type="String" Name="EmploymentType" Nullable="true" MaxLength="255" />
           <Property Type="Int16" Name="MaximumExperience" Nullable="true" />
@@ -319,40 +465,84 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
           <Property Type="String" Name="JobRequirements" Nullable="false" />
           <Property Type="String" Name="EmailTo" Nullable="true" MaxLength="255" />
           <Property Type="Int16" Name="SchedulingPod" Nullable="true" />
+          <Property Type="String" Name="JobType" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Experience" Nullable="true" MaxLength="67" />
+          <Property Type="Decimal" Name="Compensation_min" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Compensation_currency" Nullable="true" MaxLength="255" />
         </ComplexType>
-        <EntityType Name="ApplicantApstream">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="listingID" />
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="LastName" />
-            <PropertyRef Name="Email" />
-            <PropertyRef Name="date" />
-            <PropertyRef Name="SchedulingPod" />
-            <PropertyRef Name="listingTitle" />
-            <PropertyRef Name="OfficeId" />
-            <PropertyRef Name="specificSourceName" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="listingID" Type="Int64" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="SchedulingPod" Type="Int32" Nullable="false" />
-          <Property Name="File" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="listingTitle" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="OfficeId" Type="Int32" Nullable="false" />
-          <Property Name="specificSourceID" Type="Int32" />
-          <Property Name="specificSourceName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="JobWindowModelStoreContainer" CdmEntityContainer="JobWindowContext" >
+        <EntityContainerMapping StorageEntityContainer="JobWindowModelStoreContainer" CdmEntityContainer="JobWindowContext">
+          <EntitySetMapping Name="ApplicantApstreams">
+            <EntityTypeMapping TypeName="JobWindowModel.ApplicantApstream">
+              <MappingFragment StoreEntitySet="ApplicantApstream">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="listingID" ColumnName="listingID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+                <ScalarProperty Name="File" ColumnName="File" />
+                <ScalarProperty Name="listingTitle" ColumnName="listingTitle" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="specificSourceID" ColumnName="specificSourceID" />
+                <ScalarProperty Name="specificSourceName" ColumnName="specificSourceName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CleanUps" FunctionName="JobWindowModel.Store.CleanUps">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JobWindowModel.CleanUps_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="IsEverGreen" ColumnName="IsEverGreen" />
+                <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
+                <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+                <ScalarProperty Name="SId" ColumnName="SId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EditedBy" ColumnName="EditedBy" />
+                <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="IsBestPerforming" ColumnName="IsBestPerforming" />
+                <ScalarProperty Name="IsOnlineApply" ColumnName="IsOnlineApply" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="JobBoardId" ColumnName="JobBoardId" />
+                <ScalarProperty Name="EmploymentTypeId" ColumnName="EmploymentTypeId" />
+                <ScalarProperty Name="SalaryTypeId" ColumnName="SalaryTypeId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CloneFrom" ColumnName="CloneFrom" />
+                <ScalarProperty Name="EverGreenId" ColumnName="EverGreenId" />
+                <ScalarProperty Name="Bob" ColumnName="Bob" />
+                <ScalarProperty Name="Intvs" ColumnName="Intvs" />
+                <ScalarProperty Name="Intvs2" ColumnName="Intvs2" />
+                <ScalarProperty Name="ApsCl" ColumnName="ApsCl" />
+                <ScalarProperty Name="HasStats" ColumnName="HasStats" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="JobWindowModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_BeyondFeed" FunctionName="JobWindowModel.Store.sp_BeyondFeed">
             <ResultMapping>
               <ComplexTypeMapping TypeName="JobWindowModel.sp_BeyondFeed_Result">
@@ -416,6 +606,8 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="JobWindowModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="JobWindowModel.Store.sp_dropdiagram" />
           <FunctionImportMapping FunctionImportName="sp_GlassdoorFeed" FunctionName="JobWindowModel.Store.sp_GlassdoorFeed">
             <ResultMapping>
               <ComplexTypeMapping TypeName="JobWindowModel.sp_GlassdoorFeed_Result">
@@ -438,6 +630,25 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
                 <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
                 <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
                 <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="JobWindowModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JobWindowModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="JobWindowModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JobWindowModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -525,6 +736,7 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
                 <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="JobRequirement" ColumnName="JobRequirement" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="EmploymentType" ColumnName="EmploymentType" />
                 <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
@@ -552,6 +764,7 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="JobWindowModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_SnagaJobFeed" FunctionName="JobWindowModel.Store.sp_SnagaJobFeed">
             <ResultMapping>
               <ComplexTypeMapping TypeName="JobWindowModel.sp_SnagaJobFeed_Result">
@@ -620,6 +833,7 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="JobWindowModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_ZipRecruiterFeed" FunctionName="JobWindowModel.Store.sp_ZipRecruiterFeed">
             <ResultMapping>
               <ComplexTypeMapping TypeName="JobWindowModel.sp_ZipRecruiterFeed_Result">
@@ -636,28 +850,13 @@ warning 6002: The table/view 'JobWindowDB.dbo.ApplicantApstream' does not have a
                 <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
                 <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
                 <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+                <ScalarProperty Name="JobType" ColumnName="JobType" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="Compensation_min" ColumnName="Compensation_min" />
+                <ScalarProperty Name="Compensation_currency" ColumnName="Compensation_currency" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="ApplicantApstreams">
-            <EntityTypeMapping TypeName="JobWindowModel.ApplicantApstream">
-              <MappingFragment StoreEntitySet="ApplicantApstream">
-                <ScalarProperty Name="specificSourceName" ColumnName="specificSourceName" />
-                <ScalarProperty Name="specificSourceID" ColumnName="specificSourceID" />
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="listingTitle" ColumnName="listingTitle" />
-                <ScalarProperty Name="File" ColumnName="File" />
-                <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="listingID" ColumnName="listingID" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

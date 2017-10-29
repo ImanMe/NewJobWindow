@@ -137,7 +137,12 @@ namespace JobWindowNew.API.Controllers
                                                     new XElement("country", new XCData(jp.Country != null ? jp.Country : "")),
                                                     new XElement("category", new XCData(jp.Category != null ? jp.Category : "")),
                                                     new XElement("postalcode", new XCData(jp.ZipCode != null ? jp.ZipCode : "")),
-                                                    new XElement("description", new XCData(jp.JobDescription != null ? jp.JobDescription : "" + jp.JobRequirements != null ? jp.JobRequirements : ""))
+                                                    new XElement("description", new XCData((jp.JobDescription != null ? jp.JobDescription : "") + (jp.JobRequirements != null ? jp.JobRequirements : ""))),
+                                                    new XElement("JobType", new XCData(jp.JobType != null ? jp.JobType : "")),
+                                                    new XElement("Experience", new XCData(jp.Experience != null ? jp.Experience : "")),
+                                                    new XElement("Compensation_min", new XCData(Convert.ToString(jp.Compensation_min) != null ? Convert.ToString(jp.Compensation_min) : "")),
+                                                    new XElement("Compensation_currency", new XCData(jp.Compensation_currency != null ? jp.Compensation_currency : ""))
+
                                                        ))));
 
             string xml = Convert.ToString(results.Declaration) + results.ToString(SaveOptions.DisableFormatting);

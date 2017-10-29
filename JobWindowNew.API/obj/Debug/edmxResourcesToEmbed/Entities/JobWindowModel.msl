@@ -1,6 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="JobWindowModelStoreContainer" CdmEntityContainer="JobWindowContext">
+    <EntitySetMapping Name="ApplicantApstreams">
+      <EntityTypeMapping TypeName="JobWindowModel.ApplicantApstream">
+        <MappingFragment StoreEntitySet="ApplicantApstream">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="listingID" ColumnName="listingID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+          <ScalarProperty Name="File" ColumnName="File" />
+          <ScalarProperty Name="listingTitle" ColumnName="listingTitle" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="specificSourceID" ColumnName="specificSourceID" />
+          <ScalarProperty Name="specificSourceName" ColumnName="specificSourceName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CleanUps" FunctionName="JobWindowModel.Store.CleanUps">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.CleanUps_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="IsEverGreen" ColumnName="IsEverGreen" />
+          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
+          <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="SId" ColumnName="SId" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="EditedBy" ColumnName="EditedBy" />
+          <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
+          <ScalarProperty Name="Division" ColumnName="Division" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="IsBestPerforming" ColumnName="IsBestPerforming" />
+          <ScalarProperty Name="IsOnlineApply" ColumnName="IsOnlineApply" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="JobBoardId" ColumnName="JobBoardId" />
+          <ScalarProperty Name="EmploymentTypeId" ColumnName="EmploymentTypeId" />
+          <ScalarProperty Name="SalaryTypeId" ColumnName="SalaryTypeId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CloneFrom" ColumnName="CloneFrom" />
+          <ScalarProperty Name="EverGreenId" ColumnName="EverGreenId" />
+          <ScalarProperty Name="Bob" ColumnName="Bob" />
+          <ScalarProperty Name="Intvs" ColumnName="Intvs" />
+          <ScalarProperty Name="Intvs2" ColumnName="Intvs2" />
+          <ScalarProperty Name="ApsCl" ColumnName="ApsCl" />
+          <ScalarProperty Name="HasStats" ColumnName="HasStats" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="JobWindowModel.Store.sp_alterdiagram" />
     <FunctionImportMapping FunctionImportName="sp_BeyondFeed" FunctionName="JobWindowModel.Store.sp_BeyondFeed">
       <ResultMapping>
         <ComplexTypeMapping TypeName="JobWindowModel.sp_BeyondFeed_Result">
@@ -64,6 +131,8 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="JobWindowModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="JobWindowModel.Store.sp_dropdiagram" />
     <FunctionImportMapping FunctionImportName="sp_GlassdoorFeed" FunctionName="JobWindowModel.Store.sp_GlassdoorFeed">
       <ResultMapping>
         <ComplexTypeMapping TypeName="JobWindowModel.sp_GlassdoorFeed_Result">
@@ -86,6 +155,25 @@
           <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
           <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
           <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="JobWindowModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="JobWindowModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JobWindowModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -173,6 +261,7 @@
           <ScalarProperty Name="Country" ColumnName="Country" />
           <ScalarProperty Name="MinimumExperience" ColumnName="MinimumExperience" />
           <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobRequirement" ColumnName="JobRequirement" />
           <ScalarProperty Name="Salary" ColumnName="Salary" />
           <ScalarProperty Name="EmploymentType" ColumnName="EmploymentType" />
           <ScalarProperty Name="MaximumExperience" ColumnName="MaximumExperience" />
@@ -200,6 +289,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="JobWindowModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_SnagaJobFeed" FunctionName="JobWindowModel.Store.sp_SnagaJobFeed">
       <ResultMapping>
         <ComplexTypeMapping TypeName="JobWindowModel.sp_SnagaJobFeed_Result">
@@ -268,6 +358,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="JobWindowModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="sp_ZipRecruiterFeed" FunctionName="JobWindowModel.Store.sp_ZipRecruiterFeed">
       <ResultMapping>
         <ComplexTypeMapping TypeName="JobWindowModel.sp_ZipRecruiterFeed_Result">
@@ -284,27 +375,12 @@
           <ScalarProperty Name="JobRequirements" ColumnName="JobRequirements" />
           <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
           <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
+          <ScalarProperty Name="JobType" ColumnName="JobType" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="Compensation_min" ColumnName="Compensation_min" />
+          <ScalarProperty Name="Compensation_currency" ColumnName="Compensation_currency" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="ApplicantApstreams">
-      <EntityTypeMapping TypeName="JobWindowModel.ApplicantApstream">
-        <MappingFragment StoreEntitySet="ApplicantApstream">
-          <ScalarProperty Name="specificSourceName" ColumnName="specificSourceName" />
-          <ScalarProperty Name="specificSourceID" ColumnName="specificSourceID" />
-          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-          <ScalarProperty Name="listingTitle" ColumnName="listingTitle" />
-          <ScalarProperty Name="File" ColumnName="File" />
-          <ScalarProperty Name="SchedulingPod" ColumnName="SchedulingPod" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="listingID" ColumnName="listingID" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

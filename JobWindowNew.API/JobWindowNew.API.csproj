@@ -215,6 +215,9 @@
     <Compile Include="Entities\ApplicantApstream.cs">
       <DependentUpon>JobWindowModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CleanUps_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\JobWindowModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -240,6 +243,12 @@
       <DependentUpon>JobWindowModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\sp_GlassdoorFeed_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>JobWindowModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_helpdiagrams_Result.cs">
       <DependentUpon>JobWindowModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\sp_IndeedFeed_Result.cs">
@@ -325,6 +334,7 @@
     <Content Include="Entities\JobWindowModel.edmx.diagram">
       <DependentUpon>JobWindowModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\sads.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

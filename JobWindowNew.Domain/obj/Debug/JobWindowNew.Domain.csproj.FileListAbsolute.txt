@@ -104,3 +104,28 @@ C:\V2\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.Razor.xml
 C:\V2\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.csprojResolveAssemblyReference.cache
 C:\V2\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.dll
 C:\V2\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.pdb
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.dll.config
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\JobWindowNew.Domain.pdb
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.Helpers.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.Razor.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.Helpers.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.Razor.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.csprojResolveAssemblyReference.cache
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.Domain\obj\Debug\JobWindowNew.Domain.pdb

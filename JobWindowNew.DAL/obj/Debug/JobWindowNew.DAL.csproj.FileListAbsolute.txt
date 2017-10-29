@@ -132,3 +132,23 @@ C:\V2\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.JobBoa
 C:\V2\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.csproj.GenerateResource.Cache
 C:\V2\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.dll
 C:\V2\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.pdb
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\JobWindowNew.DAL.dll.config
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\JobWindowNew.DAL.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\JobWindowNew.DAL.pdb
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\EntityFramework.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\JobWindowNew.Domain.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\JobWindowNew.Domain.pdb
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\EntityFramework.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.csprojResolveAssemblyReference.cache
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.DeleteCategory.resources
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.CategoryAgain.resources
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.Migrations.JobBoardChange.resources
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.csproj.GenerateResource.Cache
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.dll
+C:\Users\imanm\Desktop\29 Oct\NewJobWindow\JobWindowNew.DAL\obj\Debug\JobWindowNew.DAL.pdb

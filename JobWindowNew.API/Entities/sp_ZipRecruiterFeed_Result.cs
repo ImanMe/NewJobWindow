@@ -26,5 +26,9 @@ namespace JobWindowNew.API.Entities
         public string JobRequirements { get; set; }
         public string EmailTo { get; set; }
         public Nullable<short> SchedulingPod { get; set; }
+        public string JobType { get; set; }
+        public string Experience { get; set; }
+        public Nullable<decimal> Compensation_min { get; set; }
+        public string Compensation_currency { get; set; }
     }
 }

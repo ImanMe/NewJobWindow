@@ -162,8 +162,8 @@ namespace JobWindowNew.DAL.Persistence.Repositories
                 .Include(m => m.Category)
                 .Include(m => m.EmploymentType)
                 .OrderByDescending(m => m.ActivationDate)
-                .Where(j => j.JobBoardId == 30);
-            //.Where(j => j.ExpirationDate >= DateTime.Now);
+                .Where(j => j.JobBoardId == 30)
+                .Where(j => j.ExpirationDate >= DateTime.Now);
         }
 
         public Job GetJobWindowJob(long id)
